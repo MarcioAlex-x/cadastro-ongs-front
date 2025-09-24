@@ -1,0 +1,26 @@
+:root {
+    --global-background: #ECF0F5;
+    --primary-navbar: #3C8DBC;
+    --secondary-navbar: #357CA5;
+    --primary-dark: #222D32;
+    --secondary-dark: #2C3B41;
+
+    --font-title: "Montserrat", sans-serif;
+    --font-text: "Inter", sans-serif;
+}
+
+html,
+body,
+#root {
+    height: 100%;
+    background-color: var(--global-background);
+
+}
+
+.App {
+    min-height: 100vh;
+}
+
+.bg-white{
+    background-color: #fff;
+}
