@@ -1,4 +1,9 @@
 .owner-bg{
     background-color: #1A2226;
-    height: 100vh;
+    height: 95vh;
+    font-family: var(--font-text)
+}
+
+.link{
+    text-decoration: none;
 }

@@ -1,57 +1,61 @@
-const fetchApi = async () => {
+const fethcCadastro = async () => {
     try {
 
         const response = await fetch('http://localhost:3000/cadastro', {
             credentials: 'include'
         })
         const data = await response.json()
+        console.log(data)
         return data
-
+        
     } catch (err) {
         return err.message
     }
 }
 
-export const cadastroShowAll = async () => {
-    return await fetchApi()
-}
+export const cadastroShowAll = async () => await fethcCadastro()
 
-export const CadastrosMesAnterior = async () => {
-    try {
-        const cadastros = await fetchApi()
-        const mesAtual = new Date().getMonth() + 1
-        const anoAtual = new Date().getFullYear()
+export const cadastrosMesAnterior = async () => {
+    const cadastros = await fethcCadastro()
 
-        const cadastrosMesPassado = cadastros.filter(el =>{
-            const dataCadastro = new Date(el.createdAt)
-            const mesCadastro = dataCadastro.getMonth()
-            const anoCadastro = dataCadastro.getFullYear()
+    const hoje = new Date()
+    let mesAnterior = hoje.getMonth()
+    let anoAnterior = hoje.getFullYear()
 
-            return mesCadastro === mesAtual && anoCadastro === anoAtual
-        })
-
-        return cadastrosMesPassado
-    } catch (err) {
-        console.log(err.message)
+    if (mesAnterior === 0) {
+        mesAnterior = 11
+        anoAnterior -= 1
+    } else {
+        mesAnterior -= 1
     }
+
+    return cadastros.filter(el => {
+        const data = new Date(el.createdAt)
+        return data.getMonth() === mesAnterior && data.getFullYear() === anoAnterior
+    })
 }
 
 export const ultimosCadastros = async () => {
-    try {
-        const cadastros = await fetchApi()
-        const mesAtual = new Date().getMonth() + 1
-        const anoAtual = new Date().getFullYear()
 
-        const cadastrosMesAtual = cadastros.filter(el => {
-            const dataCadastro = new Date(el.createdAt)
-            const mesCadatro = dataCadastro.getMonth() + 1
-            const anoCadastro = dataCadastro.getFullYear()
-
-            return mesCadatro === mesAtual && anoCadastro === anoAtual
-        })
-
-        return cadastrosMesAtual
-    } catch (err) {
-        console.log(err)
-    }
+    const cadastros = await fethcCadastro()
+    const hoje = new Date()
+    const mesAtual = hoje.getMonth()
+    const anoAtual = hoje.getFullYear()
+     
+    return cadastros.filter(el =>{
+        const data = new Date(el.createdAt)
+        return data.getMonth() === mesAtual && data.getFullYear() === anoAtual
+    })
 }
+
+export const cadastrosAno = async () =>{
+    const cadastros = await fethcCadastro()
+    const hoje = new Date()
+    const anoAtual = hoje.getFullYear()
+
+    return cadastros.filter(el =>{
+        const data = new Date(el.createdAt)
+        return data.getFullYear() === anoAtual
+    })
+}
+

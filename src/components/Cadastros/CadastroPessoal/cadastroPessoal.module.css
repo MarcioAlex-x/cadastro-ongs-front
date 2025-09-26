@@ -1,0 +1,10 @@
+.scroll{
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    height: 90vh;
+}
+
+.title-cadastro{
+    font-family: var(--font-title);
+}

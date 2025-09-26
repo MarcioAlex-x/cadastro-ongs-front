@@ -15,7 +15,7 @@ export const CardLogin = ({ logo }) => {
 
     try {
       await login(email, password)
-      navigate("/dashboard")
+      navigate("/dashboard/inicio")
     } catch (err) {
       setError(err.message)
     }

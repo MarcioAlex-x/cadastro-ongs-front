@@ -1,0 +1,11 @@
+.card-cadastro{
+    max-width: 360px;
+    margin: 40px auto 0;
+}
+.title-cadastro{
+    font-family: var(--font-title);
+}
+
+.text-cadastro{
+    font-family: var(--font-text);
+}

@@ -6,3 +6,7 @@
     min-height: 160px ;
     font-weight: bold;
 }
+
+.bold{
+    font-weight: bolder;
+}
