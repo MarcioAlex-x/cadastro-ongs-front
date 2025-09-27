@@ -4,6 +4,11 @@
     font-family: var(--font-text)
 }
 
+
 .link{
     text-decoration: none;
+}
+
+.link:hover{
+    text-decoration: underline;  
 }

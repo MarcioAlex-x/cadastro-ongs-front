@@ -45,6 +45,7 @@ export const Cadastro = () => {
                     <div className="card-body">
                         <h3 className={`${styles['title-cadastro']} card-title text-danger `}>Iportante!</h3>
                         <p className={`${styles['text-cadastro']} card-text`}>Ao iniciar um cadastro de beneficiário é importante que seja concluído, todos os dados preenchidos na ordem, para que os relatórios sejam acertivos.</p>
+                        <p className={`${styles['text-cadastro']} card-text`}>Se por ventura ocorrer algum erro de digitação durante o processo de cadastramento, não volte para a página anterior, continue cadastrando e atualize posteriormente para não duplicar os dados.</p>
                     </div>
                 </div>
             </div>

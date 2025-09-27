@@ -17,7 +17,7 @@ export const CadastroPessoal = () => {
         orientacao_sexual: '',
         telefone: '',
         estado_civil: '',
-        nacionalidade: '',
+        nacionalidade: 'Brasileiro(a)',
         naturalidade: '',
         etnia: '',
         deficiencia: '',
@@ -58,6 +58,7 @@ export const CadastroPessoal = () => {
                 })
             })
             const data = await response.json()
+            console.log(data)
             
             if(data.possui_conjuge === true){
                 navigate(`/dashboard/cadastro-conjuge/${data.id}`)
@@ -71,10 +72,10 @@ export const CadastroPessoal = () => {
 
     return (
         <div className={`ps-3 ${styles['scroll']}`}>
-            <h2 className={`${styles['title-cadastro']}`}>Novo Cadastro de Beneficiário</h2>
+            <h2 className={`${styles['title-cadastro']}`}>Dados Pessoais</h2>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="nome" id="nome">Nome</label>
+                    <label htmlFor="nome" id="nome" className={`${styles['text-cadastro']} form-label`}>Nome</label>
                     <input
                         type="text"
                         className="form-control"
@@ -85,7 +86,7 @@ export const CadastroPessoal = () => {
                 </div>
                 <div className="row">
                     <div className="col-md-4 col-12">
-                        <label htmlFor="" className="form-label">RG</label>
+                        <label htmlFor="rg" id="rg" className={`${styles['text-cadastro']} form-label`}>RG</label>
                         <input
                             type="text"
                             className="form-control"
@@ -95,7 +96,7 @@ export const CadastroPessoal = () => {
                             onChange={handleChange} />
                     </div>
                     <div className="col-md-4 col-12">
-                        <label htmlFor="cpf" className="form-label">CPF</label>
+                        <label htmlFor="cpf" className={`${styles['text-cadastro']} form-label`}>CPF</label>
                         <input
                             type="text"
                             className="form-control"
@@ -105,7 +106,7 @@ export const CadastroPessoal = () => {
                             onChange={handleChange} />
                     </div>
                     <div className="col-md-4 col-12">
-                        <label htmlFor="nis" className="form-label">NIS</label>
+                        <label htmlFor="nis" className={`${styles['text-cadastro']} form-label`}>NIS</label>
                         <input
                             type="text"
                             className="form-control"
@@ -117,7 +118,7 @@ export const CadastroPessoal = () => {
                 </div>
                 <div className="row"> 
                     <div className="col-md-3 col-12">
-                        <label htmlFor="data_nascimento" className="form-label">Data de Nascimento</label>
+                        <label htmlFor="data_nascimento" className={`${styles['text-cadastro']} form-label`}>Data de Nascimento</label>
                         <input
                             type="date"
                             className="form-control"
@@ -127,7 +128,7 @@ export const CadastroPessoal = () => {
                             onChange={handleChange} />
                     </div>
                     <div className="col-md-3 col-12">
-                        <label htmlFor="orientacao_sexual" className="form-label">Orientação Sexual</label>
+                        <label htmlFor="orientacao_sexual" className={`${styles['text-cadastro']} form-label`}>Orientação Sexual</label>
                         <select
                             className="form-control"
                             name="orientacao_sexual"
@@ -144,7 +145,7 @@ export const CadastroPessoal = () => {
                         </select>
                     </div>
                     <div className="col-md-3 col-12">
-                        <label htmlFor="telefone" className="form-label">Telefone</label>
+                        <label htmlFor="telefone" className={`${styles['text-cadastro']} form-label`}>Telefone</label>
                         <input
                             type="text"
                             className="form-control"
@@ -154,7 +155,7 @@ export const CadastroPessoal = () => {
                             onChange={handleChange} />
                     </div>
                     <div className="col-md-3 col-12">
-                    <label htmlFor="estado_civil" className="form-label">Estado Civil</label>
+                    <label htmlFor="estado_civil" className={`${styles['text-cadastro']} form-label`}>Estado Civil</label>
                     <select
                         className="form-control"
                         name="estado_civil"
@@ -172,7 +173,7 @@ export const CadastroPessoal = () => {
                 
                 <div className="row">
                     <div className="col-md-3 col-12">
-                        <label htmlFor="nacionalidade" className="form-label">Nacionalidade</label>
+                        <label htmlFor="nacionalidade" className={`${styles['text-cadastro']} form-label`}>Nacionalidade</label>
                         <input
                             type="text"
                             className="form-control"
@@ -182,7 +183,7 @@ export const CadastroPessoal = () => {
                             onChange={handleChange} />
                     </div>
                     <div className="col-md-3 col-12">
-                        <label htmlFor="naturalidade" className="form-label">Naturalidade</label>
+                        <label htmlFor="naturalidade" className={`${styles['text-cadastro']} form-label`}>Naturalidade</label>
                         <input
                             type="text"
                             className="form-control"
@@ -192,7 +193,7 @@ export const CadastroPessoal = () => {
                             onChange={handleChange} />
                     </div>
                     <div className="col-md-3 col-12">
-                        <label htmlFor="etnia" className="form-label">Etnia</label>
+                        <label htmlFor="etnia" className={`${styles['text-cadastro']} form-label`}>Etnia</label>
                         <select
                             className="form-control"
                             name="etnia"
@@ -208,7 +209,7 @@ export const CadastroPessoal = () => {
                         </select>
                     </div>
                     <div className="col-md-3 col-12">
-                        <label htmlFor="deficiencia" className="form-label">PCD</label>
+                        <label htmlFor="deficiencia" className={`${styles['text-cadastro']} form-label`}>PCD</label>
                         <select
                             className="form-control"
                             name="deficiencia"
@@ -223,7 +224,7 @@ export const CadastroPessoal = () => {
                 </div>
                 <div className="row">
                     <div className="col-12 col-md-6">
-                        <label htmlFor="tipo_deficiencia" className="form-label">Tipo de Deficiência</label>
+                        <label htmlFor="tipo_deficiencia" className={`${styles['text-cadastro']} form-label`}>Tipo de Deficiência</label>
                         <input
                             type="text"
                             className="form-control"
@@ -233,7 +234,7 @@ export const CadastroPessoal = () => {
                             onChange={handleChange} />
                     </div>
                     <div className="col-12 col-md-6">
-                        <label htmlFor="renda" className="form-label">Renda</label>
+                        <label htmlFor="renda" className={`${styles['text-cadastro']} form-label`}>Renda</label>
                         <input
                             type="number"
                             className="form-control"
@@ -244,7 +245,7 @@ export const CadastroPessoal = () => {
                     </div>
                 </div>
                 <div>
-                    <label htmlFor=" nome_pai" className="form-label">Nome do Pai</label>
+                    <label htmlFor=" nome_pai" className={`${styles['text-cadastro']} form-label`}>Nome do Pai</label>
                     <input
                         type="text"
                         className="form-control"
@@ -254,7 +255,7 @@ export const CadastroPessoal = () => {
                         onChange={handleChange} />
                 </div>
                 <div>
-                    <label htmlFor="nome_mae" className="form-label">Nome da Mãe</label>
+                    <label htmlFor="nome_mae" className={`${styles['text-cadastro']} form-label`}>Nome da Mãe</label>
                     <input
                         type="text"
                         className="form-control"
@@ -265,7 +266,7 @@ export const CadastroPessoal = () => {
                 </div>
                 <div className="row">
                     <div className="col-12 col-md-4">
-                        <label htmlFor="curso" className="form-label">Curso</label>
+                        <label htmlFor="curso" className={`${styles['text-cadastro']} form-label`}>Curso</label>
                         <input
                             type="text"
                             className="form-control"
@@ -275,7 +276,7 @@ export const CadastroPessoal = () => {
                             onChange={handleChange} />
                     </div>
                     <div className="col-12 col-md-4">
-                        <label htmlFor="periodo" className="form-label">Período</label>
+                        <label htmlFor="periodo" className={`${styles['text-cadastro']} form-label`}>Período</label>
                         <input
                             type="text"
                             className="form-control"
@@ -285,7 +286,7 @@ export const CadastroPessoal = () => {
                             onChange={handleChange} />
                     </div>
                     <div className="col-12 col-md-4">
-                        <label htmlFor="instituicao" className="form-label">Instituição</label>
+                        <label htmlFor="instituicao" className={`${styles['text-cadastro']} form-label`}>Instituição</label>
                         <input
                             type="text"
                             className="form-control"
@@ -297,7 +298,7 @@ export const CadastroPessoal = () => {
                 </div>
                 <div className="row">
                     <div className="col-6 col-md-3">
-                        <label htmlFor="situacao_mercado_trabalho" className="form-label">Situação Trabalhista</label>
+                        <label htmlFor="situacao_mercado_trabalho" className={`${styles['text-cadastro']} form-label`}>Situação Trabalhista</label>
                         <select
                             className="form-control"
                             name="situacao_mercado_trabalho"
@@ -315,7 +316,7 @@ export const CadastroPessoal = () => {
                     </div>
                     
                     <div className="col-6 col-md-3">
-                        <label htmlFor="beneficio_seguro_social" className="form-label">Benefício/Seguro Social</label>
+                        <label htmlFor="beneficio_seguro_social" className={`${styles['text-cadastro']} form-label`}>Benefício/Seguro Social</label>
                         <select
                             name="beneficio_seguro_social"
                             id="beneficio_seguro_social"
@@ -333,7 +334,7 @@ export const CadastroPessoal = () => {
                         </select>
                     </div>
                     <div className="col-6 col-md-3">
-                        <label htmlFor="valor_beneficio_seguro_social" className="form-label">Valor do Benefício</label>
+                        <label htmlFor="valor_beneficio_seguro_social" className={`${styles['text-cadastro']} form-label`}>Valor do Benefício</label>
                         <input
                             type="number"
                             className="form-control"
@@ -343,7 +344,7 @@ export const CadastroPessoal = () => {
                             onChange={handleChange} />
                     </div>
                     <div className="col-6 col-md-3">
-                        <label htmlFor="apoio_renda_primaria" className="form-label">Poio na Renda Familiar</label>
+                        <label htmlFor="apoio_renda_primaria" className={`${styles['text-cadastro']} form-label`}>Poio na Renda Familiar</label>
                         <select
                             className="form-control"
                             name="apoio_renda_primaria"
@@ -361,7 +362,7 @@ export const CadastroPessoal = () => {
                     </div>
                 </div>
                 <div className="mt-2 d-flex">
-                    <label htmlFor="possui_conjuge" className="form-label me-2">Possui Conjuge</label>
+                    <label htmlFor="possui_conjuge" className={`${styles['text-cadastro']} form-label me-2`}>Possui Conjuge</label>
                     <input 
                     type="checkbox" 
                     name="possui_conjuge" 
@@ -369,7 +370,7 @@ export const CadastroPessoal = () => {
                     checked={form.possui_conjuge}
                     onChange={handleChange} />
                 </div>
-                <input type="submit" value="Salvar" className="btn btn-success mb-4 d-block w-100" />
+                <input type="submit" value="Salvar" className={`${styles['text-cadastro']} btn btn-success mb-4 d-block w-100`} />
             </form>
         </div>
     )

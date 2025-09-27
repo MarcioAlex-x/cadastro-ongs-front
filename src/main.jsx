@@ -14,6 +14,10 @@ import { Cadastro } from './components/Cadastros/Cadasto'
 import { CadastroPessoal } from './components/Cadastros/CadastroPessoal/index.jsx'
 import { CadastroConjuge } from './components/Cadastros/CadastroConjuge/index.jsx'
 import { CadastroEndereco } from './components/Cadastros/CadastroEndereco/index.jsx'
+import { CadastroDomiciliar } from './components/Cadastros/CadastroDomiciliar/index.jsx'
+import { CadastroAcesso } from './components/Cadastros/CadastroAcesso/index.jsx'
+import { ComposicaoFamiliar } from './components/Cadastros/ComposicaoFamiliar/index.jsx'
+import { CadastroComposicaoFamiliar } from './components/Cadastros/CadastroComposicaoFamiliar/index.jsx'
 
 const router = createBrowserRouter([
   {
@@ -30,7 +34,11 @@ const router = createBrowserRouter([
               {path: 'cadastro', element:<Cadastro />},
               {path:'cadastro-pessoal/:id', element:<CadastroPessoal />},
               {path: 'cadastro-conjuge/:id', element: <CadastroConjuge />},
-              {path: 'cadastro-endereco/:id', element: <CadastroEndereco />}
+              {path: 'cadastro-endereco/:id', element: <CadastroEndereco />},
+              {path: 'cadastro-domiciliar/:id', element: <CadastroDomiciliar />},
+              {path: 'acesso/:id', element: <CadastroAcesso />},
+              {path: 'composicao/:id', element: <ComposicaoFamiliar />},
+              {path: 'cadastro-composicao-familiar/:id', element: <CadastroComposicaoFamiliar />}
             ]
            },
         ]
