@@ -15,15 +15,14 @@ export const CadastroComposicaoFamiliar = () => {
         etnia: '',
         ocupacao: '',
         profissao: '',
-        renda: 0,
+        renda: '',
         escolaridade: '',
         frequenta_escola: '',
         beneficio_seguro_social: '',
-        valor_beneficio_seguro_social: 0,
+        valor_beneficio_seguro_social: '',
         pcd: '',
     }
     const [form, setForm] = useState(initialState)
-    const [totalCadastros, setTotalCadastros] = useState(0)
     const [atualizador, setAtualizador] = useState(0)
 
     const handleChange = (e) => {
@@ -31,12 +30,18 @@ export const CadastroComposicaoFamiliar = () => {
         setForm({ ...form, [name]: value })
     }
 
-    const handleFinish = (e) =>{
+    const handleFinish = (e) => {
         e.preventDefault()
         navigate('/dashboard/inicio')
     }
 
     const handleSubmit = async (e) => {
+
+        const formToSend = { ...form }
+
+        formToSend.renda = parseFloat(form.renda.replace(/\./g, '').replace(',', '.')) || 0
+        formToSend.valor_beneficio_seguro_social = parseFloat(form.valor_beneficio_seguro_social.replace(/\./g, '').replace(',', '.')) || 0
+
         e.preventDefault()
 
         try {
@@ -52,7 +57,7 @@ export const CadastroComposicaoFamiliar = () => {
             const data = await response.json()
             if (data) {
                 setForm(initialState)
-                setAtualizador(prev => prev+1)
+                setAtualizador(prev => prev + 1)
             }
 
         } catch (err) {
@@ -60,46 +65,41 @@ export const CadastroComposicaoFamiliar = () => {
         }
     }
 
-    const handleCount = async () =>{
+    const handleCount = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/composicao`,{
-                method:'GET',
-                headers:{
-                    'Content-Type':'application/json'
+            const response = await fetch(`http://localhost:3000/composicao`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
                 },
-                credentials:'include'
+                credentials: 'include'
             })
             const data = await response.json()
-
-            const contadorCadastro = data.filter( el => el.dados_pessoais_id)
-            
-            const totalCadastros = contadorCadastro.map(cadastros => cadastros.id)
-
-            setTotalCadastros(totalCadastros.length)
 
         } catch (err) {
             console.error(err)
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         handleCount()
-    },[atualizador])
+    }, [atualizador])
 
     return (
         <div className={`ps-3 ${styles['scroll']}`}>
             <h2 className={`${styles['title-cadastro']}`}>Composição Familiar</h2>
             <div className="border px-4 py-1 bg-secondary text-light ">
-                { atualizador === 0 ?
-                (<p className="mb-0">Eu vou atualizando quantos membros forem adicionados</p> )
-                :
-                (<p className="mb-0">{atualizador} membros adicionados a família.</p>)}
+                {atualizador === 0 ?
+                    (<p className="mb-0">Eu vou atualizando quantos membros forem adicionados</p>)
+                    :
+                    (<p className="mb-0">{atualizador} membros adicionados a família.</p>)}
             </div>
 
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="nome" className={`${styles['text-cadastro']} form-label`}>Nome</label>
                     <input
+                        required
                         type="text"
                         className="form-control"
                         id="nome"
@@ -111,6 +111,7 @@ export const CadastroComposicaoFamiliar = () => {
                     <div className="col-md-3 col-12">
                         <label htmlFor="data_nascimento" className={`${styles['text-cadastro']} form-label`}>Data de Nascimento</label>
                         <input
+                            required
                             type="date"
                             className="form-control"
                             id="data_nascimento"
@@ -121,6 +122,7 @@ export const CadastroComposicaoFamiliar = () => {
                     <div className="col-md-3 col-12">
                         <label htmlFor="orientacao_sexual" className={`${styles['text-cadastro']} form-label`}>Orientação Sexual</label>
                         <select
+                            required
                             className="form-control"
                             name="orientacao_sexual"
                             id="orientacao_sexual"
@@ -138,6 +140,7 @@ export const CadastroComposicaoFamiliar = () => {
                     <div className="col-12 col-md-3">
                         <label htmlFor="parentesco" className={`${styles['text-cadastro']} form-label`}>Parentesco</label>
                         <input
+                            required
                             type="parentesco"
                             className="form-control"
                             id="parentesco"
@@ -148,6 +151,7 @@ export const CadastroComposicaoFamiliar = () => {
                     <div className="col-md-3 col-12">
                         <label htmlFor="estado_civil" className={`${styles['text-cadastro']} form-label`}>Estado Civil</label>
                         <select
+                            required
                             className="form-control"
                             name="estado_civil"
                             id="estado_civil"
@@ -165,6 +169,7 @@ export const CadastroComposicaoFamiliar = () => {
                     <div className="col-md-4 col-12">
                         <label htmlFor="etnia" className={`${styles['text-cadastro']} form-label`}>Etnia</label>
                         <select
+                            required
                             className="form-control"
                             name="etnia"
                             id="etnia"
@@ -181,6 +186,7 @@ export const CadastroComposicaoFamiliar = () => {
                     <div className="col-md-4 col-12">
                         <label htmlFor="pcd" className={`${styles['text-cadastro']} form-label`}>PCD</label>
                         <select
+                            required
                             className="form-control"
                             name="pcd"
                             id="pcd"
@@ -194,7 +200,8 @@ export const CadastroComposicaoFamiliar = () => {
                     <div className="col-12 col-md-4">
                         <label htmlFor="renda" className={`${styles['text-cadastro']} form-label`}>Renda</label>
                         <input
-                            type="number"
+                            required
+                            type="text"
                             className="form-control"
                             id="renda"
                             name="renda"
@@ -206,6 +213,7 @@ export const CadastroComposicaoFamiliar = () => {
                     <div className="col-12 col-md-6">
                         <label htmlFor="ocupacao" className={`${styles['text-cadastro']} form-label`}>Ocupação</label>
                         <input
+                            required
                             type="text"
                             className="form-control"
                             id="ocupacao"
@@ -216,6 +224,7 @@ export const CadastroComposicaoFamiliar = () => {
                     <div className="col-12 col-md-6">
                         <label htmlFor="profissao" className={`${styles['text-cadastro']} form-label`}>Profissao</label>
                         <input
+                            required
                             type="text"
                             className="form-control"
                             id="profissao"
@@ -229,6 +238,7 @@ export const CadastroComposicaoFamiliar = () => {
                     <div className="col-6 col-md-3">
                         <label htmlFor="escolaridade" className={`${styles['text-cadastro']} form-label`}>Escolaridade</label>
                         <input
+                            required
                             type="text"
                             className="form-control"
                             id="escolaridade"
@@ -239,6 +249,7 @@ export const CadastroComposicaoFamiliar = () => {
                     <div className="col-md-3 col-12">
                         <label htmlFor="frequenta_escola" className={`${styles['text-cadastro']} form-label`}>Frequentando a Escola</label>
                         <select
+                            required
                             className="form-control"
                             name="frequenta_escola"
                             id="frequenta_escola"
@@ -252,6 +263,7 @@ export const CadastroComposicaoFamiliar = () => {
                     <div className="col-6 col-md-3">
                         <label htmlFor="beneficio_seguro_social" className={`${styles['text-cadastro']} form-label`}>Benefício/Seguro Social</label>
                         <select
+                            required
                             name="beneficio_seguro_social"
                             id="beneficio_seguro_social"
                             value={form.beneficio_seguro_social}
@@ -270,7 +282,7 @@ export const CadastroComposicaoFamiliar = () => {
                     <div className="col-6 col-md-3">
                         <label htmlFor="valor_beneficio_seguro_social" className={`${styles['text-cadastro']} form-label`}>Valor do Benefício</label>
                         <input
-                            type="number"
+                            type="text"
                             className="form-control"
                             id="valor_beneficio_seguro_social"
                             name="valor_beneficio_seguro_social"

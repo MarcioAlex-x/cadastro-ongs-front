@@ -11,16 +11,18 @@ export const CadastroConjuge = () => {
         data_nascimento: '',
         etnia: '',
         situacao_mercado_trabalho: '',
-        renda: 0,
+        renda: '',
         ocupacao: '',
         deficiencia: '',
         tipo_deficiencia: '',
         beneficio_seguro_social: '',
-        valor_beneficio_seguro_social: 0,
+        valor_beneficio_seguro_social: '',
     })
 
     const handleChange = (e) => {
         const { name, value } = e.target
+
+
         setForm({
             ...form,
             [name]: value
@@ -30,6 +32,11 @@ export const CadastroConjuge = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
+        const formToSend = { ...form }
+
+        formToSend.renda = parseFloat(form.renda.replace(/\./g, '').replace(',', '.')) || 0
+        formToSend.valor_beneficio_seguro_social = parseFloat(form.valor_beneficio_seguro_social.replace(/\./g, '').replace(',', '.'))
+
         try {
             const response = await fetch(`http://localhost:3000/conjuge/${id}`, {
                 method: "POST",
@@ -37,15 +44,15 @@ export const CadastroConjuge = () => {
                     'Content-Type': 'application/json'
                 },
                 credentials: 'include',
-                body: JSON.stringify({ ...form })
+                body: JSON.stringify(formToSend)
             })
 
             const data = response.json()
             if (data) {
-                navigate(`/dashboard/cadastro-endereco/${data.id}`)
+                navigate(`/dashboard/cadastro-endereco/${id}`)
             }
         } catch (err) {
-            console.log(err, '-' , err.message)
+            console.log(err, '-', err.message)
         }
     }
 
@@ -56,6 +63,7 @@ export const CadastroConjuge = () => {
                 <div>
                     <label htmlFor="nome" id="nome" className={`${styles['text-cadastro']} form-label`}>Nome</label>
                     <input
+                        required
                         type="text"
                         className="form-control"
                         id="nome"
@@ -68,6 +76,7 @@ export const CadastroConjuge = () => {
                     <div className="col-md-4 col-12">
                         <label htmlFor="data_nascimento" className={`${styles['text-cadastro']} form-label`}>Data de Nascimento</label>
                         <input
+                            required
                             type="date"
                             className="form-control"
                             id="data_nascimento"
@@ -78,6 +87,7 @@ export const CadastroConjuge = () => {
                     <div className="col-md-4 col-12">
                         <label htmlFor="etnia" className={`${styles['text-cadastro']} form-label`}>Etnia</label>
                         <select
+                            required
                             className="form-control"
                             name="etnia"
                             id="etnia"
@@ -94,6 +104,7 @@ export const CadastroConjuge = () => {
                     <div className="col-6 col-md-4">
                         <label htmlFor="situacao_mercado_trabalho" className={`${styles['text-cadastro']} form-label`}>Situação Trabalhista</label>
                         <select
+                            required
                             className="form-control"
                             name="situacao_mercado_trabalho"
                             id="situacao_mercado_trabalho"
@@ -114,7 +125,8 @@ export const CadastroConjuge = () => {
                     <div className="col-12 col-md-4">
                         <label htmlFor="renda" className={`${styles['text-cadastro']} form-label`}>Renda</label>
                         <input
-                            type="number"
+                            required
+                            type="text"
                             className="form-control"
                             id="renda"
                             name="renda"
@@ -124,6 +136,7 @@ export const CadastroConjuge = () => {
                     <div className="col-12 col-md-4">
                         <label htmlFor="ocupacao" className={`${styles['text-cadastro']} form-label`}>Ocupação</label>
                         <input
+                            required
                             type="text"
                             className="form-control"
                             id="ocupacao"
@@ -134,6 +147,7 @@ export const CadastroConjuge = () => {
                     <div className="col-md-4 col-12">
                         <label htmlFor="deficiencia" className={`${styles['text-cadastro']} form-label`}>PCD</label>
                         <select
+                            required
                             className="form-control"
                             name="deficiencia"
                             id="deficiencia"
@@ -160,6 +174,7 @@ export const CadastroConjuge = () => {
                     <div className="col-6 col-md-4">
                         <label htmlFor="beneficio_seguro_social" className={`${styles['text-cadastro']} form-label`}>Benefício/Seguro Social</label>
                         <select
+                            required
                             name="beneficio_seguro_social"
                             id="beneficio_seguro_social"
                             value={form.beneficio_seguro_social}
@@ -178,7 +193,7 @@ export const CadastroConjuge = () => {
                     <div className="col-6 col-md-4">
                         <label htmlFor="valor_beneficio_seguro_social" className={`${styles['text-cadastro']} form-label`}>Valor do Benefício</label>
                         <input
-                            type="number"
+                            type="text"
                             className="form-control"
                             id="valor_beneficio_seguro_social"
                             name="valor_beneficio_seguro_social"

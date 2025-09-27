@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import styles from './cadastroEndereco.module.css'
 import { useState } from "react"
 import { useAuth } from "../../../context/AuthContext"
+import { InputMask } from "primereact/inputmask"
 
 export const CadastroEndereco = () => {
 
@@ -85,13 +86,14 @@ export const CadastroEndereco = () => {
                     </div>
                     <div className='col-12 col-md-4'>
                         <label htmlFor="cep" className={`${styles['text-cadastro']} form-label`}>CEP</label>
-                        <input
+                        <InputMask
                             type="text"
+                            mask="99.999-999"
                             className="form-control"
                             id="cep"
                             name="cep"
                             value={form.cep}
-                            onChange={handleChange} />
+                            onChange={handleChange} ></InputMask>
                     </div>
                 </div>
                 <input type="submit" value="Salvar"  className={`${styles['text-cadastro']} btn btn-success my-4 d-block w-100`} />
