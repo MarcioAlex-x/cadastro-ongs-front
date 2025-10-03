@@ -18,6 +18,8 @@ import { CadastroDomiciliar } from './components/Cadastros/CadastroDomiciliar/in
 import { CadastroAcesso } from './components/Cadastros/CadastroAcesso/index.jsx'
 import { ComposicaoFamiliar } from './components/Cadastros/ComposicaoFamiliar/index.jsx'
 import { CadastroComposicaoFamiliar } from './components/Cadastros/CadastroComposicaoFamiliar/index.jsx'
+import { ListaCadastros } from './components/Listas/ListaCadastros/index.jsx'
+import { CadastroId } from './components/Listas/cadastroId/index.jsx'
 
 const router = createBrowserRouter([
   {
@@ -38,7 +40,9 @@ const router = createBrowserRouter([
               {path: 'cadastro-domiciliar/:id', element: <CadastroDomiciliar />},
               {path: 'acesso/:id', element: <CadastroAcesso />},
               {path: 'composicao/:id', element: <ComposicaoFamiliar />},
-              {path: 'cadastro-composicao-familiar/:id', element: <CadastroComposicaoFamiliar />}
+              {path: 'cadastro-composicao-familiar/:id', element: <CadastroComposicaoFamiliar />},
+              {path: 'cadastros', element: <ListaCadastros />},
+              {path: 'cadastro/:id', element: <CadastroId />}
             ]
            },
         ]

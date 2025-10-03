@@ -2,7 +2,7 @@ import { useAuth } from '../../context/AuthContext'
 import { FaRegUser } from "react-icons/fa6"
 import styles from './navbar.module.css'
 
-export const Navbar = ({className}) => {
+export const Navbar = ({ className }) => {
     const { user } = useAuth()
     return (
         <nav className={`align-items-center ${className} ${styles['bg-owner']}`}>
@@ -14,8 +14,10 @@ export const Navbar = ({className}) => {
                     {
                         user.isAdmin ? (
                             <p className='text-light ms-3 my-0'>Administrador</p>
-                        ):(
-                            <p className='text-light ms-3 my-0'>Usuário</p>
+                        ) : (
+                            <p className='text-light ms-3 my-0'>
+                                Usuário
+                            </p>
                         )
                     }
                 </div>

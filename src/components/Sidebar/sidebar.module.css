@@ -1,9 +1,14 @@
 .owner-bg{
     background-color: #1A2226;
+    background-image: 
+        linear-gradient(rgba(26, 34, 38, 0.6), rgba(26, 34, 38, 0.9)), /* camada com opacidade */
+        url('../../assets/ABSJ.png');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: contain;
     height: 95vh;
     font-family: var(--font-text)
 }
-
 
 .link{
     text-decoration: none;

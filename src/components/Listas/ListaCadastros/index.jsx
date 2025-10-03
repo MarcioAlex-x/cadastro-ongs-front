@@ -1,0 +1,91 @@
+import { useEffect, useState } from 'react'
+import styles from './listaCadastros.module.css'
+import spinner from '../../../assets/spinner.gif'
+import { FaRegEye } from "react-icons/fa";
+import { Link } from 'react-router-dom';
+
+export const ListaCadastros = () => {
+
+    const [loading, setLoading] = useState(true)
+    const [cadastros, setCadastros] = useState([])
+
+    useEffect(() => {
+
+        const listaCadastros = async () => {
+
+            try {
+                setLoading(true)
+                const response = await fetch('http://localhost:3000/cadastro', {
+                    credentials: 'include'
+                })
+
+                const data = await response.json()
+                setCadastros(data)
+
+            } catch (err) {
+                console.log(err)
+            } finally {
+                setLoading(false)
+            }
+        }
+        listaCadastros()
+
+        
+    }, [])
+    
+    const cadastrosCompletos = (pessoa) => {
+        return (
+            pessoa?.nome &&
+            pessoa?.endereco &&
+            pessoa?.domicilio &&
+            pessoa?.acesso
+        )
+    }
+
+     return (
+    <div className={`ps-3 ${styles['scroll']}`}>
+      <h2 className={`${styles['title-cadastro']}`}>Cadastros Realizados</h2>
+      {loading ? (
+        <div className='d-flex align-items-center justify-content-center'>
+          <img src={spinner} className='mt-5' />
+        </div>
+      ) : (
+        <div>
+          <ul>
+            {cadastros && cadastros.length>0 ?
+            cadastros.map((data) => (
+              <li key={data.id} className={`${styles['link']} d-flex mb-3`}>
+                <Link to={`/dashboard/cadastro/${data.id}`}>
+                    <button
+                    className='btn btn-outline-primary btn-sm me-2 d-flex align-items-center'>
+                      <FaRegEye /> Ver Cadastro
+                    </button>
+                </Link>
+                <ul>
+                  {data.pessoas && data.pessoas.length > 0 ? (
+                    data.pessoas.map((pessoa) => (
+                      <li key={pessoa.id} className={styles['link']}>
+                        {cadastrosCompletos(pessoa) ? (
+                          <>Cadastrado: {pessoa.nome}</>
+                        ) : (
+                          <span >{pessoa.nome} - <b>Complete este cadastro</b></span>
+                        )}
+                      </li>
+                    ))
+                  ) : (
+                    <li className={`${styles['link']} text-danger`}><b>Remova este cadastro</b></li>
+                  )}
+                </ul>
+              </li>
+            ))
+            :
+            <div>
+              <p>Nenhum cadastro realizado.</p>
+            </div>
+            }
+          </ul>
+        </div>
+      )}
+    </div>
+  )
+}
