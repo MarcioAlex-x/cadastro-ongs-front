@@ -43,7 +43,7 @@ export const ListaCadastros = () => {
     }
 
      return (
-    <div className={`ps-3 ${styles['scroll']}`}>
+    <div className={` ${styles['scroll']}`}>
       <h2 className={`${styles['title-cadastro']}`}>Cadastros Realizados</h2>
       {loading ? (
         <div className='d-flex align-items-center justify-content-center'>
@@ -55,10 +55,10 @@ export const ListaCadastros = () => {
             {cadastros && cadastros.length>0 ?
             cadastros.map((data) => (
               <li key={data.id} className={`${styles['link']} d-flex mb-3`}>
-                <Link to={`/dashboard/cadastro/${data.id}`}>
+                <Link className={`${styles['link']}`} to={`/dashboard/cadastro/${data.id}`}>
                     <button
                     className='btn btn-outline-primary btn-sm me-2 d-flex align-items-center'>
-                      <FaRegEye /> Ver Cadastro
+                      <FaRegEye className={`${styles['button-link']}`} /> <span className={`${styles['text-link']}`}>Ver Cadastro</span>
                     </button>
                 </Link>
                 <ul>

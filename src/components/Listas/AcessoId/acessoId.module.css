@@ -17,13 +17,3 @@
     list-style: none;
     text-decoration: none;
 }
-
-.button-link{
-    font-weight: bold;
-}
-
-@media screen and (max-width: 450px){
-    .text-link{
-        display: none;
-    }
-}

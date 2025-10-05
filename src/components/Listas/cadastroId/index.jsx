@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import styles from './cadastroId.module.css'
 import { GoPencil } from "react-icons/go";
 import spinner from '../../../assets/spinner.gif'
@@ -9,6 +9,9 @@ import { EnderecoId } from '../EnderecoId';
 import { PessoaId } from '../PessoaId';
 import { ConjugeId } from '../ConjugeId'
 import { DomicilioId } from '../DomicilioId';
+import { AcessoId } from '../AcessoId';
+import { MembroId } from '../MembroId';
+import { Button } from 'bootstrap';
 
 
 
@@ -49,7 +52,12 @@ export const CadastroId = () => {
                 setEndereco(pessoaData.endereco)
                 setConjuge(pessoaData.conjuge)
                 setDomicilio(pessoaData.domicilio)
+                setAcesso(pessoaData.acesso)
+                setComposicaoFamiliar(pessoaData.composicaoFamiliar)
+                console.log(composicaoFamiliar)
+                setMembro(pessoaData.composicaoFamiliar.membros)
                 setUserId(data.user_id)
+
 
 
             } catch (err) {
@@ -86,15 +94,15 @@ export const CadastroId = () => {
     },[userId])
 
     return (
-        <div className={`${styles['scroll']}`}>
+        <div className={`${styles['scroll']} pb-2`}>
             {loading ?
                 <div className='d-flex align-items-center justify-content-center h-100'>
                     <img src={spinner} />
                 </div>
                 :
-                <div>
-                    <h2 className={`${styles['title-cadastro']}`}>Cadastro ID: {cadastro?.id}</h2>
-                    <p className='text-end text-secondary'>Criado por {userCreator?.nome} em {formatarDataCriacaoAtualizacao(cadastro.createdAt)}</p>
+                <div className='mb-4'>
+                    <h2 className={`${styles['title-cadastro']}`}>Cadastro</h2>
+                    <p className=''>Criado por {userCreator?.nome} em {formatarDataCriacaoAtualizacao(cadastro.createdAt)}</p>
                     <hr />
                     {pessoa ? <PessoaId pessoa={pessoa} /> : <p className='text-center dext-danger'>Cadastro Incompleto.</p>}
                     <hr />
@@ -103,6 +111,11 @@ export const CadastroId = () => {
                     {conjuge !== null && <ConjugeId conjuge={conjuge} />}
                     <hr />
                     {domicilio !== null ? <DomicilioId domicilio={domicilio} /> : <p className='text-center dext-danger'>Cadastro Incompleto.</p>}
+                    <hr />
+                    {acesso !== null ? <AcessoId acesso={acesso} /> : <p className='text-center dext-danger'>Cadastro Incompleto.</p>}
+                    <hr />
+                    { membro !== null && <MembroId membro={membro} /> }
+                    {conjuge === null && <Link><button className='btn btn-primary btn-sm w-100'>Adicionar Conjuge a Este Cadastro</button></Link>}
                 </div>
             }
 

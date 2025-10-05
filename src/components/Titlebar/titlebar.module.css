@@ -1,9 +1,26 @@
 .owner-bg{
     background-color: #357CA5;
+    width: 100%;
 }
 
 .title{
     text-decoration: none;
     font-size: 24px;
     font-family: var(--font-title);
+}
+
+@media screen and (max-width: 900px){
+    .icon-link{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 820px){
+    .icon-link{
+        display: block;
+    }
+
+    .text-link{
+        display: none;
+    }
 }

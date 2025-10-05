@@ -1,19 +1,59 @@
-.owner-bg{
+.owner-bg {
     background-color: #1A2226;
-    background-image: 
-        linear-gradient(rgba(26, 34, 38, 0.6), rgba(26, 34, 38, 0.9)), /* camada com opacidade */
+    background-image:
+        linear-gradient(rgba(26, 34, 38, 0.6), rgba(26, 34, 38, 0.9)),
+        /* camada com opacidade */
         url('../../assets/ABSJ.png');
     background-repeat: no-repeat;
     background-position: bottom center;
     background-size: contain;
     height: 95vh;
-    font-family: var(--font-text)
+    font-family: var(--font-text);
+    width: 100%;
 }
 
-.link{
+.listaNaoOrdenada {
+    height: 85%;
+}
+
+.listItem {
+    transition: .5s;
+    list-style: none;
+    padding: 6px 16px;
+    border-radius: 5px;
+}
+
+.listItem:hover {
+    background-color: #565b5c55;
+}
+
+.link {
     text-decoration: none;
 }
 
-.link:hover{
-    text-decoration: underline;  
+.icon-link {
+    display: none;
+}
+
+.text-link {
+        display: block;
+    }
+
+@media screen and (max-width: 890px) {
+    .text-link {
+        display: none;
+    }
+
+    .icon-link {
+        display: inline;
+        margin-right: 16px;
+    }
+
+    .title-sidebar{
+        display: none;
+    }
+
+    .owner-bg {
+    height: 95vh;
+}
 }

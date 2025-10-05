@@ -3,7 +3,7 @@ import { useAuth } from "../../../context/AuthContext"
 import styles from './cadastroDomiciliar.module.css'
 import { useState } from "react"
 
-export const CadastroDomiciliar = () => {
+export const UpdateCadastroDomiciliar = () => {
 
     const { id } = useParams()
     const { user } = useAuth()

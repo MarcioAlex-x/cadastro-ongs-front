@@ -4,7 +4,7 @@ import { useState } from "react"
 import { useAuth } from "../../../context/AuthContext"
 import { InputMask } from "primereact/inputmask"
 
-export const CadastroEndereco = () => {
+export const UpdateCadastroEndereco = () => {
 
     const { user } = useAuth()
     const { id } = useParams()

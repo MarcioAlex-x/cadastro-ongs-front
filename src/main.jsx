@@ -20,6 +20,12 @@ import { ComposicaoFamiliar } from './components/Cadastros/ComposicaoFamiliar/in
 import { CadastroComposicaoFamiliar } from './components/Cadastros/CadastroComposicaoFamiliar/index.jsx'
 import { ListaCadastros } from './components/Listas/ListaCadastros/index.jsx'
 import { CadastroId } from './components/Listas/cadastroId/index.jsx'
+import { UpdateCadastroPessoal } from './components/UpdateCadastros/UpdateCadastroPessoal/index.jsx'
+import { UpdateCadastroEndereco } from './components/UpdateCadastros/UpdateCadastroEndereco/index.jsx'
+import { UpdateCadastroDomiciliar } from './components/UpdateCadastros/UpdateCadastroDomiciliar/index.jsx'
+import { UpdateCadastroConjuge } from './components/UpdateCadastros/UpdateCadastroConjuge/index.jsx'
+import { UpdateCadastroComposicaoFamiliar } from './components/UpdateCadastros/UpdateCadastroComposicaoFamiliar/index.jsx'
+import { UpdateCadastroAcesso } from './components/UpdateCadastros/UpdateCadastroAcesso/index.jsx'
 
 const router = createBrowserRouter([
   {
@@ -42,7 +48,13 @@ const router = createBrowserRouter([
               {path: 'composicao/:id', element: <ComposicaoFamiliar />},
               {path: 'cadastro-composicao-familiar/:id', element: <CadastroComposicaoFamiliar />},
               {path: 'cadastros', element: <ListaCadastros />},
-              {path: 'cadastro/:id', element: <CadastroId />}
+              {path: 'cadastro/:id', element: <CadastroId />},
+              {path: 'update-dados-pessoal/:id', element: <UpdateCadastroPessoal />},
+              {path: 'update-dados-composicao-familiar/:id', element: <UpdateCadastroComposicaoFamiliar />},
+              {path: 'update-dados-endereco/:id', element: <UpdateCadastroEndereco />},
+              {path: 'update-dados-domiciliar/:id', element: <UpdateCadastroDomiciliar />},
+              {path: 'update-dados-conjuge/:id', element: <UpdateCadastroConjuge />},
+              {path: 'update-dados-acesso/:id' , element: <UpdateCadastroAcesso />}
             ]
            },
         ]

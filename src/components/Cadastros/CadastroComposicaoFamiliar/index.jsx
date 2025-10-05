@@ -15,11 +15,11 @@ export const CadastroComposicaoFamiliar = () => {
         etnia: '',
         ocupacao: '',
         profissao: '',
-        renda: '',
+        renda: 0,
         escolaridade: '',
         frequenta_escola: '',
         beneficio_seguro_social: '',
-        valor_beneficio_seguro_social: '',
+        valor_beneficio_seguro_social: 0,
         pcd: '',
     }
     const [form, setForm] = useState(initialState)
@@ -97,7 +97,7 @@ export const CadastroComposicaoFamiliar = () => {
 
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="nome" className={`${styles['text-cadastro']} form-label`}>Nome</label>
+                    <label htmlFor="nome" className={`${styles['text-cadastro']} form-label`}>Nome<span className="text-danger">*</span></label>
                     <input
                         required
                         type="text"
@@ -109,7 +109,7 @@ export const CadastroComposicaoFamiliar = () => {
                 </div>
                 <div className="row">
                     <div className="col-md-3 col-12">
-                        <label htmlFor="data_nascimento" className={`${styles['text-cadastro']} form-label`}>Data de Nascimento</label>
+                        <label htmlFor="data_nascimento" className={`${styles['text-cadastro']} form-label`}>Data de Nascimento<span className="text-danger">*</span></label>
                         <input
                             required
                             type="date"
@@ -120,7 +120,7 @@ export const CadastroComposicaoFamiliar = () => {
                             onChange={handleChange} />
                     </div>
                     <div className="col-md-3 col-12">
-                        <label htmlFor="orientacao_sexual" className={`${styles['text-cadastro']} form-label`}>Orientação Sexual</label>
+                        <label htmlFor="orientacao_sexual" className={`${styles['text-cadastro']} form-label`}>Orientação Sexual<span className="text-danger">*</span></label>
                         <select
                             required
                             className="form-control"
@@ -129,16 +129,16 @@ export const CadastroComposicaoFamiliar = () => {
                             value={form.orientacao_sexual}
                             onChange={handleChange}>
                             <option value="">Selecione</option>
-                            <option value="hetero">Hétero</option>
-                            <option value="gay">Gay</option>
-                            <option value="lesbica">Lésbica</option>
-                            <option value="bissexual">Bisexual</option>
-                            <option value="assexual">Assexual</option>
-                            <option value="pansexual">Pansexual</option>
+                            <option value="Hétero">Hétero</option>
+                            <option value="Gay">Gay</option>
+                            <option value="Lésbica">Lésbica</option>
+                            <option value="Bisexual">Bisexual</option>
+                            <option value="Assexual">Assexual</option>
+                            <option value="Pansexual">Pansexual</option>
                         </select>
                     </div>
                     <div className="col-12 col-md-3">
-                        <label htmlFor="parentesco" className={`${styles['text-cadastro']} form-label`}>Parentesco</label>
+                        <label htmlFor="parentesco" className={`${styles['text-cadastro']} form-label`}>Parentesco<span className="text-danger">*</span></label>
                         <input
                             required
                             type="parentesco"
@@ -149,7 +149,7 @@ export const CadastroComposicaoFamiliar = () => {
                             onChange={handleChange} />
                     </div>
                     <div className="col-md-3 col-12">
-                        <label htmlFor="estado_civil" className={`${styles['text-cadastro']} form-label`}>Estado Civil</label>
+                        <label htmlFor="estado_civil" className={`${styles['text-cadastro']} form-label`}>Estado Civil<span className="text-danger">*</span></label>
                         <select
                             required
                             className="form-control"
@@ -158,16 +158,16 @@ export const CadastroComposicaoFamiliar = () => {
                             value={form.estado_civil}
                             onChange={handleChange}>
                             <option value="">Selecione</option>
-                            <option value="casado">Casado(a)</option>
-                            <option value="solteiro">Solteiro(a)</option>
-                            <option value="divorciado">Divorciado(a)</option>
-                            <option value="viuvo">Viúvo(a)</option>
+                            <option value="Casado">Casado(a)</option>
+                            <option value="Solteiro">Solteiro(a)</option>
+                            <option value="Divorciado">Divorciado(a)</option>
+                            <option value="Viúvo">Viúvo(a)</option>
                         </select>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-md-4 col-12">
-                        <label htmlFor="etnia" className={`${styles['text-cadastro']} form-label`}>Etnia</label>
+                        <label htmlFor="etnia" className={`${styles['text-cadastro']} form-label`}>Etnia<span className="text-danger">*</span></label>
                         <select
                             required
                             className="form-control"
@@ -176,15 +176,15 @@ export const CadastroComposicaoFamiliar = () => {
                             value={form.etnia}
                             onChange={handleChange}>
                             <option value="">Selecione</option>
-                            <option value="branco">Branco(a)</option>
-                            <option value="preto">Preto(a)</option>
-                            <option value="pardo">Pardo(a)</option>
-                            <option value="indigena">Indígena</option>
-                            <option value="outro">Outro</option>
+                            <option value="Branco">Branco(a)</option>
+                            <option value="Preto">Preto(a)</option>
+                            <option value="Pardo">Pardo(a)</option>
+                            <option value="Indígena">Indígena</option>
+                            <option value="Outro">Outro</option>
                         </select>
                     </div>
                     <div className="col-md-4 col-12">
-                        <label htmlFor="pcd" className={`${styles['text-cadastro']} form-label`}>PCD</label>
+                        <label htmlFor="pcd" className={`${styles['text-cadastro']} form-label`}>PCD<span className="text-danger">*</span></label>
                         <select
                             required
                             className="form-control"
@@ -193,12 +193,12 @@ export const CadastroComposicaoFamiliar = () => {
                             value={form.pcd}
                             onChange={handleChange}>
                             <option value="">Selecione</option>
-                            <option value="nao">Não</option>
-                            <option value="sim">Sim</option>
+                            <option value="Não">Não</option>
+                            <option value="Sim">Sim</option>
                         </select>
                     </div>
                     <div className="col-12 col-md-4">
-                        <label htmlFor="renda" className={`${styles['text-cadastro']} form-label`}>Renda</label>
+                        <label htmlFor="renda" className={`${styles['text-cadastro']} form-label`}>Renda<span className="text-danger">*</span></label>
                         <input
                             required
                             type="text"
@@ -211,7 +211,7 @@ export const CadastroComposicaoFamiliar = () => {
                 </div>
                 <div className="row">
                     <div className="col-12 col-md-6">
-                        <label htmlFor="ocupacao" className={`${styles['text-cadastro']} form-label`}>Ocupação</label>
+                        <label htmlFor="ocupacao" className={`${styles['text-cadastro']} form-label`}>Ocupação<span className="text-danger">*</span></label>
                         <input
                             required
                             type="text"
@@ -224,7 +224,6 @@ export const CadastroComposicaoFamiliar = () => {
                     <div className="col-12 col-md-6">
                         <label htmlFor="profissao" className={`${styles['text-cadastro']} form-label`}>Profissao</label>
                         <input
-                            required
                             type="text"
                             className="form-control"
                             id="profissao"
@@ -236,7 +235,7 @@ export const CadastroComposicaoFamiliar = () => {
 
                 <div className="row">
                     <div className="col-6 col-md-3">
-                        <label htmlFor="escolaridade" className={`${styles['text-cadastro']} form-label`}>Escolaridade</label>
+                        <label htmlFor="escolaridade" className={`${styles['text-cadastro']} form-label`}>Escolaridade<span className="text-danger">*</span></label>
                         <input
                             required
                             type="text"
@@ -247,7 +246,7 @@ export const CadastroComposicaoFamiliar = () => {
                             onChange={handleChange} />
                     </div>
                     <div className="col-md-3 col-12">
-                        <label htmlFor="frequenta_escola" className={`${styles['text-cadastro']} form-label`}>Frequentando a Escola</label>
+                        <label htmlFor="frequenta_escola" className={`${styles['text-cadastro']} form-label`}>Frequentando a Escola<span className="text-danger">*</span></label>
                         <select
                             required
                             className="form-control"
@@ -256,12 +255,12 @@ export const CadastroComposicaoFamiliar = () => {
                             value={form.frequenta_escola}
                             onChange={handleChange}>
                             <option value="">Selecione</option>
-                            <option value="nao">Não</option>
-                            <option value="sim">Sim</option>
+                            <option value="Não">Não</option>
+                            <option value="Sim">Sim</option>
                         </select>
                     </div>
                     <div className="col-6 col-md-3">
-                        <label htmlFor="beneficio_seguro_social" className={`${styles['text-cadastro']} form-label`}>Benefício/Seguro Social</label>
+                        <label htmlFor="beneficio_seguro_social" className={`${styles['text-cadastro']} form-label`}>Benefício/Seguro Social<span className="text-danger">*</span></label>
                         <select
                             required
                             name="beneficio_seguro_social"
@@ -270,13 +269,13 @@ export const CadastroComposicaoFamiliar = () => {
                             className="form-control"
                             onChange={handleChange}>
                             <option value="">Selecione</option>
-                            <option value="nenhum">Nenhum</option>
-                            <option value="licenca_medica">Licença Médica</option>
-                            <option value="aposentadoria">Aposentadoria</option>
-                            <option value="pensao_alimenticia">Pensão Alimentícia</option>
-                            <option value="seguro_desemprego">Seguro Desemprego</option>
-                            <option value="bolsa_familia">Bolsa Família</option>
-                            <option value="bpc">BPC</option>
+                            <option value="Nenhum">Nenhum</option>
+                            <option value="Licença Médica">Licença Médica</option>
+                            <option value="Aposentadoria">Aposentadoria</option>
+                            <option value="Pensão Alimentícia">Pensão Alimentícia</option>
+                            <option value="Seguro Desemprego">Seguro Desemprego</option>
+                            <option value="Bolsa Família">Bolsa Família</option>
+                            <option value="BPC">BPC</option>
                         </select>
                     </div>
                     <div className="col-6 col-md-3">

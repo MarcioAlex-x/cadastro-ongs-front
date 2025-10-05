@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import styles from './cadastroConjuge.module.css'
 import { useState } from "react"
 
-export const CadastroConjuge = () => {
+export const UpdateCadastroConjuge = () => {
     const { id } = useParams()
     const navigate = useNavigate()
 

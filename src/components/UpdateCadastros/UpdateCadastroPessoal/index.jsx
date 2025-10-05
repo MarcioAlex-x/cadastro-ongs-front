@@ -5,7 +5,7 @@ import styles from './cadastroPessoal.module.css'
 
 import { InputMask } from 'primereact/inputmask'
 
-export const CadastroPessoal = () => {
+export const UpdateCadastroPessoal = () => {
 
     const { id } = useParams()
     const navigate = useNavigate()
