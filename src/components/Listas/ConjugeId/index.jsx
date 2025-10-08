@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom'
 import { captalizeString, formatarData, formatarDataCriacaoAtualizacao, realMonetario, respostaFormatada } from '../../../utils/fomatters'
 import styles from './conjugeId.module.css'
+import { HiOutlinePencilAlt } from 'react-icons/hi'
 
 export const ConjugeId = ({ conjuge }) => {
     return (
@@ -20,11 +22,14 @@ export const ConjugeId = ({ conjuge }) => {
 
                 <div className="row">
                     <p className="col-12 col-md-3"><b>Deficiência: </b>{respostaFormatada(conjuge.deficiencia)}</p>
-                    { conjuge.deficiencia!== 'nao' && <p className="col-12 col-md-3"><b>Tipo de Deficiência:</b> {captalizeString(conjuge.tipo_deficiencia)}</p>}
+                    {conjuge.deficiencia !== 'nao' && <p className="col-12 col-md-3"><b>Tipo de Deficiência:</b> {captalizeString(conjuge.tipo_deficiencia)}</p>}
                     <p className="col-12 col-md-3"><b>Benefício Seguro Social: </b>{captalizeString(conjuge.beneficio_seguro_social)}</p>
-                    { conjuge.beneficio_seguro_social!=='nenhum' && <p className="col-12 col-md-3"><b>Valor do Benefício:</b> R${conjuge.valor_beneficio_seguro_social}</p>}
+                    {conjuge.beneficio_seguro_social !== 'nenhum' && <p className="col-12 col-md-3"><b>Valor do Benefício:</b> R${conjuge.valor_beneficio_seguro_social}</p>}
                 </div>
-                <p className={`${styles['title-cadastro', 'data']} text-end text-secondary`}>Última atualização: {formatarDataCriacaoAtualizacao(conjuge.updatedAt)}</p>
+                <div className="d-flex justify-content-between">
+                    <Link to={`/dashboard/update-dados-conjuge/${conjuge.id}`}><button className='btn btn-primary btn-sm'><HiOutlinePencilAlt />Editar</button></Link>
+                    <p className={`${styles['title-cadastro', 'data']} text-secondary`}>Última atualização: {formatarDataCriacaoAtualizacao(conjuge.updatedAt)}</p>
+                </div>
             </div>
         </div>
     )

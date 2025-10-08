@@ -3,8 +3,11 @@ import styles from './listaCadastros.module.css'
 import spinner from '../../../assets/spinner.gif'
 import { FaRegEye } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'
 
 export const ListaCadastros = () => {
+
+  const location = useLocation()
 
     const [loading, setLoading] = useState(true)
     const [cadastros, setCadastros] = useState([])
@@ -45,6 +48,7 @@ export const ListaCadastros = () => {
      return (
     <div className={` ${styles['scroll']}`}>
       <h2 className={`${styles['title-cadastro']}`}>Cadastros Realizados</h2>
+      {location.state?.message && (<div className='alert alert-success'>{location.state.message}</div>)}
       {loading ? (
         <div className='d-flex align-items-center justify-content-center'>
           <img src={spinner} className='mt-5' />

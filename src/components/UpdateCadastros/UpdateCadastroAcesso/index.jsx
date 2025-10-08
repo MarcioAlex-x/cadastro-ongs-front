@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom"
 import styles from './cadastroAcesso.module.css'
 import { useEffect, useState } from "react"
+import { LuDot } from "react-icons/lu";
 
 export const UpdateCadastroAcesso = () => {
 
@@ -62,7 +63,7 @@ export const UpdateCadastroAcesso = () => {
             const data = await response.json()
 
             if (data) {
-                navigate(`/dashboard/cadastros`)
+                navigate(`/dashboard/cadastros`,{state:{message:'Cadastro atualizado com sucesso!'}})
             }
         } catch (err) {
             console.error(err)
@@ -103,7 +104,7 @@ export const UpdateCadastroAcesso = () => {
                 </div>
                 <div className="row">
                     <div className="col-md-4 col-12">
-                        <label htmlFor="violencia_domestica" className={`${styles['text-cadastro']} form-label`}>Violência Doméstica<span className="text-danger">*</span></label>
+                        <label htmlFor="violencia_domestica" className={`${styles['text-cadastro']} form-label`}>Violência Doméstica<span className="text-danger"><LuDot /></span></label>
                         <select
                             required
                             className="form-control"
@@ -117,7 +118,7 @@ export const UpdateCadastroAcesso = () => {
                         </select>
                     </div>
                     <div className="col-md-4 col-12">
-                        <label htmlFor="discriminacao_rejeicao_familiar" className={`${styles['text-cadastro']} form-label`}>Descriminação ou Rejeição Familiar<span className="text-danger">*</span></label>
+                        <label htmlFor="discriminacao_rejeicao_familiar" className={`${styles['text-cadastro']} form-label`}>Descriminação ou Rejeição Familiar<span className="text-danger"><LuDot /></span></label>
                         <select
                             required
                             className="form-control"
@@ -131,7 +132,7 @@ export const UpdateCadastroAcesso = () => {
                         </select>
                     </div>
                     <div className="col-md-4 col-12">
-                        <label htmlFor="discriminacao_social_etnico_racial_sexual" className={`${styles['text-cadastro']} form-label`}>Descriminação Socail, Étnico, Racial ou Sexual<span className="text-danger">*</span></label>
+                        <label htmlFor="discriminacao_social_etnico_racial_sexual" className={`${styles['text-cadastro']} form-label`}>Descriminação Socail, Étnico, Racial ou Sexual<span className="text-danger"><LuDot /></span></label>
                         <select
                             required
                             className="form-control"
@@ -147,7 +148,7 @@ export const UpdateCadastroAcesso = () => {
                 </div>
                 <div className="row">
                     <div className="col-md-6 col-12">
-                        <label htmlFor="acesso_saude" className={`${styles['text-cadastro']} form-label`}>Acesso a Saúde<span className="text-danger">*</span></label>
+                        <label htmlFor="acesso_saude" className={`${styles['text-cadastro']} form-label`}>Acesso a Saúde<span className="text-danger"><LuDot /></span></label>
                         <select
                             required
                             className="form-control"
@@ -161,7 +162,7 @@ export const UpdateCadastroAcesso = () => {
                         </select>
                     </div>
                     <div className="col-md-6 col-12">
-                        <label htmlFor="acesso_esporte_cultura_lazer" className={`${styles['text-cadastro']} form-label`}>Acesso a Esporte, Cultura e Lazer<span className="text-danger">*</span></label>
+                        <label htmlFor="acesso_esporte_cultura_lazer" className={`${styles['text-cadastro']} form-label`}>Acesso a Esporte, Cultura e Lazer<span className="text-danger"><LuDot /></span></label>
                         <select
                             required
                             className="form-control"

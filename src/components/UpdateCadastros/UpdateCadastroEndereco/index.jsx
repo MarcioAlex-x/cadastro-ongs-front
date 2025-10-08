@@ -1,8 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom"
 import styles from './cadastroEndereco.module.css'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useAuth } from "../../../context/AuthContext"
 import { InputMask } from "primereact/inputmask"
+import { LuDot } from "react-icons/lu";
 
 export const UpdateCadastroEndereco = () => {
 
@@ -17,6 +18,21 @@ export const UpdateCadastroEndereco = () => {
         cep:''
     })
 
+    useEffect(()=>{
+        const fetchApi = async () =>{
+            const response = await fetch(`http://localhost:3000/endereco/${id}`,{
+                method:'GET',
+                credentials: 'include',
+                headers:{
+                    'Content-Type':'application/json'
+                }
+            })
+            const data = await response.json()
+            setForm(data)
+        }
+        fetchApi()
+    },[id])
+
     const handleChange = (e) => {
         const { name, value } = e.target
         setForm({
@@ -29,7 +45,7 @@ export const UpdateCadastroEndereco = () => {
         e.preventDefault()
         try {
             const response = await fetch(`http://localhost:3000/endereco/${id}`, {
-                method: 'POST',
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -37,10 +53,7 @@ export const UpdateCadastroEndereco = () => {
                 body: JSON.stringify({ ...form })
             })
 
-            const data = response.json()
-            if(data){
-                navigate(`/dashboard/cadastro-domiciliar/${id}`)
-            }
+            navigate('/dashboard/cadastros',{state:{message:'Cadastro atualizado com sucesso!'}})
         } catch (err) {
             console.error(err)
         }
@@ -51,7 +64,7 @@ export const UpdateCadastroEndereco = () => {
             <h2 className={`${styles['title-cadastro']}`}>Endereço</h2>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="logradouro" className={`${styles['text-cadastro']} form-label`}>Logradouro<span className="text-danger">*</span></label>
+                    <label htmlFor="logradouro" className={`${styles['text-cadastro']} form-label`}>Logradouro<span className="text-danger"><LuDot /></span></label>
                     <input
                         type="text"
                         required
@@ -63,7 +76,7 @@ export const UpdateCadastroEndereco = () => {
                 </div>
                 <div className="row">
                     <div className='col-12 col-md-4'>
-                        <label htmlFor="numero" className={`${styles['text-cadastro']} form-label`}>Número<span className="text-danger">*</span></label>
+                        <label htmlFor="numero" className={`${styles['text-cadastro']} form-label`}>Número<span className="text-danger"><LuDot /></span></label>
                         <input
                             type="text"
                             required
@@ -74,7 +87,7 @@ export const UpdateCadastroEndereco = () => {
                             onChange={handleChange} />
                     </div>
                     <div className='col-12 col-md-4'>
-                        <label htmlFor="bairro" className={`${styles['text-cadastro']} form-label`}>Bairro<span className="text-danger">*</span></label>
+                        <label htmlFor="bairro" className={`${styles['text-cadastro']} form-label`}>Bairro<span className="text-danger"><LuDot /></span></label>
                         <input
                             type="text"
                             required

@@ -15,7 +15,7 @@ export const EnderecoId = ({ endereco }) => {
                     <p className="col-12 col-md-4"><b>CEP: </b>{endereco.cep}</p>
                 </div>
                 <div className="d-flex justify-content-between">
-                    <Link ><button  className='btn btn-primary btn-sm'><HiOutlinePencilAlt />Editar</button></Link>
+                    <Link to={`/dashboard/update-dados-endereco/${endereco.id}`}><button  className='btn btn-primary btn-sm'><HiOutlinePencilAlt />Editar</button></Link>
                     <p className={`${styles['title-cadastro', 'data']} text-secondary`}>Última atualização: {formatarDataCriacaoAtualizacao(endereco.updatedAt)}</p>
                 </div>
             </div>

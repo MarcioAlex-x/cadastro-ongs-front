@@ -19,7 +19,7 @@ export const CadastroComposicaoFamiliar = () => {
         escolaridade: '',
         frequenta_escola: '',
         beneficio_seguro_social: '',
-        valor_beneficio_seguro_social: 0,
+        valor_beneficio_seguro_social: '',
         pcd: '',
     }
     const [form, setForm] = useState(initialState)

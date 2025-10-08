@@ -54,7 +54,7 @@ export const PessoaId = ({ pessoa }) => {
                     <p className="col-12 col-md-3"><b>Apoio a Renda Primária: </b>{captalizeString(pessoa.apoio_renda_primaria)}</p>
                 </div>
                 <div className="d-flex justify-content-between">
-                    <Link ><button  className='btn btn-primary btn-sm'><HiOutlinePencilAlt />Editar</button></Link>
+                    <Link to={`/dashboard/update-dados-pessoal/${pessoa.id}`}><button  className='btn btn-primary btn-sm'><HiOutlinePencilAlt />Editar</button></Link>
                     <p className={`${styles['title-cadastro', 'data']} text-secondary`}>Última atualização: {formatarDataCriacaoAtualizacao(pessoa.updatedAt)}</p>
                 </div>
             </div>

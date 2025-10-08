@@ -32,7 +32,7 @@ export const DomicilioId = ({ domicilio }) => {
 
 
                 <div className="d-flex justify-content-between">
-                    <Link ><button  className='btn btn-primary btn-sm'><HiOutlinePencilAlt />Editar</button></Link>
+                    <Link to={`/dashboard/update-dados-domiciliar/${domicilio.id}`}><button  className='btn btn-primary btn-sm'><HiOutlinePencilAlt />Editar</button></Link>
                     <p className={`${styles['title-cadastro', 'data']} text-secondary`}>Última atualização: {formatarDataCriacaoAtualizacao(domicilio.updatedAt)}</p>
                 </div>
             </div>

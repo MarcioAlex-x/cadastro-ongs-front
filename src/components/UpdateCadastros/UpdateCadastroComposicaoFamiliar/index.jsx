@@ -25,6 +25,26 @@ export const UpdateCadastroComposicaoFamiliar = () => {
 
   const [form, setForm] = useState(initialState)
 
+  useEffect(() => {
+    const fetchApi = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/composicao_familiar/${id}`, {
+          method: 'GET',
+          credentials: 'include',
+          headers: {
+            'Content-Type': "application/json"
+          }
+        })
+        const data = await response.json()
+        setForm(data)
+
+      } catch (err) {
+        console.error(err)
+      }
+    }
+    fetchApi()
+  }, [id])
+
   const formatCurrency = (value) => {
     if (!value) return ''
     const number = value.toString().replace(/\D/g, '')
@@ -98,13 +118,10 @@ export const UpdateCadastroComposicaoFamiliar = () => {
         body: JSON.stringify(formToSend)
       })
 
-      const data = await response.json()
-      setForm(data)
-
     } catch (err) {
       console.error(err)
     } finally {
-      navigate('/dashboard')
+      navigate('/dashboard/cadastros',{state:{message:'Cadastro atualizado com sucesso!'}})
     }
   }
 

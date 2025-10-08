@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom"
 import { useAuth } from "../../../context/AuthContext"
 import styles from './cadastroDomiciliar.module.css'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export const UpdateCadastroDomiciliar = () => {
 
@@ -24,6 +24,25 @@ export const UpdateCadastroDomiciliar = () => {
         destino_lixo: '',
     })
 
+    useEffect(()=>{
+        const fetchApi = async () =>{
+            try {
+                const response = await fetch(`http://localhost:3000/dados_domiciliar/${id}`,{
+                    method:'GET',
+                    credentials:'include',
+                    headers: {
+                        'Content-Type':'application/json'
+                    }
+                })
+                const data = await response.json()
+                setForm(data)
+            } catch (err) {
+                console.error(err)
+            }
+        }
+        fetchApi()
+    },[id])
+
     const handleChange = (e) => {
         const { name, value } = e.target
         setForm({
@@ -38,18 +57,14 @@ export const UpdateCadastroDomiciliar = () => {
 
         try {
             const response = await fetch(`http://localhost:3000/dados_domiciliar/${id}`, {
-                method: 'POST',
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 credentials: 'include',
                 body: JSON.stringify({ ...form })
             })
-            const data = response.json()
-
-            if (data) {
-                navigate(`/dashboard/acesso/${id}`)
-            }
+            navigate('/dashboard/cadastros',{state:{message:'Cadastro atualizado com sucesso!'}})
         } catch (err) {
             console.error(err)
         }

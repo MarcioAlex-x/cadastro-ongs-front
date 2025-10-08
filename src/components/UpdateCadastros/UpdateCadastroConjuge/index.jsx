@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom"
 import styles from './cadastroConjuge.module.css'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export const UpdateCadastroConjuge = () => {
     const { id } = useParams()
@@ -11,13 +11,32 @@ export const UpdateCadastroConjuge = () => {
         data_nascimento: '',
         etnia: '',
         situacao_mercado_trabalho: '',
-        renda: '',
+        renda: 0,
         ocupacao: '',
         deficiencia: '',
         tipo_deficiencia: '',
         beneficio_seguro_social: '',
         valor_beneficio_seguro_social: '',
     })
+
+    useEffect(()=>{
+        const fetchApi = async () =>{
+            try {
+                const response = await fetch(`http://localhost:3000/conjuge/${id}`,{
+                    method:'GET',
+                    credentials: 'include',
+                    headers:{
+                        'Content-Type':'application/json'
+                    }
+                })
+                const data = await response.json()
+                setForm(data)
+            } catch (err) {
+                console.error(err)
+            }
+        }
+        fetchApi()
+    },[id])
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -39,7 +58,7 @@ export const UpdateCadastroConjuge = () => {
 
         try {
             const response = await fetch(`http://localhost:3000/conjuge/${id}`, {
-                method: "POST",
+                method: "PUT",
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -47,10 +66,7 @@ export const UpdateCadastroConjuge = () => {
                 body: JSON.stringify(formToSend)
             })
 
-            const data = response.json()
-            if (data) {
-                navigate(`/dashboard/cadastro-endereco/${id}`)
-            }
+            navigate('/dashboard/cadastros',{state:{message:'Cadastro atualizado com sucesso!'}})
         } catch (err) {
             console.log(err, '-', err.message)
         }

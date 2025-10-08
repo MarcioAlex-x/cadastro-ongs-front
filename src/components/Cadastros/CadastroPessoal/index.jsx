@@ -32,7 +32,7 @@ export const CadastroPessoal = () => {
         situacao_mercado_trabalho: '',
         renda: 0,
         beneficio_seguro_social: '',
-        valor_beneficio_seguro_social: 0,
+        valor_beneficio_seguro_social: '',
         apoio_renda_primaria: '',
         possui_conjuge: false,
     })
