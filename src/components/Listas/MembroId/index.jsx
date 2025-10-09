@@ -2,11 +2,33 @@ import { Link } from 'react-router-dom';
 import { formatarDataCriacaoAtualizacao } from '../../../utils/fomatters'
 import styles from './membro.module.css'
 import { HiOutlinePencilAlt } from "react-icons/hi";
+import { BsTrash3Fill } from "react-icons/bs";
+import { useEffect, useState } from 'react';
 
-export const MembroId = ({ membro }) => {
+export const MembroId = ({ membro, composicaoFamiliar }) => {
+
+    const handleRemove = async (e) => {
+        e.preventDefault()
+        const response = await fetch(`http://localhost:3000/composicao/${composicaoFamiliar.id}`, {
+            method: 'DELETE',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        const data = await response.json()
+        console.log(data)
+    }
+
+
     return (
         <div>
-            <h3 className={`${styles['title-cadastro']}`}>Composição Familiar </h3>
+            <div className="d-flex justify-content-between">
+                <h3 className={`${styles['title-cadastro']}`}>Composição Familiar </h3>
+                <form>
+                    <button onClick={handleRemove} className="btn btn-danger btn-sm"> <BsTrash3Fill /> Apagar</button>
+                </form>
+            </div>
             {membro.map((el) => (
                 <div key={el.id}>
                     <div className={`${styles['text-cadastro']}`}>
@@ -36,9 +58,9 @@ export const MembroId = ({ membro }) => {
                             <p className="col-12 col-md-3"><b>PCD: </b>{el.pcd}</p>
                         </div>
                         <div className="d-flex justify-content-between">
-                    <Link to={`/dashboard/update-dados-composicao-familiar/${el.id}`}><button  className='btn btn-primary btn-sm'><HiOutlinePencilAlt />Editar</button></Link>
-                    <p className={`${styles['title-cadastro', 'data']} text-secondary`}>Última atualização: {formatarDataCriacaoAtualizacao(el.updatedAt)}</p>
-                </div>
+                            <Link to={`/dashboard/update-dados-composicao-familiar/${el.id}`}><button className='btn btn-primary btn-sm'><HiOutlinePencilAlt />Editar</button></Link>
+                            <p className={`${styles['title-cadastro', 'data']} text-secondary`}>Última atualização: {formatarDataCriacaoAtualizacao(el.updatedAt)}</p>
+                        </div>
                     </div>
                 </div>
             ))}

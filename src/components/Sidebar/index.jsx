@@ -18,11 +18,11 @@ export const Sidebar = () => {
 
             <ul className={styles.listaNaoOrdenada}>
                 <li className={`${styles['listItem']} d-flex justify-content-center ps-0`} >
-                    <Link to='/dashboard/cadastro' className={` text-light ${styles['link']} ${styles['icon-link']}`}><LuUserRoundPlus /></Link>
+                    <Link to='/dashboard/cadastro' className={` text-light ${styles['link']} ${styles['icon-link']}`}><LuUserRoundPlus size={25}/></Link>
                     <Link to='/dashboard/cadastro' className={` text-light ${styles['link']} ${styles['text-link']} `}>Novo Beneficiário</Link>
                 </li>
                 <li className={`${styles['listItem']} d-flex justify-content-center ps-0`}>
-                    <Link to='/dashboard/cadastros' className={`text-light ${styles['link']} ${styles['icon-link']} `}><PiUsersThree /></Link>
+                    <Link to='/dashboard/cadastros' className={`text-light ${styles['link']} ${styles['icon-link']} `}><PiUsersThree size={25}/></Link>
                     <Link to='/dashboard/cadastros' className={`text-light ${styles['link']}  ${styles['text-link']} `}>Beneficiários</Link>
                 </li>
                 

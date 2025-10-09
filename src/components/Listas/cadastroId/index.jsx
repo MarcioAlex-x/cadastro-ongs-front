@@ -54,11 +54,8 @@ export const CadastroId = () => {
                 setDomicilio(pessoaData.domicilio)
                 setAcesso(pessoaData.acesso)
                 setComposicaoFamiliar(pessoaData.composicaoFamiliar)
-                console.log(composicaoFamiliar)
                 setMembro(pessoaData.composicaoFamiliar.membros)
                 setUserId(data.user_id)
-
-
 
             } catch (err) {
                 console.error(err)
@@ -102,19 +99,19 @@ export const CadastroId = () => {
                 :
                 <div className='mb-4'>
                     <h2 className={`${styles['title-cadastro']}`}>Cadastro</h2>
-                    <p className=''>Criado por {userCreator?.nome} em {formatarDataCriacaoAtualizacao(cadastro.createdAt)}</p>
+                    <p className=''>Criado {userCreator && <span>por {userCreator?.nome}</span>} em {formatarDataCriacaoAtualizacao(cadastro.createdAt)}</p>
                     <hr />
                     {pessoa ? <PessoaId pessoa={pessoa} /> : <p className='text-center dext-danger'>Cadastro Incompleto.</p>}
                     <hr />
                     {endereco !== null ? <EnderecoId endereco={endereco} /> : <p className='text-center dext-danger'>Cadastro Incompleto.</p>}
                     <hr />
-                    {conjuge !== null && <ConjugeId conjuge={conjuge} />}
-                    <hr />
+                    {conjuge !== null && <div> <ConjugeId conjuge={conjuge} /> <hr /> </div>}
+                    
                     {domicilio !== null ? <DomicilioId domicilio={domicilio} /> : <p className='text-center dext-danger'>Cadastro Incompleto.</p>}
                     <hr />
                     {acesso !== null ? <AcessoId acesso={acesso} /> : <p className='text-center dext-danger'>Cadastro Incompleto.</p>}
                     <hr />
-                    { membro !== null && <MembroId membro={membro} /> }
+                    { composicaoFamiliar === null || membro !== null && <MembroId membro={membro} composicaoFamiliar={composicaoFamiliar} /> }
                     {conjuge === null && <Link><button className='btn btn-primary btn-sm w-100'>Adicionar Conjuge a Este Cadastro</button></Link>}
                 </div>
             }

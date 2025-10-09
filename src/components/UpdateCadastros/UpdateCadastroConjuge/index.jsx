@@ -11,7 +11,7 @@ export const UpdateCadastroConjuge = () => {
         data_nascimento: '',
         etnia: '',
         situacao_mercado_trabalho: '',
-        renda: 0,
+        renda: '',
         ocupacao: '',
         deficiencia: '',
         tipo_deficiencia: '',

@@ -1,6 +1,7 @@
 import { useAuth } from '../../context/AuthContext'
 import { FaRegUser } from "react-icons/fa6"
 import styles from './navbar.module.css'
+import { Link } from 'react-router-dom'
 
 export const Navbar = ({ className }) => {
     const { user } = useAuth()
@@ -13,7 +14,7 @@ export const Navbar = ({ className }) => {
                     <p className='text-light my-0 ms-2'> {user.nome}</p>
                     {
                         user.isAdmin ? (
-                            <p className='text-light ms-3 my-0'>Administrador</p>
+                            <p className='text-light ms-3 my-0'><Link className={`${styles['link']}`} to='/dashboard/administrador' >Administrador</Link></p>
                         ) : (
                             <p className='text-light ms-3 my-0'>
                                 Usuário

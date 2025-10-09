@@ -2,3 +2,8 @@
     background-color: #3C8DBC;
     font-family: var(--font-title);
 }
+
+.link{
+    color: aliceblue;
+    text-decoration: none;
+}

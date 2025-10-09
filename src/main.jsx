@@ -26,6 +26,7 @@ import { UpdateCadastroDomiciliar } from './components/UpdateCadastros/UpdateCad
 import { UpdateCadastroConjuge } from './components/UpdateCadastros/UpdateCadastroConjuge/index.jsx'
 import { UpdateCadastroComposicaoFamiliar } from './components/UpdateCadastros/UpdateCadastroComposicaoFamiliar/index.jsx'
 import { UpdateCadastroAcesso } from './components/UpdateCadastros/UpdateCadastroAcesso/index.jsx'
+import { Administrador } from './components/Administrador/index.jsx'
 
 const router = createBrowserRouter([
   {
@@ -54,7 +55,8 @@ const router = createBrowserRouter([
               {path: 'update-dados-endereco/:id', element: <UpdateCadastroEndereco />},
               {path: 'update-dados-domiciliar/:id', element: <UpdateCadastroDomiciliar />},
               {path: 'update-dados-conjuge/:id', element: <UpdateCadastroConjuge />},
-              {path: 'update-dados-acesso/:id' , element: <UpdateCadastroAcesso />}
+              {path: 'update-dados-acesso/:id' , element: <UpdateCadastroAcesso />},
+              {path: 'administrador', element: <Administrador />}
             ]
            },
         ]
