@@ -1,3 +1,5 @@
+const url = import.meta.env.VITE_API_URL
+
 import { useNavigate, useParams } from "react-router-dom"
 import { useAuth } from "../../../context/AuthContext"
 import styles from './cadastroDomiciliar.module.css'
@@ -27,7 +29,7 @@ export const UpdateCadastroDomiciliar = () => {
     useEffect(()=>{
         const fetchApi = async () =>{
             try {
-                const response = await fetch(`http://localhost:3000/dados_domiciliar/${id}`,{
+                const response = await fetch(`${url}/dados_domiciliar/${id}`,{
                     method:'GET',
                     credentials:'include',
                     headers: {
@@ -56,7 +58,7 @@ export const UpdateCadastroDomiciliar = () => {
 
 
         try {
-            const response = await fetch(`http://localhost:3000/dados_domiciliar/${id}`, {
+            const response = await fetch(`${url}/dados_domiciliar/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'

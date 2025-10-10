@@ -11,7 +11,7 @@ export const Navbar = ({ className }) => {
             {user &&
                 <div className='d-flex align-items-center justify-content-end  px-4 py-2'>
                     <FaRegUser color={'white'} />
-                    <p className='text-light my-0 ms-2'> {user.nome}</p>
+                    <p className='text-light my-0 ms-2'> <Link className={`${styles['link']}`} to={`/dashboard/usuario/${user.id}`}>{user.nome}</Link></p>
                     {
                         user.isAdmin ? (
                             <p className='text-light ms-3 my-0'><Link className={`${styles['link']}`} to='/dashboard/administrador' >Administrador</Link></p>

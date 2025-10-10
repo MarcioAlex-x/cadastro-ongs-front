@@ -1,3 +1,5 @@
+const url = import.meta.env.VITE_API_URL
+
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useParams } from "react-router-dom"
@@ -56,7 +58,7 @@ export const CadastroPessoal = () => {
 
         try {
 
-            const response = await fetch(`http://localhost:3000/dados_pessoais/${id}`, {
+            const response = await fetch(`${url}/dados_pessoais/${id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -1,3 +1,5 @@
+const url = import.meta.env.VITE_API_URL
+
 import { useNavigate, useParams } from "react-router-dom"
 import styles from './cadastroAcesso.module.css'
 import { useState } from "react"
@@ -29,7 +31,7 @@ export const CadastroAcesso = () => {
         e.preventDefault()
 
         try {
-            const response = await fetch(`http://localhost:3000/acesso/${id}`, {
+            const response = await fetch(`${url}/acesso/${id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': "application/json"

@@ -1,3 +1,5 @@
+const url = import.meta.env.VITE_API_URL
+
 import { useNavigate, useParams } from "react-router-dom"
 import styles from './cadastroEndereco.module.css'
 import { useEffect, useState } from "react"
@@ -20,7 +22,7 @@ export const UpdateCadastroEndereco = () => {
 
     useEffect(()=>{
         const fetchApi = async () =>{
-            const response = await fetch(`http://localhost:3000/endereco/${id}`,{
+            const response = await fetch(`${url}/endereco/${id}`,{
                 method:'GET',
                 credentials: 'include',
                 headers:{
@@ -44,7 +46,7 @@ export const UpdateCadastroEndereco = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await fetch(`http://localhost:3000/endereco/${id}`, {
+            const response = await fetch(`${url}/endereco/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

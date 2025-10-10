@@ -1,3 +1,5 @@
+const url = import.meta.env.VITE_API_URL
+
 import { useAuth } from "../../../context/AuthContext"
 import styles from './composicaoFamiliar.module.css'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -15,7 +17,7 @@ export const ComposicaoFamiliar = () =>{
     const handleSubmit = async (e) =>{
         e.preventDefault()
         try {
-            const response = await fetch(`http://localhost:3000/composicao/${id}`,{
+            const response = await fetch(`${url}/composicao/${id}`,{
                 method:'POST',
                 headers:{
                     'Content-Type':"Aplicattion/json"

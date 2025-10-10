@@ -1,3 +1,5 @@
+const url = import.meta.env.VITE_API_URL
+
 import styles from './cadastro.module.css'
 import { FiPlus } from "react-icons/fi";
 import { useAuth } from '../../../context/AuthContext';
@@ -10,7 +12,7 @@ export const Cadastro = () => {
 
     const novoCadastro = async () =>{
         try{
-            const response = await fetch('http://localhost:3000/cadastro',{
+            const response = await fetch(`${url}/cadastro`,{
                 credentials:'include',
                 method:'POST',
                 headers:{

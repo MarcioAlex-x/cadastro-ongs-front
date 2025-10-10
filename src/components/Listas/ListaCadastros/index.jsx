@@ -1,3 +1,5 @@
+const url = import.meta.env.VITE_API_URL
+
 import { useEffect, useState } from 'react'
 import styles from './listaCadastros.module.css'
 import spinner from '../../../assets/spinner.gif'
@@ -11,6 +13,7 @@ export const ListaCadastros = () => {
 
     const [loading, setLoading] = useState(true)
     const [cadastros, setCadastros] = useState([])
+    const [message, setMessage] = useState('')
 
     useEffect(() => {
 
@@ -18,7 +21,7 @@ export const ListaCadastros = () => {
 
             try {
                 setLoading(true)
-                const response = await fetch('http://localhost:3000/cadastro', {
+                const response = await fetch(`${url}/cadastro`, {
                     credentials: 'include'
                 })
 

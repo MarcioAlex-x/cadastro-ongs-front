@@ -1,3 +1,5 @@
+const url = import.meta.env.VITE_API_URL
+
 import { useNavigate, useParams } from "react-router-dom"
 import styles from './cadastroAcesso.module.css'
 import { useEffect, useState } from "react"
@@ -22,7 +24,7 @@ export const UpdateCadastroAcesso = () => {
         const fetchApi = async () => {
         try {
             
-            const response = await fetch(`http://localhost:3000/acesso/${id}`,{
+            const response = await fetch(`${url}/acesso/${id}`,{
                 method: 'GET',
                 credentials:'include',
                 headers:{

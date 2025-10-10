@@ -1,3 +1,5 @@
+const url = import.meta.env.VITE_API_URL
+
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import styles from './cadastroId.module.css'
@@ -34,7 +36,7 @@ export const CadastroId = () => {
     useEffect(() => {
         const cadastroPessoal = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/cadastro/${id}`, {
+                const response = await fetch(`${url}/cadastro/${id}`, {
                     method: "GET",
                     credentials: 'include',
                     headers: {
@@ -62,16 +64,16 @@ export const CadastroId = () => {
             } finally {
                 setLoading(false)
             }
-        }       
+        }
 
         cadastroPessoal()
 
     }, [id])
 
-    useEffect(()=>{
-         const criador = async () => {
+    useEffect(() => {
+        const criador = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/users/${cadastro.user_id}`, {
+                const response = await fetch(`${url}/users/${cadastro.user_id}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
@@ -81,14 +83,23 @@ export const CadastroId = () => {
                 const userData = await response.json()
 
                 setUserCreator(userData)
-                
+
             } catch (err) {
                 console.log(err.message)
             }
         }
 
         criador()
-    },[userId])
+    }, [userId])
+
+    const removeMembroUI = (idMembro) => {
+        setMembro((prev) => prev.filter((m) => m.id !== idMembro))
+    }
+
+    const removeComposicaoUI = () => {
+        setComposicaoFamiliar(null)
+        setMembro([])
+    }
 
     return (
         <div className={`${styles['scroll']} pb-2`}>
@@ -106,13 +117,18 @@ export const CadastroId = () => {
                     {endereco !== null ? <EnderecoId endereco={endereco} /> : <p className='text-center dext-danger'>Cadastro Incompleto.</p>}
                     <hr />
                     {conjuge !== null && <div> <ConjugeId conjuge={conjuge} /> <hr /> </div>}
-                    
+
                     {domicilio !== null ? <DomicilioId domicilio={domicilio} /> : <p className='text-center dext-danger'>Cadastro Incompleto.</p>}
                     <hr />
                     {acesso !== null ? <AcessoId acesso={acesso} /> : <p className='text-center dext-danger'>Cadastro Incompleto.</p>}
                     <hr />
-                    { composicaoFamiliar === null || membro !== null && <MembroId membro={membro} composicaoFamiliar={composicaoFamiliar} /> }
-                    {conjuge === null && <Link><button className='btn btn-primary btn-sm w-100'>Adicionar Conjuge a Este Cadastro</button></Link>}
+                    {composicaoFamiliar === null || membro !== null && <MembroId
+                        membro={membro}
+                        composicaoFamiliar={composicaoFamiliar}
+                        onRemoveComposicao={removeComposicaoUI}
+                        onRemoveMembro={removeMembroUI} />}
+                    {composicaoFamiliar === null && <Link><button className='btn btn-primary btn-sm w-100 mb-2'>Adicionar Composição Familiar a este Cadastro</button></Link>}
+                    {conjuge === null && <Link><button className='btn btn-primary btn-sm w-100'>Adicionar Conjuge a este Cadastro</button></Link>}
                 </div>
             }
 

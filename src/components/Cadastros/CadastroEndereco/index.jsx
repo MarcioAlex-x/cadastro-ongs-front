@@ -1,3 +1,5 @@
+const url = import.meta.env.VITE_API_URL
+
 import { useNavigate, useParams } from "react-router-dom"
 import styles from './cadastroEndereco.module.css'
 import { useState } from "react"
@@ -28,7 +30,7 @@ export const CadastroEndereco = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await fetch(`http://localhost:3000/endereco/${id}`, {
+            const response = await fetch(`${url}/endereco/${id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -1,3 +1,5 @@
+const url = import.meta.env.VITE_API_URL
+
 import { useNavigate, useParams } from "react-router-dom"
 import styles from './cadastroConjuge.module.css'
 import { useEffect, useState } from "react"
@@ -22,7 +24,7 @@ export const UpdateCadastroConjuge = () => {
     useEffect(()=>{
         const fetchApi = async () =>{
             try {
-                const response = await fetch(`http://localhost:3000/conjuge/${id}`,{
+                const response = await fetch(`${url}/conjuge/${id}`,{
                     method:'GET',
                     credentials: 'include',
                     headers:{
@@ -57,7 +59,7 @@ export const UpdateCadastroConjuge = () => {
         formToSend.valor_beneficio_seguro_social = parseFloat(form.valor_beneficio_seguro_social.replace(/\./g, '').replace(',', '.'))
 
         try {
-            const response = await fetch(`http://localhost:3000/conjuge/${id}`, {
+            const response = await fetch(`${url}/conjuge/${id}`, {
                 method: "PUT",
                 headers: {
                     'Content-Type': 'application/json'

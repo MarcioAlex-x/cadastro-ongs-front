@@ -1,3 +1,5 @@
+const url = import.meta.env.VITE_API_URL
+
 import { createContext, useContext, useEffect, useState } from "react"
 
 const AuthContext = createContext(null)
@@ -7,7 +9,7 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch("http://localhost:3000/auth/verify", {
+    fetch(`${url}/auth/verify`, {
       credentials: "include"
     })
       .then(res => res.json())
@@ -20,7 +22,7 @@ export const AuthProvider = ({ children }) => {
   }, [])
 
   const login = async (email, password) => {
-    const res = await fetch("http://localhost:3000/auth/login", {
+    const res = await fetch(`${url}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -32,7 +34,7 @@ export const AuthProvider = ({ children }) => {
       throw new Error(err.message || "Erro ao fazer login")
     }
 
-    const verifyRes = await fetch("http://localhost:3000/auth/verify", {
+    const verifyRes = await fetch(`${url}/auth/verify`, {
       credentials: "include"
     })
     const data = await verifyRes.json()
@@ -40,7 +42,7 @@ export const AuthProvider = ({ children }) => {
   }
 
   const logout = async () => {
-    await fetch("http://localhost:3000/auth/logout", {
+    await fetch(`${url}/auth/logout`, {
       method: "POST",
       credentials: "include"
     })

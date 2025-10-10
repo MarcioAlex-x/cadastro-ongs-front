@@ -1,18 +1,18 @@
+const url = import.meta.env.VITE_API_URL
 const fethcCadastro = async () => {
     try {
 
-        const response = await fetch('http://localhost:3000/cadastro', {
+        const response = await fetch(`${url}/cadastro`, {
             credentials: 'include'
         })
         const data = await response.json()
-        console.log(data)
         return data
         
     } catch (err) {
         return err.message
     }
 }
-
+console.log(url)
 export const cadastroShowAll = async () => await fethcCadastro()
 
 export const cadastrosMesAnterior = async () => {

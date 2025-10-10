@@ -1,3 +1,5 @@
+const url = import.meta.env.VITE_API_URL
+
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import styles from './cadastroComposicaoFamiliar.module.css'
@@ -28,7 +30,7 @@ export const UpdateCadastroComposicaoFamiliar = () => {
   useEffect(() => {
     const fetchApi = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/composicao_familiar/${id}`, {
+        const response = await fetch(`${url}/composicao_familiar/${id}`, {
           method: 'GET',
           credentials: 'include',
           headers: {
@@ -58,7 +60,7 @@ export const UpdateCadastroComposicaoFamiliar = () => {
   useEffect(() => {
     const fetchApi = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/composicao_familiar/${id}`, {
+        const response = await fetch(`${url}/composicao_familiar/${id}`, {
           method: 'GET',
           credentials: 'include',
           headers: {
@@ -111,7 +113,7 @@ export const UpdateCadastroComposicaoFamiliar = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/composicao_familiar/${id}`, {
+      const response = await fetch(`${url}/composicao_familiar/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
