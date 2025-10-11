@@ -28,6 +28,8 @@ import { UpdateCadastroComposicaoFamiliar } from './components/UpdateCadastros/U
 import { UpdateCadastroAcesso } from './components/UpdateCadastros/UpdateCadastroAcesso/index.jsx'
 import { Administrador } from './components/Administrador/index.jsx'
 import { PainelUsuario } from './components/PainelUsuario/index.jsx'
+import { ResetPassword } from './components/ResetPassword/index.jsx'
+import { ForgotPassword } from './components/ForgotPassword/index.jsx'
 
 const router = createBrowserRouter([
   {
@@ -35,32 +37,35 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: '/login', element: <PagesLogin /> },
+      { path: '/reset-password', element: <ResetPassword /> },
+      { path: '/forgot-password', element: <ForgotPassword /> },
       {
         element: <ProtectedRoute />,
-        children:[
-          { path:'/dashboard' , element: <PagesDashboard />,
-            children:[
-              {path:'inicio', element: <Inicio />},
-              {path: 'cadastro', element:<Cadastro />},
-              {path:'cadastro-pessoal/:id', element:<CadastroPessoal />},
-              {path: 'cadastro-conjuge/:id', element: <CadastroConjuge />},
-              {path: 'cadastro-endereco/:id', element: <CadastroEndereco />},
-              {path: 'cadastro-domiciliar/:id', element: <CadastroDomiciliar />},
-              {path: 'acesso/:id', element: <CadastroAcesso />},
-              {path: 'composicao/:id', element: <ComposicaoFamiliar />},
-              {path: 'cadastro-composicao-familiar/:id', element: <CadastroComposicaoFamiliar />},
-              {path: 'cadastros', element: <ListaCadastros />},
-              {path: 'cadastro/:id', element: <CadastroId />},
-              {path: 'update-dados-pessoal/:id', element: <UpdateCadastroPessoal />},
-              {path: 'update-dados-composicao-familiar/:id', element: <UpdateCadastroComposicaoFamiliar />},
-              {path: 'update-dados-endereco/:id', element: <UpdateCadastroEndereco />},
-              {path: 'update-dados-domiciliar/:id', element: <UpdateCadastroDomiciliar />},
-              {path: 'update-dados-conjuge/:id', element: <UpdateCadastroConjuge />},
-              {path: 'update-dados-acesso/:id' , element: <UpdateCadastroAcesso />},
-              {path: 'administrador', element: <Administrador />},
-              {path: 'usuario/:id', element: <PainelUsuario />},
+        children: [
+          {
+            path: '/dashboard', element: <PagesDashboard />,
+            children: [
+              { path: 'inicio', element: <Inicio /> },
+              { path: 'cadastro', element: <Cadastro /> },
+              { path: 'cadastro-pessoal/:id', element: <CadastroPessoal /> },
+              { path: 'cadastro-conjuge/:id', element: <CadastroConjuge /> },
+              { path: 'cadastro-endereco/:id', element: <CadastroEndereco /> },
+              { path: 'cadastro-domiciliar/:id', element: <CadastroDomiciliar /> },
+              { path: 'acesso/:id', element: <CadastroAcesso /> },
+              { path: 'composicao/:id', element: <ComposicaoFamiliar /> },
+              { path: 'cadastro-composicao-familiar/:id', element: <CadastroComposicaoFamiliar /> },
+              { path: 'cadastros', element: <ListaCadastros /> },
+              { path: 'cadastro/:id', element: <CadastroId /> },
+              { path: 'update-dados-pessoal/:id', element: <UpdateCadastroPessoal /> },
+              { path: 'update-dados-composicao-familiar/:id', element: <UpdateCadastroComposicaoFamiliar /> },
+              { path: 'update-dados-endereco/:id', element: <UpdateCadastroEndereco /> },
+              { path: 'update-dados-domiciliar/:id', element: <UpdateCadastroDomiciliar /> },
+              { path: 'update-dados-conjuge/:id', element: <UpdateCadastroConjuge /> },
+              { path: 'update-dados-acesso/:id', element: <UpdateCadastroAcesso /> },
+              { path: 'administrador', element: <Administrador /> },
+              { path: 'usuario/:id', element: <PainelUsuario /> },
             ]
-           },
+          },
         ]
       }
     ]

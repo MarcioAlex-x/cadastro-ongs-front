@@ -1,10 +1,32 @@
 import { useAuth } from '../../context/AuthContext'
 import { FaRegUser } from "react-icons/fa6"
 import styles from './navbar.module.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
+import { HiLogout, HiOutlineLogout } from 'react-icons/hi'
 
 export const Navbar = ({ className }) => {
     const { user } = useAuth()
+    const { logout } = useAuth()
+    const navigate = useNavigate()
+
+    const handleLogout = async () =>{
+
+        try {
+            await logout()
+            Swal.fire({
+                title:'Sucesso',
+                text:'Logout realizado com sucesso',
+                icon:'success',
+                showCancelButton: false
+            })
+
+            navigate(`/login`)
+        } catch (err) {
+            console.error(err)
+        }
+    }
+    
     return (
         <nav className={`align-items-center ${className} ${styles['bg-owner']}`}>
 
@@ -21,6 +43,11 @@ export const Navbar = ({ className }) => {
                             </p>
                         )
                     }
+                    <HiOutlineLogout 
+                    className='text-light ms-2 ' 
+                    style={{cursor:'pointer'}} 
+                    size={20} 
+                    onClick={()=>{handleLogout()}}/>
                 </div>
             }
         </nav>

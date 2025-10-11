@@ -5,56 +5,110 @@ import { FaClipboardUser } from "react-icons/fa6";
 import { BsCalendarDate } from "react-icons/bs";
 import { HiOutlineCalendarDateRange } from "react-icons/hi2";
 import { CiCalendarDate } from "react-icons/ci";
+import spinner from '../../assets/spinner.gif'
+import { GraficosIdadesFamiliares } from '../Graficos/GraficosIdadesFamiliares';
+import { GraficosOrientacaoSexualChefesFamiliares } from '../Graficos/GraficosOrientacaoSexualChefesFamiliares';
+import { GraficosEstadoCivilChefesFamiliares } from '../Graficos/GraficosEstadoCivilChefesFamiliares';
+import { GraficosEtniasChefesFamiliares } from '../Graficos/GraficosEtniasChefesFamiliares';
 
 export const Inicio = () => {
 
-    const { total, mesAtual, mesAnterior, anoAtual } = useCadastro()
+    const { total, mesAtual, mesAnterior, anoAtual, loading, pessoas, idadesChefes, orientacaoChefes, estadoCivilChefes, etniaChefes } = useCadastro()
+    console.log(pessoas)
     return (
         <>
-            <h2 className={`${styles['font-title']} fs-4`}>Cadastros Beneficiários</h2>
-            <div className="row justify-content-evenly">
-                <div className={`col-6 col-lg-2 p-1 ${styles['card-style']}`}>
-                    <div className={`rounded text-light bg-success p-2 shadow d-flex flex-column justify-content-between ${styles['card-style']}`}>
-                        <div className="d-flex">
-                            <p className={`${styles['font-title']}`}>Beneficiários Cadastrados</p>
-                            <FaClipboardUser size={30} />
-                        </div>
-                        <p className={`${styles['font-text']} display-6 align-self-end me-2 `}>{total}</p>
-                    </div>
+            {loading ? (
+                <div className=' w-100 d-flex justify-content-center align-items-center h-100'>
+                    <img
+                        src={spinner} />
                 </div>
+            ) : (
+                <div className={` w-100 px-2 pb-4 ${styles['scroll']}`}>
+                    <div className='d-flex justify-content-between align-items-center'>
+                        <h2 className={`${styles['font-title']} fs-4`}>Cadastros Beneficiários</h2>
+                        <div className={styles.horizontalRow}></div>
+                    </div>
+                    <div className="row justify-content-evenly">
 
-                <div className={`col-6 col-lg-2 p-1 ${styles['card-style']}`}>
-                    <div className={`rounded text-light bg-danger p-2 shadow d-flex flex-column justify-content-between ${styles['card-style']}`}>
-                        <div className='d-flex'>
-                            <p className={`${styles['font-title']}`}>Cadastros Mês Atual</p>
-                            <BsCalendarDate size={30} />
+                        <div className={`col-6 col-lg-2 p-1 ${styles['card-style']}`}>
+                            <div className={`rounded text-light bg-success p-2 shadow d-flex flex-column justify-content-between ${styles['card-style']}  ${styles['backGroundCard']}`}>
+                                <div className="d-flex">
+                                    <p className={`${styles['font-title']}`}>Beneficiários Cadastrados</p>
+                                    <FaClipboardUser size={30} />
+                                </div>
+                                <p className={`${styles['font-text']} display-6 align-self-end me-2 `}>{total}</p>
+                            </div>
                         </div>
-                        <p className={`${styles['font-text']} display-6 align-self-end me-2 `}>{mesAtual}</p>
-                    </div>
-                </div>
 
-                <div className={`col-6 col-lg-2 p-1 ${styles['card-style']}`}>
-                    <div className={`rounded text-dark bg-warning p-2 shadow d-flex flex-column justify-content-between ${styles['card-style']}`}>
-                        <div className="d-flex">
-                            <p  className={`${styles['font-title']}`}>Cadastros Mês Passado</p>
-                            <HiOutlineCalendarDateRange size={40} />
+                        <div className={`col-6 col-lg-2 p-1 ${styles['card-style']}`}>
+                            <div className={`rounded text-light bg-danger p-2 shadow d-flex flex-column justify-content-between ${styles['card-style']}  ${styles['backGroundCard']}`}>
+                                <div className='d-flex'>
+                                    <p className={`${styles['font-title']}`}>Cadastros Mês Atual</p>
+                                    <BsCalendarDate size={30} />
+                                </div>
+                                <p className={`${styles['font-text']} display-6 align-self-end me-2 `}>{mesAtual}</p>
+                            </div>
                         </div>
-                        <p className={`${styles['font-text']} display-6 align-self-end me-2 `}>{mesAnterior}</p>
-                    </div>
-                </div>
 
-                <div className={`col-6 col-lg-2 p-1 ${styles['card-style']}`}>
-                    <div className={`rounded text-light bg-primary p-2 shadow d-flex flex-column justify-content-between ${styles['card-style']}`}>
-                        <div className="d-flex">
-                            <p  className={`${styles['font-title']}`}>Cadastrados Neste Ano</p>
-                            <b>
-                                <CiCalendarDate className={styles.bold} size={36}/>
-                            </b>
+                        <div className={`col-6 col-lg-2 p-1 ${styles['card-style']}`}>
+                            <div className={`rounded text-light bg-warning p-2 shadow d-flex flex-column justify-content-between ${styles['card-style']}  ${styles['backGroundCard']}`}>
+                                <div className="d-flex">
+                                    <p className={`${styles['font-title']}`}>Cadastros Mês Passado</p>
+                                    <HiOutlineCalendarDateRange size={40} />
+                                </div>
+                                <p className={`${styles['font-text']} display-6 align-self-end me-2 `}>{mesAnterior}</p>
+                            </div>
                         </div>
-                        <p className={`${styles['font-text']} display-6 align-self-end me-2 `}>{anoAtual}</p>
+
+                        <div className={`col-6 col-lg-2 p-1 ${styles['card-style']}`}>
+                            <div className={`rounded text-light bg-primary p-2 shadow d-flex flex-column justify-content-between ${styles['card-style']}  ${styles['backGroundCard']}`}>
+                                <div className="d-flex">
+                                    <p className={`${styles['font-title']}`}>Cadastrados Neste Ano</p>
+                                    <b>
+                                        <CiCalendarDate className={styles.bold} size={36} />
+                                    </b>
+                                </div>
+                                <p className={`${styles['font-text']} display-6 align-self-end me-2 `}>{anoAtual}</p>
+                            </div>
+                        </div>
                     </div>
+                    <div className='d-flex justify-content-between align-items-center mt-5'>
+                        <h2 className={`${styles['font-title']} fs-4`}>Dados Cadastrais</h2>
+                        <div className={styles.horizontalRow}></div>
+                    </div>
+                    <div className="row justify-content-evenly">
+                        <div className={`col-12 col-md-6 p-1 ${styles['card-style']} `}>
+                            <div className={`rounded text-light bg-light p-2 shadow d-flex flex-column justify-content-between ${styles['card-style']}  ${styles['backGroundEtariedade']} `}>
+                                <p className={`${styles['font-title']} text-light fs-5`}>Faixa Etária Chefes de Família</p>
+                                <GraficosIdadesFamiliares idades={idadesChefes || {}} />
+                            </div>
+                        </div>
+
+                        <div className={`col-12 col-md-6 p-1 ${styles['card-style']}`}>
+                            <div className={`rounded text-light bg-light p-2 shadow d-flex flex-column justify-content-between ${styles['card-style']} ${styles['backGroundDiversidade']}`}>
+                                <p className={`${styles['font-title']} text-light fs-5`}>Orientação Sexual Chefes de Família</p>
+                                <GraficosOrientacaoSexualChefesFamiliares orientacaoChefe={orientacaoChefes} />
+                            </div>
+                        </div>
+
+                        <div className={`col-12 col-md-6 p-1 ${styles['card-style']}`}>
+                            <div className={`rounded text-light bg-light p-2 shadow d-flex flex-column justify-content-between ${styles['card-style']} ${styles['backGroundCasal']}`}>
+                                <p className={`${styles['font-title']} text-light fs-5`}>Estado Civil Chefes de Família</p>
+                                <GraficosEstadoCivilChefesFamiliares estadoCivilChefes={estadoCivilChefes} />
+                            </div>
+                        </div>
+
+                        <div className={`col-12 col-md-6 p-1 ${styles['card-style']}`}>
+                            <div className={`rounded text-light bg-light p-2 shadow d-flex flex-column justify-content-between ${styles['card-style']} ${styles['backGroundEtnia']}`}>
+                                <p className={`${styles['font-title']} text-light fs-5`}>Etnia Chefes de Família</p>
+                                <GraficosEtniasChefesFamiliares etniaChefes={etniaChefes} />
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
+            )}
+
         </>
     )
 }

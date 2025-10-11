@@ -117,7 +117,9 @@ export const PainelUsuario = () => {
                 </div>
                 <div className="col-6 bg-light p-2 rounded">
                     <h2 className={`text-center ${styles['title-cadastro']}`}>Cadastro realizados</h2>
-                    <GraficosCadastrosDesteUsuarios cadastrosDesteUsuario={cadastrosDesteUsuario} outrosCadastros={outrosCadastros} />
+                    <div  className={`${styles['backGroundGraficos']} rounded`}>
+                        <GraficosCadastrosDesteUsuarios cadastrosDesteUsuario={cadastrosDesteUsuario} outrosCadastros={outrosCadastros} />
+                    </div>
                 </div>
             </div>
             <div className="p-5 border rounded mt-4">

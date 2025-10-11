@@ -5,14 +5,16 @@
     height: 90vh;
     width: 100%;
 }
+
 .backGroundGraficos{
     background-image:
     linear-gradient(rgba(246, 247, 248, 0.247), rgba(26, 34, 38, 0.562)),
-     url('../../assets/chart-lg.jpg');
+     url('../../../assets/chart-lg.jpg');
     background-repeat: no-repeat;
     background-position: bottom center;
     background-size: cover;
 }
+
 .title-cadastro{
     font-family: var(--font-title);
 }

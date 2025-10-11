@@ -1,26 +1,33 @@
-import { PieChart, Pie, Tooltip, Legend, Cell, ResponsiveContainer } from 'recharts'
-import styles from './GraficosCadastrosDesteUsuario.module.css'
+import { Pie, PieChart, ResponsiveContainer, Tooltip, Cell, Legend } from "recharts";
 
-export const GraficosCadastrosDesteUsuarios = ({ cadastrosDesteUsuario, outrosCadastros }) => {
+export const GraficosEstadoCivilChefesFamiliares = ({ estadoCivilChefes }) => {
+
     const data = [
-        { name: 'Cadastros deste usuário', value: cadastrosDesteUsuario },
-        { name: 'Outros cadastros', value: outrosCadastros }
+        { name: 'Casado(a)', value: estadoCivilChefes['Casado'] },
+        { name: 'Solteiro(a)', value: estadoCivilChefes['Solteiro'] },
+        { name: 'Divorciado(a)', value: estadoCivilChefes['Divorciado'] },
+        { name: 'Viúvo(a)', value: estadoCivilChefes['Viúvo'] },
     ]
 
-    const COLORS = ['#dc3545', '#0d6efd']
+    const COLORS = [
+        '#FF005C',
+        '#00C2FF',
+        '#FFD500',
+        '#00E676',
+    ]
 
     return (
-        <div className={styles.backGroundGraficos}>
-            <ResponsiveContainer width='100%' height={300} >
+        <div >
+            <ResponsiveContainer width='100%' height={240} >
                 <PieChart>
                     <Pie
                         data={data}
                         dataKey='value'
                         nameKey='name'
                         outerRadius={80}
-                        innerRadius={50}
+                        innerRadius={60}
                         label>
-                        {data.map((el, index) => (
+                        {data.map((entry, index) => (
                             <Cell key={index} fill={COLORS[index % COLORS.length]} />
                         ))}
                     </Pie>

@@ -1,28 +1,39 @@
-import { PieChart, Pie, Tooltip, Legend, Cell, ResponsiveContainer } from 'recharts'
-import styles from './GraficosCadastrosDesteUsuario.module.css'
+import { PieChart, Pie, Tooltip, Legend, Cell, ResponsiveContainer } from "recharts";
 
-export const GraficosCadastrosDesteUsuarios = ({ cadastrosDesteUsuario, outrosCadastros }) => {
+export const GraficosIdadesFamiliares = ({ idades }) => {
     const data = [
-        { name: 'Cadastros deste usuário', value: cadastrosDesteUsuario },
-        { name: 'Outros cadastros', value: outrosCadastros }
+        { name: 'Até 20 anos', value: idades.menor20 || 0 },
+        { name: '21 até 30 anos', value: idades.menor30 || 0 },
+        { name: '31 até 40 anos', value: idades.menor40 || 0 },
+        { name: '41 até 50 anos', value: idades.menor50 || 0 },
+        { name: '51 até 60 anos', value: idades.menor60 || 0 },
+        { name: '60+', value: idades.sessentaMais || 0 },
     ]
 
-    const COLORS = ['#dc3545', '#0d6efd']
+    const COLORS = [
+        '#FF005C',
+        '#00C2FF',
+        '#FFD500',
+        '#00E676',
+        '#9D00FF',
+        '#FF6D00'
+    ]
 
     return (
-        <div className={styles.backGroundGraficos}>
-            <ResponsiveContainer width='100%' height={300} >
+        <div>
+            <ResponsiveContainer width='100%' height={240} >
                 <PieChart>
                     <Pie
                         data={data}
                         dataKey='value'
                         nameKey='name'
                         outerRadius={80}
-                        innerRadius={50}
+                        innerRadius={60}
                         label>
-                        {data.map((el, index) => (
+                        {data.map((entry, index) => (
                             <Cell key={index} fill={COLORS[index % COLORS.length]} />
                         ))}
+
                     </Pie>
                     <Tooltip />
                     <Legend
@@ -38,3 +49,4 @@ export const GraficosCadastrosDesteUsuarios = ({ cadastrosDesteUsuario, outrosCa
         </div>
     )
 }
+

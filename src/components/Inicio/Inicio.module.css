@@ -1,3 +1,59 @@
+.scroll{
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    height: 90vh;
+}
+
+.horizontalRow{
+    height: 2px;
+    width: 100%;
+    background-color: #3c8dbcaf;
+}
+
+/* .backGroundCard{
+    background-image:
+    linear-gradient(rgba(26, 34, 38, 0.76), rgba(8, 16, 20, 0.877)),
+     url('../../assets/chart-sm-2.png');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: contain;
+} */
+
+.backGroundCasal{
+    background-image:
+    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
+     url('../../assets/casal.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+}
+
+.backGroundDiversidade{
+    background-image:
+    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
+     url('../../assets/diversidade.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+}
+.backGroundEtariedade{
+    background-image:
+    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
+     url('../../assets/etariedade2.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+}
+
+.backGroundEtnia{
+    background-image:
+    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
+     url('../../assets/iversidade2.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+}
 .rowHeight{
     height: 50px;
 }
