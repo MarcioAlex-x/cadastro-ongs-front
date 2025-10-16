@@ -37,8 +37,9 @@ export const GraficosOrientacaoSexualChefesFamiliares = ({ orientacaoChefe }) =>
                     </Pie>
                     <Tooltip />
                     <Legend
+                        layout="column"
                         verticalAlign="bottom"
-                        height={36}
+                        align="center"
                         wrapperStyle={{
                             fontSize: '12px',
                             fontWeight: 'bold'

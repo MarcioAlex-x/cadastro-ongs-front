@@ -173,11 +173,11 @@ export const Administrador = () => {
                                                 onClick={() => handleDelete(el.id)} />
                                         </h4>
                                         {el.isAdmin ? (
-                                            <p className='m-0 d-flex align-items-center'> <FaLockOpen className='text-primary' /> Possui privilégios administrativos.</p>
+                                            <p className='m-0 d-flex align-items-center'> <FaLockOpen className='text-secondary' /> Possui privilégios administrativos.</p>
                                         ) : (
                                             <p className='m-0 d-flex align-items-center'> <FaLock className='text-danger' /> Usuário não possui privilégios</p>
                                         )}
-                                        <p className='m-0 d-flex align-items-center'> <MdEmail className='text-success' /> E-mail: {el.email}</p>
+                                        <p className='m-0 d-flex align-items-center'> <MdEmail className='text-secondary' /> E-mail: {el.email}</p>
                                         <p className='d-flex align-items-center'> <FaCalendarDay className='text-secondary' /> Criado em {formatarDataCriacaoAtualizacao(el.createdAt)}</p>
                                         {formatarDataCriacaoAtualizacao(el.createdAt) !== formatarDataCriacaoAtualizacao(el.updatedAt) && <p className='d-flex align-items-center'> <FaCalendarDay className='text-secondary' /> Ultima atualização em {formatarDataCriacaoAtualizacao(el.createdAt)}</p>}
                                     </div>

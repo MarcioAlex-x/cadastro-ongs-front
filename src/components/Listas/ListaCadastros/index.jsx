@@ -64,7 +64,7 @@ export const ListaCadastros = () => {
               <li key={data.id} className={`${styles['link']} d-flex mb-3`}>
                 <Link className={`${styles['link']}`} to={`/dashboard/cadastro/${data.id}`}>
                     <button
-                    className='btn btn-outline-primary btn-sm me-2 d-flex align-items-center'>
+                    className='btn btn-primary btn-sm me-2 d-flex align-items-center'>
                       <FaRegEye className={`${styles['button-link']}`} /> <span className={`${styles['text-link']}`}>Ver Cadastro</span>
                     </button>
                 </Link>
@@ -73,7 +73,7 @@ export const ListaCadastros = () => {
                     data.pessoas.map((pessoa) => (
                       <li key={pessoa.id} className={styles['link']}>
                         {cadastrosCompletos(pessoa) ? (
-                          <>Cadastrado: {pessoa.nome}</>
+                          <>{pessoa.nome} CPF: {pessoa.cpf}</>
                         ) : (
                           <span >{pessoa.nome} - <b>Complete este cadastro</b></span>
                         )}

@@ -1,0 +1,20 @@
+const COLORS = [
+    '#FF005C', // Rosa neon
+    '#00C2FF', // Azul neon
+    '#FFD500', // Amarelo neon
+    '#00E676', // Verde neon
+    '#9D00FF', // Roxo neon
+    '#FF6D00', // Laranja neon
+
+    // Novas cores neon adicionadas
+    '#FF00FF', // Magenta neon forte
+    '#39FF14', // Verde limão neon
+    '#00FFFD', // Ciano neon
+    '#FF073A', // Vermelho neon intenso
+    '#FE019A', // Pink neon
+    '#F5F500', // Amarelo neon mais claro
+    '#7DF9FF', // Azul bebê neon
+    '#FF1493', // Rosa choque neon
+    '#B026FF', // Roxo neon elétrico
+    '#FFDC00'  // Amarelo ouro neon
+]

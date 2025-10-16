@@ -1,13 +1,14 @@
-import { PieChart, Pie, Tooltip, Legend, Cell, ResponsiveContainer } from "recharts";
+import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts"
 
-export const GraficosIdadesFamiliares = ({ idades }) => {
+export const GraficosSegurosChefesFamiliares = ({ seguroChefes }) => {
     const data = [
-        { name: 'Até 20 anos', value: idades.menor20 || 0 },
-        { name: '21 até 30 anos', value: idades.menor30 || 0 },
-        { name: '31 até 40 anos', value: idades.menor40 || 0 },
-        { name: '41 até 50 anos', value: idades.menor50 || 0 },
-        { name: '51 até 60 anos', value: idades.menor60 || 0 },
-        { name: '60+', value: idades.sessentaMais || 0 },
+        { name: "Licença Médica", value: seguroChefes['Licença Médica'] },
+        { name: 'Aposentadoria', value: seguroChefes['Aposentadoria'] },
+        { name: 'Pensão Alimentícia', value: seguroChefes['Pensão Alimentícia'] },
+        { name: 'Seguro Desemprego', value: seguroChefes['Seguro Desemprego'] },
+        { name: 'Bolsa Família', value: seguroChefes['Bolsa Família'] },
+        { name: 'BPC', value: seguroChefes['BPC'] },
+        { name: 'Nenhum', value: seguroChefes['Nenhum'] }
     ]
 
     const COLORS = [
@@ -16,24 +17,24 @@ export const GraficosIdadesFamiliares = ({ idades }) => {
         '#FFD500',
         '#00E676',
         '#9D00FF',
-        '#FF6D00'
+        '#FF6D00',
+        '#FF00FF'
     ]
 
     return (
         <div>
-            <ResponsiveContainer width='100%' height={240} >
+            <ResponsiveContainer width='100%' height={240}>
                 <PieChart>
                     <Pie
                         data={data}
                         dataKey='value'
                         nameKey='name'
-                        outerRadius={60}
-                        innerRadius={50}
+                        outerRadius={80}
+                        innerRadius={60}
                         label>
-                        {data.map((entry, index) => (
+                        {data.map((el, index) => (
                             <Cell key={index} fill={COLORS[index % COLORS.length]} />
                         ))}
-
                     </Pie>
                     <Tooltip />
                     <Legend
@@ -49,4 +50,3 @@ export const GraficosIdadesFamiliares = ({ idades }) => {
         </div>
     )
 }
-

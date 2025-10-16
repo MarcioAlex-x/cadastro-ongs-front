@@ -37,7 +37,7 @@ export const GraficosEtniasChefesFamiliares = ({ etniaChefes }) => {
                     </Pie>
                     <Tooltip />
                     <Legend
-                        layout="horizontal"
+                        layout="column"
                         verticalAlign="bottom"
                         align="center"
                         wrapperStyle={{
