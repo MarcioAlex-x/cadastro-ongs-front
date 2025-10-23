@@ -12,8 +12,9 @@ import { PessoaId } from '../PessoaId';
 import { ConjugeId } from '../ConjugeId'
 import { DomicilioId } from '../DomicilioId';
 import { AcessoId } from '../AcessoId';
-import { MembroId } from '../MembroId';
-import { Button } from 'bootstrap';
+import { MembroId } from '../MembroId'
+import { LuFileSpreadsheet } from "react-icons/lu";
+
 
 
 
@@ -101,6 +102,7 @@ export const CadastroId = () => {
         setMembro([])
     }
 
+    
     return (
         <div className={`${styles['scroll']} pb-2`}>
             {loading ?
@@ -109,7 +111,15 @@ export const CadastroId = () => {
                 </div>
                 :
                 <div className='mb-4'>
-                    <h2 className={`${styles['title-cadastro']}`}>Cadastro</h2>
+                    <div className="d-flex justify-content-between">
+                        <h2 className={`${styles['title-cadastro']}`}>Cadastro</h2>
+                        <Link to={`/dashboard/pdf-document/${id}`}>
+                            <div className='border rounded-2 shadow py-1 px-2 bg-secondary text-light'>
+                                <LuFileSpreadsheet size={24}   />
+                                <p className='m-0'>PDF</p>
+                            </div>
+                        </Link>
+                    </div>
                     <p className=''>Criado {userCreator && <span>por {userCreator?.nome}</span>} em {formatarDataCriacaoAtualizacao(cadastro.createdAt)}</p>
                     <hr />
                     {pessoa ? <PessoaId pessoa={pessoa} /> : <p className='text-center dext-danger'>Cadastro Incompleto.</p>}
@@ -127,8 +137,8 @@ export const CadastroId = () => {
                         composicaoFamiliar={composicaoFamiliar}
                         onRemoveComposicao={removeComposicaoUI}
                         onRemoveMembro={removeMembroUI} />}
-                    {composicaoFamiliar === null && <Link><button className='btn btn-primary btn-sm w-100 mb-2'>Adicionar Composição Familiar a este Cadastro</button></Link>}
-                    {conjuge === null && <Link><button className='btn btn-primary btn-sm w-100'>Adicionar Conjuge a este Cadastro</button></Link>}
+                    {composicaoFamiliar === null && <Link to={`/dashboard/composicao/${pessoa.id}`}><button className='btn btn-primary btn-sm w-100 mb-2'>Adicionar Composição Familiar a este Cadastro</button></Link>}
+                    {conjuge === null && <Link to={`/dashboard/cadastro-conjuge-tardio/${pessoa.id}`}><button className='btn btn-primary btn-sm w-100'>Adicionar Conjuge a este Cadastro</button></Link>}
                 </div>
             }
 

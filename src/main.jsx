@@ -30,6 +30,11 @@ import { Administrador } from './components/Administrador/index.jsx'
 import { PainelUsuario } from './components/PainelUsuario/index.jsx'
 import { ResetPassword } from './components/ResetPassword/index.jsx'
 import { ForgotPassword } from './components/ForgotPassword/index.jsx'
+import { ListaGraficosPessoais } from './components/ListaGraficosPessoais/index.jsx'
+import { ListaGraficosDomiciliares } from './components/ListasGraficosDomiciliares/index.jsx'
+import { ListaGraficosVulnerabilidade } from './components/ListaGraficosVulnerabilidade/index.jsx'
+import { CadastroConjugeTardio } from './components/Cadastros/CadastroConjugeTardio/index.jsx'
+import { PDFDocument } from './components/PDFDocument/index.jsx'
 
 const router = createBrowserRouter([
   {
@@ -64,6 +69,12 @@ const router = createBrowserRouter([
               { path: 'update-dados-acesso/:id', element: <UpdateCadastroAcesso /> },
               { path: 'administrador', element: <Administrador /> },
               { path: 'usuario/:id', element: <PainelUsuario /> },
+              { path: 'graficos-pessoais', element: <ListaGraficosPessoais />},
+              { path: 'graficos-domiciliares', element: <ListaGraficosDomiciliares />},
+              { path: 'graficos-vulnerabilidade', element: <ListaGraficosVulnerabilidade />},
+              { path: 'cadastro-conjuge-tardio/:id', element: <CadastroConjugeTardio />},
+              { path: 'pdf-document/:id', element: <PDFDocument /> },
+              
             ]
           },
         ]

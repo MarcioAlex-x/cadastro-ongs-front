@@ -3,6 +3,7 @@ const url = import.meta.env.VITE_API_URL
 import { useNavigate, useParams } from "react-router-dom"
 import styles from './cadastroConjuge.module.css'
 import { useState } from "react"
+import { InputMask } from 'primereact/inputmask'
 
 export const CadastroConjuge = () => {
     const { id } = useParams()
@@ -72,6 +73,46 @@ export const CadastroConjuge = () => {
                         name="nome"
                         value={form.nome}
                         onChange={handleChange} />
+                </div>
+                <div className="row">
+                    <div className="col-md-4 col-12">
+                        <label htmlFor="rg" id="rg" className={`${styles['text-cadastro']} form-label`}>RG<span className="text-danger">*</span></label>
+                        <input
+                            required
+                            type="text"
+                            className="form-control"
+                            id="rg"
+                            name="rg"
+                            value={form.rg}
+                            onChange={handleChange} />
+                    </div>
+
+                    <div className="col-md-4 col-12">
+                        <label htmlFor="cpf" className={`${styles['text-cadastro']} form-label`}>CPF<span className="text-danger">*</span></label>
+                        <InputMask
+                            required
+                            type="text"
+                            mask='999.999.999-99'
+                            pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
+                            className="form-control"
+                            id="cpf"
+                            name="cpf"
+                            value={form.cpf}
+                            onChange={handleChange} ></InputMask>
+                    </div>
+
+                    <div className="col-md-4 col-12">
+                        <label htmlFor="nis" className={`${styles['text-cadastro']} form-label`}>NIS<span className="text-danger">*</span></label>
+                        <input
+                            required
+                            type="text"
+                            pattern='\d{11}'
+                            className="form-control"
+                            id="nis"
+                            name="nis"
+                            value={form.nis}
+                            onChange={handleChange} />
+                    </div>
                 </div>
 
                 <div className="row">

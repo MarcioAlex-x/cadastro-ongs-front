@@ -24,7 +24,7 @@ export const AcessoId = ({acesso})=>{
 
                 <div className="row">
                     <p className="col-12 col-md-4"><b>Saúde: </b>{acesso.acesso_saude}</p>
-                    <p className="col-12 col-md-4"><b>Esporte, Cultura e Lazer</b>{acesso.acesso_esporte_cultura_lazer}</p>
+                    <p className="col-12 col-md-4"><b>Esporte, Cultura e Lazer: </b>{acesso.acesso_esporte_cultura_lazer}</p>
                 </div>
                 <div className="d-flex justify-content-between">
                     <Link to={`/dashboard/update-dados-acesso/${acesso.id}`}><button  className='btn btn-primary btn-sm'><HiOutlinePencilAlt />Editar</button></Link>

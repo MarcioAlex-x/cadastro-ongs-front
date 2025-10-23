@@ -1,0 +1,10 @@
+.page {
+  page-break-after: always;
+  break-after: page;
+}
+.scroll{
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    height: 90vh;
+}

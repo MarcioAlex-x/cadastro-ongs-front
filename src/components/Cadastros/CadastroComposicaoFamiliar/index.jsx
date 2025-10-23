@@ -3,6 +3,7 @@ const url = import.meta.env.VITE_API_URL
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import styles from './cadastroComposicaoFamiliar.module.css'
+import { InputMask } from 'primereact/inputmask'
 
 export const CadastroComposicaoFamiliar = () => {
     const { id } = useParams()
@@ -17,12 +18,14 @@ export const CadastroComposicaoFamiliar = () => {
         etnia: '',
         ocupacao: '',
         profissao: '',
-        renda: 0,
+        renda: '',
         escolaridade: '',
         frequenta_escola: '',
         beneficio_seguro_social: '',
         valor_beneficio_seguro_social: '',
         pcd: '',
+        cpf:'',
+        nis:'',
     }
     const [form, setForm] = useState(initialState)
     const [atualizador, setAtualizador] = useState(0)
@@ -38,13 +41,12 @@ export const CadastroComposicaoFamiliar = () => {
     }
 
     const handleSubmit = async (e) => {
-
+        e.preventDefault()
+        
         const formToSend = { ...form }
 
         formToSend.renda = parseFloat(form.renda.replace(/\./g, '').replace(',', '.')) || 0
         formToSend.valor_beneficio_seguro_social = parseFloat(form.valor_beneficio_seguro_social.replace(/\./g, '').replace(',', '.')) || 0
-
-        e.preventDefault()
 
         try {
             const response = await fetch(`${url}/composicao_familiar/${id}`, {
@@ -53,13 +55,15 @@ export const CadastroComposicaoFamiliar = () => {
                     'Content-Type': 'application/json'
                 },
                 credentials: 'include',
-                body: JSON.stringify({ ...form })
+                body: JSON.stringify(formToSend)
             })
+            
 
             const data = await response.json()
-            if (data) {
-                setForm(initialState)
-                setAtualizador(prev => prev + 1)
+           if (response.ok) { 
+                setForm(initialState);
+            } else {
+                console.error("Erro ao salvar:", data.message); 
             }
 
         } catch (err) {
@@ -108,6 +112,46 @@ export const CadastroComposicaoFamiliar = () => {
                         name="nome"
                         value={form.nome}
                         onChange={handleChange} />
+                </div>
+                <div className="row">
+                    <div className="col-md-4 col-12">
+                        <label htmlFor="rg" id="rg" className={`${styles['text-cadastro']} form-label`}>RG<span className="text-danger">*</span></label>
+                        <input
+                            required
+                            type="text"
+                            className="form-control"
+                            id="rg"
+                            name="rg"
+                            value={form.rg}
+                            onChange={handleChange} />
+                    </div>
+
+                    <div className="col-md-4 col-12">
+                        <label htmlFor="cpf" className={`${styles['text-cadastro']} form-label`}>CPF<span className="text-danger">*</span></label>
+                        <InputMask
+                            required
+                            type="text"
+                            mask='999.999.999-99'
+                            pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
+                            className="form-control"
+                            id="cpf"
+                            name="cpf"
+                            value={form.cpf}
+                            onChange={handleChange} ></InputMask>
+                    </div>
+
+                    <div className="col-md-4 col-12">
+                        <label htmlFor="nis" className={`${styles['text-cadastro']} form-label`}>NIS<span className="text-danger">*</span></label>
+                        <input
+                            required
+                            type="text"
+                            pattern='\d{11}'
+                            className="form-control"
+                            id="nis"
+                            name="nis"
+                            value={form.nis}
+                            onChange={handleChange} />
+                    </div>
                 </div>
                 <div className="row">
                     <div className="col-md-3 col-12">

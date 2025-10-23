@@ -1,0 +1,196 @@
+.scroll{
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    height: 90vh;
+}
+
+.horizontalRow{
+    height: 2px;
+    width: 100%;
+    background-color: #3c8dbcaf;
+}
+
+/* .backGroundCard{
+    background-image:
+    linear-gradient(rgba(26, 34, 38, 0.76), rgba(8, 16, 20, 0.877)),
+     url('../../assets/chart-sm-2.png');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: contain;
+} */
+
+.backGroundCasal{
+    background-image:
+    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
+     url('../../../assets/casal.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+}
+
+.backGroundDiversidade{
+    background-image:
+    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
+     url('../../../assets/diversidade.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+}
+.backGroundEtariedade{
+    background-image:
+    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
+     url('../../../assets/etariedade2.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+}
+
+.backGroundEtnia{
+    background-image:
+    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
+     url('../../../assets/diversidade2.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+}
+.backGroundDeficiencia{
+    background-image:
+    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
+     url('../../../assets/deficiencia.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+}
+.backGroundSeguro{
+    background-image:
+    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
+     url('../../../assets/seguro.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+}
+.backGroundTrabalhista{
+    background-image:
+    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
+     url('../../../assets/trabalhista.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+}
+.backGroundLocalidade{
+    background-image:
+    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
+     url('../../../assets//localidade.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+}
+.backGroundTipoConstrucao{
+    background-image:
+    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
+     url('../../../assets/tipo-construcao.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+}
+.backGroundPsf{
+    background-image:
+    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
+     url('../../../assets/psf.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+}
+.backGroundPraca{
+    background-image:
+    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
+     url('../../../assets/praca.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+}
+.backGroundPolicial{
+    background-image:
+    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
+     url('../../../assets/delegacia.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+}
+.backGroundCreche{
+    background-image:
+    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
+     url('../../../assets/creche.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+}
+.backGroundAgua{
+    background-image:
+    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
+     url('../../../assets/abastecimento-agua.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+}
+.backGroundEnergia{
+    background-image:
+    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
+     url('../../../assets/energia-eletrica.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+}
+.backGroundLixo{
+    background-image:
+    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
+     url('../../../assets/lixo.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+}
+.backGroundEsgoto{
+    background-image:
+    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
+     url('../../../assets/esgoto.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+}
+.backGroundCoabitacao{
+    background-image:
+    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
+     url('../../../assets/coabitacao.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+}
+.backGroundCondicao{
+    background-image:
+    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
+     url('../../../assets/alvenaria.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+}
+.rowHeight{
+    height: 50px;
+}
+
+.card-style{
+    min-height: 160px ;
+    font-weight: bold;
+}
+
+.bold{
+    font-weight: bolder;
+}
+
+.font-title{
+    font-family: var(--font-title);
+}
+
+.font-text{
+    font-family: var(--font-text);
+}

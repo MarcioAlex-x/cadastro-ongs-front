@@ -23,6 +23,12 @@ import {
   abastecimentoEnergia,
   esgotamentoSanitario,
   destinoLixo,
+  mausTratos,
+  violenciaDomestica,
+  discriminacaoRejeicaoFamiliar,
+  discriminacaoSocial,
+  acessoSaude,
+  acessoCultura,
 } from "../api/cadastrosApi";
 
 export const useCadastro = () => {
@@ -50,6 +56,13 @@ export const useCadastro = () => {
   const [esgoto, setEsgoto] = useState([]);
   const [energia, setEnergia] = useState([]);
   const [lixo, setLixo] = useState([]);
+  const [mausTratosU, setMausTratosU] = useState([]);
+  const [violenciaDomesticaU, setViolenciaDomesticaU] = useState([]);
+  const [discriminacaoRejeicaoFamiliarU, setDiscriminacaoRejeicaoFamiliarU] =
+    useState([]);
+  const [discriminacaoSocialU, setDiscriminacaoSocialU] = useState([]);
+  const [saude, setSaude] = useState([])
+  const [cultura, setCultura] = useState([])
 
   const fetchData = async () => {
     try {
@@ -76,6 +89,12 @@ export const useCadastro = () => {
       const energiaC = await abastecimentoEnergia();
       const lixoC = await destinoLixo();
       const esgotoC = await esgotamentoSanitario();
+      const maustratos = await mausTratos();
+      const violenciadomestica = await violenciaDomestica();
+      const discriminacaoRejeicao = await discriminacaoRejeicaoFamiliar();
+      const discriminacaosocial = await discriminacaoSocial();
+      const acessocultura = await acessoCultura()
+      const acessosaude = await acessoSaude()
 
       setTotal(all.length);
       setMesAtual(atual.length);
@@ -100,6 +119,12 @@ export const useCadastro = () => {
       setEnergia(energiaC);
       setLixo(lixoC);
       setEsgoto(esgotoC);
+      setMausTratosU(maustratos);
+      setViolenciaDomesticaU(violenciadomestica);
+      setDiscriminacaoSocialU(discriminacaosocial);
+      setDiscriminacaoRejeicaoFamiliarU(discriminacaoRejeicao);
+      setSaude(acessosaude)
+      setCultura(acessocultura)
     } catch (err) {
       console.log(err);
     } finally {
@@ -135,5 +160,11 @@ export const useCadastro = () => {
     energia,
     lixo,
     esgoto,
+    mausTratosU,
+    violenciaDomesticaU,
+    discriminacaoSocialU,
+    discriminacaoRejeicaoFamiliarU,
+    saude, 
+    cultura
   };
 };

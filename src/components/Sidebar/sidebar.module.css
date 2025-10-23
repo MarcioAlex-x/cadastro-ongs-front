@@ -36,8 +36,12 @@
 }
 
 .text-link {
-        display: block;
-    }
+    display: block;
+}
+
+.dropdown {
+    font-size: 14px;
+}
 
 @media screen and (max-width: 890px) {
     .text-link {
@@ -49,11 +53,11 @@
         margin-right: 16px;
     }
 
-    .title-sidebar{
+    .title-sidebar {
         display: none;
     }
 
     .owner-bg {
-    height: 95vh;
-}
+        height: 95vh;
+    }
 }

@@ -23,6 +23,18 @@ const fetchDomicilio = async () => {
   }
 };
 
+const fetchAcesso = async () => {
+  try {
+    const cadastros = await fethcCadastro();
+    const pessoas = cadastros.flatMap((t) => t.pessoas);
+    const acessos = pessoas.flatMap((t) => t.acesso);
+
+    return acessos;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 const todasPessoas = async () => {
   const cadastros = await fethcCadastro();
   const todasPessoas = cadastros.flatMap((c) => c.pessoas);
@@ -175,7 +187,7 @@ export const deficienciaChefesFamiliares = async () => {
 
     const contagem = {
       Sim: 0,
-      Não: 0,
+      'Não': 0,
     };
 
     deficiencia.forEach((e) => {
@@ -296,14 +308,14 @@ export const condicoesMoradia = async () => {
     const condicoesMoradia = domicilio.map((e) => e.condicoes_moradia);
 
     const contagem = {
-      'Própria': 0,
-      'Alugada': 0,
-      'Cedido': 0,
-      'Invadido': 0,
-      'República': 0,
+      Própria: 0,
+      Alugada: 0,
+      Cedido: 0,
+      Invadido: 0,
+      República: 0,
       "Residência Estudantil": 0,
       "Moradia Compartilhada": 0,
-      'Outro': 0,
+      Outro: 0,
     };
 
     condicoesMoradia.forEach((e) => {
@@ -313,258 +325,386 @@ export const condicoesMoradia = async () => {
     });
 
     return contagem;
-
   } catch (err) {
     console.error(err);
     return {};
   }
 };
 
-export const coabitacaoFamiliar = async() =>{
-    try {
-        const domicilio = await fetchDomicilio()
-    const coabitacao = domicilio.map(e=>e.situacao_coabitacao_familiar)
+export const coabitacaoFamiliar = async () => {
+  try {
+    const domicilio = await fetchDomicilio();
+    const coabitacao = domicilio.map((e) => e.situacao_coabitacao_familiar);
 
     const contagem = {
-        'Sim': 0,
-        'Não': 0
-    }
+      Sim: 0,
+      'Não': 0,
+    };
 
-    coabitacao.forEach((e)=>{
-        if(contagem[e] !== undefined){
-            contagem[e]++
-        }
-    })
+    coabitacao.forEach((e) => {
+      if (contagem[e] !== undefined) {
+        contagem[e]++;
+      }
+    });
 
-    return contagem 
+    return contagem;
+  } catch (err) {
+    console.error(err);
+    return {};
+  }
+};
 
-    } catch (err) {
-        console.error(err)
-        return {}        
-    }
+export const tipoConstrucao = async () => {
+  try {
+    const domicilio = await fetchDomicilio();
+    const construcao = domicilio.map((e) => e.tipo_constucao);
 
-}
+    const contagem = {
+      Alvenaria: 0,
+      Taipa: 0,
+      "Materiais Recicláveis": 0,
+    };
 
-export const tipoConstrucao = async () =>{
-    try {
-        const domicilio = await fetchDomicilio()
-        const construcao = domicilio.map(e => e.tipo_constucao)
+    construcao.forEach((e) => {
+      if (contagem[e] !== undefined) {
+        contagem[e]++;
+      }
+    });
 
-        const contagem = {
-            'Alvenaria': 0,
-            'Taipa' : 0,
-            'Materiais Recicláveis': 0
-        }
+    return contagem;
+  } catch (err) {
+    console.error(err);
+    return {};
+  }
+};
 
-        construcao.forEach((e) => {
-            if(contagem[e] !== undefined){
-                contagem[e]++
-            }
-        })
+export const psfProximo = async () => {
+  try {
+    const domicilio = await fetchDomicilio();
+    const psf = domicilio.map((e) => e.psf_proximo);
 
-        return contagem
+    const contagem = {
+      Sim: 0,
+      'Não': 0,
+    };
 
-    } catch (err) {
-        console.error(err)
-        return {}
-    }
-}
+    psf.forEach((e) => {
+      if (contagem[e] !== undefined) {
+        contagem[e]++;
+      }
+    });
 
-export const psfProximo = async () =>{
-    try {
-        const domicilio = await fetchDomicilio()
-        const psf = domicilio.map(e => e.psf_proximo)
+    return contagem;
+  } catch (err) {
+    console.error(err);
+    return {};
+  }
+};
 
-        const contagem = {
-            'Sim':0,
-            'Não': 0
-        }
+export const postoPolicialProximo = async () => {
+  try {
+    const domicilio = await fetchDomicilio();
+    const postoPolicial = domicilio.map((e) => e.posto_policia_proximo);
 
-        psf.forEach((e)=>{
-            if(contagem[e] !== undefined){
-                contagem[e]++
-            }
-        })
+    const contagem = {
+      Sim: 0,
+      'Não': 0,
+    };
 
-        return contagem 
-        
-    } catch (err) {
-        console.error(err)
-        return {}
-    }
-}
+    postoPolicial.forEach((e) => {
+      if (contagem[e] !== undefined) {
+        contagem[e]++;
+      }
+    });
 
-export const postoPolicialProximo = async () =>{
-    try {
-        const domicilio = await fetchDomicilio()
-        const postoPolicial = domicilio.map(e => e.posto_policia_proximo)
+    return contagem;
+  } catch (err) {
+    console.error(err);
+    return {};
+  }
+};
 
-        const contagem = {
-            'Sim': 0,
-            'Não': 0
-        }
+export const crecheProximo = async () => {
+  try {
+    const domicilio = await fetchDomicilio();
+    const creche = domicilio.map((e) => e.creche_proximo);
 
-        postoPolicial.forEach((e)=>{
-            if(contagem[e] !== undefined){
-                contagem[e]++
-            }
-        })
+    const contagem = {
+      Sim: 0,
+      'Não': 0,
+    };
 
-        return contagem 
+    creche.forEach((e) => {
+      if (contagem[e] !== undefined) {
+        contagem[e]++;
+      }
+    });
 
-    } catch (err) {
-        console.error(err)
-        return {}
-    }
-}
+    return contagem;
+  } catch (err) {
+    console.error(err);
+    return {};
+  }
+};
 
-export const crecheProximo = async () =>{
-    try {
-        const domicilio = await fetchDomicilio()
-        const creche = domicilio.map(e => e.creche_proximo)
+export const pracaProximo = async () => {
+  try {
+    const domicilio = await fetchDomicilio();
+    const praca = domicilio.map((e) => e.praca_proximo);
 
-        const contagem = {
-            'Sim':0,
-            'Não': 0
-        }
+    const contagem = {
+      Sim: 0,
+      'Não': 0,
+    };
 
-        creche.forEach((e)=>{
-            if(contagem[e] !== undefined){
-                contagem[e]++
-            }
-        })
+    praca.forEach((e) => {
+      if (contagem[e] !== undefined) {
+        contagem[e]++;
+      }
+    });
 
-        return contagem 
+    return contagem;
+  } catch (err) {
+    console.error(err);
+    return {};
+  }
+};
 
-    } catch (err) {
-        console.error(err)
-        return {}
-    }
-}
+export const abastecimentoAgua = async () => {
+  try {
+    const domicilio = await fetchDomicilio();
+    const agua = domicilio.map((e) => e.abastecimento_agua);
 
-export const pracaProximo = async () =>{
-    try {
-        const domicilio = await fetchDomicilio()
-        const praca = domicilio.map(e => e.praca_proximo)
+    const contagem = {
+      "Rede Pública": 0,
+      Poço: 0,
+      "Ligação Clandestina": 0,
+    };
 
-        const contagem = {
-            'Sim':0,
-            'Não': 0
-        }
+    agua.forEach((e) => {
+      if (contagem[e] !== undefined) {
+        contagem[e]++;
+      }
+    });
 
-        praca.forEach((e)=>{
-            if(contagem[e] !== undefined){
-                contagem[e]++
-            }
-        })
+    return contagem;
+  } catch (err) {
+    console.error(err);
+    return {};
+  }
+};
 
-        return contagem 
+export const abastecimentoEnergia = async () => {
+  try {
+    const domicilio = await fetchDomicilio();
+    const energia = domicilio.map((e) => e.abastecimento_energia);
 
-    } catch (err) {
-        console.error(err)
-        return {}
-    }
-}
+    const contagem = {
+      "Medidor Próprio": 0,
+      "Medidor Compartilhado": 0,
+      "Sem Medidor": 0,
+      "Ligação Clandestina": 0,
+    };
 
-export const abastecimentoAgua = async () =>{
-    try {
-        const domicilio = await fetchDomicilio()
-        const agua = domicilio.map(e => e.abastecimento_agua)
+    energia.forEach((e) => {
+      if (contagem[e] !== undefined) {
+        contagem[e]++;
+      }
+    });
 
-        const contagem = {
-            'Rede Pública':0,
-            'Poço': 0,
-            'Ligação Clandestina': 0
-        }
+    return contagem;
+  } catch (err) {
+    console.error(err);
+    return {};
+  }
+};
 
-        agua.forEach((e)=>{
-            if(contagem[e] !== undefined){
-                contagem[e]++
-            }
-        })
+export const esgotamentoSanitario = async () => {
+  try {
+    const domicilio = await fetchDomicilio();
+    const esgoto = domicilio.map((e) => e.esgotamento_sanitario);
 
-        return contagem 
+    const contagem = {
+      "Rede Pública": 0,
+      Fossa: 0,
+      "Céu Aberto": 0,
+      Rio: 0,
+    };
 
-    } catch (err) {
-        console.error(err)
-        return {}
-    }
-}
+    esgoto.forEach((e) => {
+      if (contagem[e] !== undefined) {
+        contagem[e]++;
+      }
+    });
 
-export const abastecimentoEnergia = async () =>{
-    try {
-        const domicilio = await fetchDomicilio()
-        const energia = domicilio.map(e => e.abastecimento_energia)
+    return contagem;
+  } catch (err) {
+    console.error(err);
+    return {};
+  }
+};
 
-        const contagem = {
-            'Medidor Próprio':0,
-            'Medidor Compartilhado': 0,
-            'Sem Medidor': 0,
-            'Ligação Clandestina': 0
-        }
+export const destinoLixo = async () => {
+  try {
+    const domicilio = await fetchDomicilio();
+    const lixo = domicilio.map((e) => e.destino_lixo);
 
-        energia.forEach((e)=>{
-            if(contagem[e] !== undefined){
-                contagem[e]++
-            }
-        })
+    const contagem = {
+      Coletado: 0,
+      "Céu Aberto": 0,
+      Queimado: 0,
+      Enterrado: 0,
+    };
 
-        return contagem 
+    lixo.forEach((e) => {
+      if (contagem[e] !== undefined) {
+        contagem[e]++;
+      }
+    });
 
-    } catch (err) {
-        console.error(err)
-        return {}
-    }
-}
+    return contagem;
+  } catch (err) {
+    console.error(err);
+    return {};
+  }
+};
 
-export const esgotamentoSanitario = async () =>{
-    try {
-        const domicilio = await fetchDomicilio()
-        const esgoto = domicilio.map(e => e.esgotamento_sanitario)
+// =============Acesso/Vulnerabilidade=================//
 
-        const contagem = {
-            'Rede Pública':0,
-            'Fossa': 0,
-            'Céu Aberto': 0,
-            'Rio': 0
-        }
+export const mausTratos = async () => {
+  try {
+    const vulnerabilidade = await fetchAcesso();
+    const maustratos = vulnerabilidade.map((e) => e.maus_tratos);
 
-        esgoto.forEach((e)=>{
-            if(contagem[e] !== undefined){
-                contagem[e]++
-            }
-        })
+    const contagem = {
+      Sim: 0,
+      'Não': 0,
+    };
 
-        return contagem 
+    maustratos.forEach((e) => {
+      if (contagem[e] !== undefined) {
+        contagem[e]++;
+      }
+    });
 
-    } catch (err) {
-        console.error(err)
-        return {}
-    }
-}
+    return contagem;
+  } catch (err) {
+    console.error(err);
+    return {};
+  }
+};
 
-export const destinoLixo  = async () =>{
-    try {
-        const domicilio = await fetchDomicilio()
-        const lixo = domicilio.map(e => e.destino_lixo)
+export const violenciaDomestica = async () => {
+  try {
+    const vulnerabilidade = await fetchAcesso();
+    const violenciadomestica = vulnerabilidade.map((e) => e.violencia_domestica);
 
-        const contagem = {
-            'Coletado':0,
-            'Céu Aberto': 0,
-            'Queimado': 0,
-            'Enterrado': 0
-        }
+    const contagem = {
+      Sim: 0,
+      'Não': 0,
+    };
 
-        lixo.forEach((e)=>{
-            if(contagem[e] !== undefined){
-                contagem[e]++
-            }
-        })
+    violenciadomestica.forEach((e) => {
+      if (contagem[e] !== undefined) {
+        contagem[e]++;
+      }
+    });
 
-        return contagem 
+    return contagem;
+  } catch (err) {
+    console.error(err);
+    return {};
+  }
+};
 
-    } catch (err) {
-        console.error(err)
-        return {}
-    }
-}
+export const discriminacaoRejeicaoFamiliar = async () => {
+  try {
+    const vulnerabilidade = await fetchAcesso();
+    const rejeicaofamiliar = vulnerabilidade.map((e) => e.discriminacao_rejeicao_familiar);
+
+    const contagem = {
+      Sim: 0,
+      'Não': 0,
+    };
+
+    rejeicaofamiliar.forEach((e) => {
+      if (contagem[e] !== undefined) {
+        contagem[e]++;
+      }
+    });
+
+    return contagem;
+  } catch (err) {
+    console.error(err);
+    return {};
+  }
+};
+
+export const discriminacaoSocial = async () => {
+  try {
+    const vulnerabilidade = await fetchAcesso();
+    const discriminacaosocial = vulnerabilidade.map((e) => e.discriminacao_social_etnico_racial_sexual);
+
+    const contagem = {
+      Sim: 0,
+      'Não': 0,
+    };
+
+    discriminacaosocial.forEach((e) => {
+      if (contagem[e] !== undefined) {
+        contagem[e]++;
+      }
+    });
+
+    return contagem;
+  } catch (err) {
+    console.error(err);
+    return {};
+  }
+};
+
+export const acessoSaude = async () => {
+  try {
+    const vulnerabilidade = await fetchAcesso();
+    const acessosaude = vulnerabilidade.map((e) => e.acesso_saude);
+
+    const contagem = {
+      Sim: 0,
+      'Não': 0,
+    };
+
+    acessosaude.forEach((e) => {
+      if (contagem[e] !== undefined) {
+        contagem[e]++;
+      }
+    });
+
+    return contagem;
+  } catch (err) {
+    console.error(err);
+    return {};
+  }
+};
+
+export const acessoCultura = async () => {
+  try {
+    const vulnerabilidade = await fetchAcesso();
+    const acessocultura = vulnerabilidade.map((e) => e.acesso_esporte_cultura_lazer);
+
+    const contagem = {
+      Sim: 0,
+      'Não': 0,
+    };
+
+    acessocultura.forEach((e) => {
+      if (contagem[e] !== undefined) {
+        contagem[e]++;
+      }
+    });
+
+    return contagem;
+  } catch (err) {
+    console.error(err);
+    return {};
+  }
+};

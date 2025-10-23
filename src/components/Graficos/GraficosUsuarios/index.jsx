@@ -11,27 +11,31 @@ export const GraficosUsuarios = ({ admins, comuns }) => {
     const COLORS = ['#dc3545', '#0d6efd']
     return (
         <div className={`${styles['backGroundGraficos']} rounded`}>
-            <ResponsiveContainer width='100%' height={300} >
+            <ResponsiveContainer width='100%' height={240}>
                 <PieChart>
                     <Pie
-                        data={data}
-                        dataKey='value'
-                        nameKey='name'
-                        outerRadius={80}
-                        innerRadius={50}
-                        label>
-                        {data.map((el, index) => (
-                            <Cell key={index} fill={COLORS[index % COLORS.length]} />
+                    data={data}
+                    dataKey='value'
+                    nameKey='name'
+                    outerRadius={60}
+                    innerRadius={40}
+                    label>
+                        {data.map((el, index)=>(
+                            <Cell key={index} fill={COLORS[index % COLORS.length]}/>
                         ))}
                     </Pie>
                     <Tooltip />
-                    <Legend
-                        verticalAlign='bottom'
-                        height={36}
-                        wrapperStyle={{
-                            fontSize: '12px',
-                            fontWeight: 'bold'
-                        }} />
+                    <Legend 
+                    layout="column"
+                    verticalAlign="bottom"
+                    align="center"
+                    iconSize={6}
+                    iconType="circle"
+                    wrapperStyle={{
+                        fontSize:'11px',
+                        fontWeight:'bold',
+
+                    }}/>
                 </PieChart>
             </ResponsiveContainer>
         </div>

@@ -20,7 +20,7 @@ export const ComposicaoFamiliar = () =>{
             const response = await fetch(`${url}/composicao/${id}`,{
                 method:'POST',
                 headers:{
-                    'Content-Type':"Aplicattion/json"
+                    'Content-Type':"application/json"
                 },
                 credentials:'include',
             })

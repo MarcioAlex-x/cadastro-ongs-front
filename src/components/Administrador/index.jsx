@@ -12,6 +12,7 @@ import { MdEmail } from "react-icons/md";
 import { FaCalendarDay } from "react-icons/fa";
 import Swal from 'sweetalert2'
 import spinner from '../../assets/spinner.gif'
+import { RiErrorWarningLine } from "react-icons/ri";
 
 import {
     Chart as ChartJS,
@@ -33,7 +34,11 @@ export const Administrador = () => {
         nome: '',
         email: '',
         password: 'Sistema123.',
-        isAdmin: false
+        isAdmin: false,
+        isDocente: false,
+        isSocial: false,
+        isFinanceiro: false,
+        isCoordenador: false
     }
     const [usuarios, setUsuarios] = useState([])
     const [message, setMessage] = useState('')
@@ -142,9 +147,9 @@ export const Administrador = () => {
             setForm(initialState)
             setLoading(false)
             setMessage('Cadastro realizado com sucesso.')
-            setTimeout(()=>{
+            setTimeout(() => {
                 setMessage('')
-            },3000)
+            }, 3000)
         }
     }
 
@@ -162,7 +167,7 @@ export const Administrador = () => {
                         <h2 className={`${styles['title-cadastro']}`}>Administrador</h2>
                         <div className="row w-100">
                             <div className="col-12 col-md-6 border rounded bg-light p-3">
-                                <h3 className={`${styles['text-cadastro']}`}>Usuários Cadastrados</h3>
+                                <h3 className={`${styles['text-cadastro']}`}>Colaboradores Cadastrados</h3>
                                 {usuarios.map(el => (
                                     <div key={el.id}>
                                         <h4>{el.nome}
@@ -175,7 +180,7 @@ export const Administrador = () => {
                                         {el.isAdmin ? (
                                             <p className='m-0 d-flex align-items-center'> <FaLockOpen className='text-secondary' /> Possui privilégios administrativos.</p>
                                         ) : (
-                                            <p className='m-0 d-flex align-items-center'> <FaLock className='text-danger' /> Usuário não possui privilégios</p>
+                                            <p className='m-0 d-flex align-items-center'> <FaLock className='text-danger' /> Colaborador não possui privilégios</p>
                                         )}
                                         <p className='m-0 d-flex align-items-center'> <MdEmail className='text-secondary' /> E-mail: {el.email}</p>
                                         <p className='d-flex align-items-center'> <FaCalendarDay className='text-secondary' /> Criado em {formatarDataCriacaoAtualizacao(el.createdAt)}</p>
@@ -187,7 +192,7 @@ export const Administrador = () => {
                                 <div className="row  justify-content-evenly">
                                     <div className={`col-12 p-1  ${styles['card-style']}`}>
                                         <div className={`rounded text-light bg-success p-2 shadow d-flex flex-column text-center justify-content-center ${styles['card-style']}`}>
-                                            <p className={`${styles['font-title']}`}><b>Usuários Cadastrados</b></p>
+                                            <p className={`${styles['font-title']}`}><b>Colaboradores Cadastrados</b></p>
                                             <p className={`${styles['font-text']} display-6 me-2 `}><b>{usuarios.length}</b></p>
                                         </div>
                                     </div>
@@ -198,9 +203,9 @@ export const Administrador = () => {
                             </div>
                         </div>
                         <div className='p-4'>
-                            <h2 className={`${styles['title-cadastro']}`}>Fazer Cadastro de Usuário do Sistema</h2>
+                            <h2 className={`${styles['title-cadastro']}`}>Fazer Cadastro de Novo Colaborador</h2>
                             <form className='' onSubmit={handleSubmit}>
-                                <div className="p-3">
+                                <div className="mt-3 px-3">
                                     <label htmlFor="nome" className="form-label">Nome</label>
                                     <input
                                         type="text"
@@ -209,7 +214,7 @@ export const Administrador = () => {
                                         value={form.nome}
                                         onChange={handleChange} />
                                 </div>
-                                <div className="p-3">
+                                <div className="mt-2 px-3">
                                     <label htmlFor="email" className="form-label">E-mail</label>
                                     <input
                                         type="text"
@@ -218,7 +223,7 @@ export const Administrador = () => {
                                         value={form.email}
                                         onChange={handleChange} />
                                 </div>
-                                <div className="p-3">
+                                <div className="mt-2 px-3">
                                     <p>Senha Padrão <b>Sistema123.</b> </p>
                                     <input
                                         type="hidden"
@@ -226,17 +231,66 @@ export const Administrador = () => {
                                         value={form.password}
                                         onChange={handleChange} />
                                 </div>
-                                <div className="p-3">
-                                    <input
-                                        className='me-2'
-                                        type="checkbox"
-                                        name="isAdmin"
-                                        id="isAdmin"
-                                        checked={form.isAdmin}
-                                        onChange={handleChange} />
-                                    <label htmlFor="isAdmin" className="form-label">Privilégios de Administrador do Sistema</label>
+                                <div className="p-4 border rounded shadow">
+                                    <div className="text-center">
+                                        <h3 className={`${styles['title-cadastro']} p-2`}>Defina os níveis de acessos deste usuário do sistema</h3>
+                                        <p className={`${styles['text-cadastro']} px-2`}>Os níveis de acesso definem quais camadas do sistema poderão ser operadas por este usuário do sistema.</p>
+                                    </div>
+                                    <div className="m-0 px-3">
+                                        <input
+                                            className='me-2 my-0'
+                                            type="checkbox"
+                                            name="isAdmin"
+                                            id="isAdmin"
+                                            checked={form.isAdmin}
+                                            onChange={handleChange} />
+                                        <label htmlFor="isAdmin" className="form-label my-0">Administrador</label>
+                                        <RiErrorWarningLine  />
+
+                                    </div>
+                                    <div className="my-0 px-3">
+                                        <input
+                                            className='me-2 my-0'
+                                            type="checkbox"
+                                            name="isCoordenador"
+                                            id="isCoordenador"
+                                            checked={form.isCoordenador}
+                                            onChange={handleChange} />
+                                        <label htmlFor="isCoordenador" className="form-label my-0">Coordenador</label>
+                                    </div>
+                                    <div className="my-0 px-3">
+                                        <input
+                                            className='me-2 my-0'
+                                            type="checkbox"
+                                            name="isDocente"
+                                            id="isDocente"
+                                            checked={form.isDocente}
+                                            onChange={handleChange} />
+                                        <label htmlFor="isDocente" className="form-label my-0">Professor</label>
+                                    </div>
+                                    <div className="my-0 px-3">
+                                        <input
+                                            className='me-2 my-0'
+                                            type="checkbox"
+                                            name="isFinanceiro"
+                                            id="isFinanceiro"
+                                            checked={form.isFinanceiro}
+                                            onChange={handleChange} />
+                                        <label htmlFor="isFinanceiro" className="form-label my-0">Financeiro</label>
+                                    </div>
+                                    <div className="my-0 px-3">
+                                        <input
+                                            className='me-2'
+                                            type="checkbox"
+                                            name="isSocial"
+                                            id="isSocial"
+                                            checked={form.isSocial}
+                                            onChange={handleChange} />
+                                        <label htmlFor="isSocial" className="form-label">Serviço Social</label>
+                                    </div>
                                 </div>
-                                <button type='submit' className="btn btn-sm btn-success">Salvar</button>
+
+                                <button type='submit' className="btn btn-sm btn-success mt-3">Salvar</button>
                             </form>
                         </div>
                     </div>

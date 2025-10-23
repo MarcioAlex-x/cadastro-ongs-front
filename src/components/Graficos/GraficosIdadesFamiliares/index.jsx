@@ -21,28 +21,30 @@ export const GraficosIdadesFamiliares = ({ idades }) => {
 
     return (
         <div>
-            <ResponsiveContainer width='100%' height={240} >
+            <ResponsiveContainer width='100%' height={240}>
                 <PieChart>
                     <Pie
                         data={data}
                         dataKey='value'
                         nameKey='name'
                         outerRadius={60}
-                        innerRadius={50}
+                        innerRadius={40}
                         label>
-                        {data.map((entry, index) => (
+                        {data.map((el, index) => (
                             <Cell key={index} fill={COLORS[index % COLORS.length]} />
                         ))}
-
                     </Pie>
                     <Tooltip />
                     <Legend
                         layout="column"
                         verticalAlign="bottom"
                         align="center"
+                        iconSize={6}
+                        iconType="circle"
                         wrapperStyle={{
-                            fontSize: '12px',
-                            fontWeight: 'bold'
+                            fontSize: '11px',
+                            fontWeight: 'bold',
+
                         }} />
                 </PieChart>
             </ResponsiveContainer>
