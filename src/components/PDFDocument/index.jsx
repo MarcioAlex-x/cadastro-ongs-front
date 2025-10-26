@@ -7,52 +7,67 @@ import setaabaixo from '../../assets/setaabaixo.png'
 
 const url = import.meta.env.VITE_API_URL
 const styles = StyleSheet.create({
-    page:{
-        padding: 30,
-        fontSize: 12,
-        fontFamily: 'Helvetica'
-    },
-    header:{
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: 20,
-        textAlign: 'center'
-    },
-    logo:{
-        width: 40,
-        height: 40,
-        marginRight: '20'
-    },
-    title:{
-        fontSize: 18,
-        fontWeight: 'bold'
-    },
-    sectionTitle:{
-        font: 14,
-        fontWeight: 'bold',
-        marginTop: 12,
-        marginBottom: 6,
-        borderBottom: '1px solid #000'
-    },
-    row:{
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        marginBottom: 3
-    },
-    field:{
-        width: '50%',
-        marginBottom:3,
-    },
-    text:{
-        marginBottom: 2
-    },
-    assinatura:{
-        textAlign: 'center',
-        marginTop: 40
-    }
+  page: {
+    padding: 30,
+    fontSize: 12,
+    fontFamily: 'Helvetica'
+  },
+  header: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+    textAlign: 'center'
+  },
+  logo: {
+    width: 40,
+    height: 40,
+    marginRight: '20'
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold'
+  },
+  sectionTitle: {
+    font: 14,
+    fontWeight: 'bold',
+    marginTop: 12,
+    marginBottom: 6,
+    borderBottom: '1px solid #000'
+  },
+  row: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginBottom: 3
+  },
+  field: {
+    width: '50%',
+    marginBottom: 3,
+  },
+  text: {
+    marginBottom: 2
+  },
+  assinatura: {
+    textAlign: 'center',
+    marginTop: 40
+  },
+  docsContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  rg: {
+    width: 150,
+    height: 250,
+  },
+  comprovante: {
+    width: 150,
+    height: 300,
+  },
 })
 
 import logo from '../../assets/ABSJ.png'
@@ -60,69 +75,69 @@ import logo from '../../assets/ABSJ.png'
 export const PDFDocument = () => {
 
 
-    const [pessoa, setPessoa] = useState(null)
-    const [endereco, setEndereco] = useState(null)
-    const [domicilio, setDomicilio] = useState(null)
-    const [acesso, setAcesso] = useState(null)
-    const [conjuge, setConjuge] = useState(null)
-    const [membro, setMembro] = useState([])
-    const [loading, setLoading] = useState(true)
-    const [composicaoFamiliar, setComposicaoFamiliar] = useState(null)
-    const [cadastro, setCadastro] = useState(null)
+  const [pessoa, setPessoa] = useState(null)
+  const [endereco, setEndereco] = useState(null)
+  const [domicilio, setDomicilio] = useState(null)
+  const [acesso, setAcesso] = useState(null)
+  const [conjuge, setConjuge] = useState(null)
+  const [membro, setMembro] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [composicaoFamiliar, setComposicaoFamiliar] = useState(null)
+  const [cadastro, setCadastro] = useState(null)
 
-    const hoje = new Date()
-    const diaAtual = hoje.toLocaleDateString('pt-BR',{day: 'numeric',month:'long', year:'numeric'})
+  const hoje = new Date()
+  const diaAtual = hoje.toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' })
 
-    const { id } = useParams()
+  const { id } = useParams()
 
-    useEffect(() => {
-        setLoading(true)
-        const dadosPessoais = async () => {
-            try {
-                const response = await fetch(`${url}/cadastro/${id}`, {
-                    method: "GET",
-                    credentials: 'include',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
+  useEffect(() => {
+    setLoading(true)
+    const dadosPessoais = async () => {
+      try {
+        const response = await fetch(`${url}/cadastro/${id}`, {
+          method: "GET",
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
 
-                const data = await response.json()
+        const data = await response.json()
 
-                setCadastro(data)
+        setCadastro(data)
 
-                const pessoaData = data.pessoas?.[0] || null
+        const pessoaData = data.pessoas?.[0] || null
 
-                setPessoa(pessoaData)
-                setEndereco(pessoaData.endereco)
-                setConjuge(pessoaData.conjuge)
-                setDomicilio(pessoaData.domicilio)
-                setAcesso(pessoaData.acesso)
-                setComposicaoFamiliar(pessoaData.composicaoFamiliar)
-                setMembro(pessoaData.composicaoFamiliar.membros)
+        setPessoa(pessoaData)
+        setEndereco(pessoaData.endereco)
+        setConjuge(pessoaData.conjuge)
+        setDomicilio(pessoaData.domicilio)
+        setAcesso(pessoaData.acesso)
+        setComposicaoFamiliar(pessoaData.composicaoFamiliar)
+        setMembro(pessoaData.composicaoFamiliar.membros)
 
-            } catch (err) {
-                console.error(err)
-            } finally {
-                setLoading(false)
-            }
-        }
-        dadosPessoais()
-    }, [id])
+      } catch (err) {
+        console.error(err)
+      } finally {
+        setLoading(false)
+      }
+    }
+    dadosPessoais()
+  }, [id])
 
-    if(loading || !pessoa) return <div><img src={spinner} /></div>
-    
+  if (loading || !pessoa) return <div><img src={spinner} /></div>
 
-     const MyDocument = (
+
+  const MyDocument = (
     <Document>
       <Page size="A4" style={styles.page}>
-        
+
         <View style={styles.header}>
           <Image src={logo} style={styles.logo} />
           <Text style={styles.title}>Associação Beneficente São José</Text>
         </View>
 
-       
+
         <Text style={styles.sectionTitle}>Informações Pessoais</Text>
         <View>
           <Text>Nome: {pessoa?.nome}</Text>
@@ -134,7 +149,7 @@ export const PDFDocument = () => {
           <Text>Naturalidade: {pessoa?.naturalidade}</Text>
         </View>
 
-        <View /> 
+        <View />
         <Text style={styles.sectionTitle}>Endereço</Text>
         <View>
           <Text>Logradouro: {endereco?.logradouro}</Text>
@@ -186,6 +201,12 @@ export const PDFDocument = () => {
             ))}
           </>
         )}
+        <Text style={styles.sectionTitle}>Documentos</Text>
+        <View style={styles.docsContainer}>
+          {pessoa.rg_frente && <Image src={pessoa.rg_frente} style={styles.rg} />}
+          {pessoa.rg_verso && <Image src={pessoa.rg_verso} style={styles.rg} />}
+          {pessoa.comprovante_residencia && <Image src={pessoa.comprovante_residencia} style={styles.comprovante} />}
+        </View>
 
         <View />
         <Text style={styles.sectionTitle}>Declaração de Ciência e Consentimento</Text>
@@ -206,12 +227,12 @@ export const PDFDocument = () => {
 
   return (
     <div className="m-5">
-        <p className="text-center mb-5">Baixe o documento clicando no botão abaixo de {pessoa?.nome}!</p>
-        <img 
+      <p className="text-center mb-5">Baixe o documento clicando no botão abaixo de {pessoa?.nome}!</p>
+      <img
         className="d-block"
         style={{
-            width: 34,
-            margin: 'auto',
+          width: 34,
+          margin: 'auto',
         }}
         src={setaabaixo} />
       <PDFDownloadLink document={MyDocument} fileName={`cadastro_${pessoa?.nome}.pdf`}>

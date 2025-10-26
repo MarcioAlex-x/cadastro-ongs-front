@@ -22,6 +22,11 @@
     font-weight: bold;
 }
 
+.button-width{
+    width: 160px;
+    text-align: center;
+}
+
 @media screen and (max-width: 450px){
     .text-link{
         display: none;

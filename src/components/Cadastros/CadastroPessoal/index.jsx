@@ -39,6 +39,12 @@ export const CadastroPessoal = () => {
         possui_conjuge: false,
     })
 
+    const [arquivos, setAquivos] = useState({
+        rg_frente: null,
+        rg_verso: null,
+        comprovante_residencia: null
+    })
+
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target
 
@@ -48,23 +54,39 @@ export const CadastroPessoal = () => {
         })
     }
 
+    const handleFileChange = (e) => {
+        const { name, files } = e.target
+        setAquivos({
+            ...arquivos,
+            [name]: files[0]
+        })
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
 
+        const formData = new FormData()
+
+        if (arquivos.rg_frente) formData.append('rg_frente', arquivos.rg_frente)
+        if (arquivos.rg_verso) formData.append('rg_verso', arquivos.rg_verso)
+        if (arquivos.comprovante_residencia) formData.append('comprovante_residencia', arquivos.comprovante_residencia)
+            
         const formToSend = {...form}
 
         formToSend.renda = parseFloat(form.renda.replace(/\./g, '').replace(',','.')) || 0
         formToSend.valor_beneficio_seguro_social = parseFloat(form.valor_beneficio_seguro_social.replace(/\./g,'').replace(',','.')) || 0
 
+
+        Object.entries(formToSend).forEach(([key, value]) => {
+            formData.append(key, value)
+        })
+
         try {
 
             const response = await fetch(`${url}/dados_pessoais/${id}`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
                 credentials: 'include',
-                body: JSON.stringify(formToSend)
+                body: formData
             })
             const data = await response.json()
             console.log(data)
@@ -75,7 +97,7 @@ export const CadastroPessoal = () => {
                 navigate(`/dashboard/cadastro-endereco/${data.id}`)
             }
         } catch (err) {
-            console.error('Erro ao salvar: ', err)
+            console.error('Erro ao salvar: ', err.message)
         }
     }
 
@@ -417,6 +439,41 @@ export const CadastroPessoal = () => {
                         id="possui_conjuge"
                         checked={form.possui_conjuge}
                         onChange={handleChange} />
+                </div>
+                <div className="row mt-3">
+                    <div className="col-md-4 col-12">
+                        <label htmlFor="rg_frente" className={`${styles['text-cadastro']} form-label`}>RG (Frente)</label>
+                        <input
+                            type="file"
+                            name="rg_frente"
+                            id="rg_frente"
+                            accept="image/*,application/pdf"
+                            className="form-control"
+                            onChange={handleFileChange}
+                        />
+                    </div>
+                    <div className="col-md-4 col-12">
+                        <label htmlFor="rg_verso" className={`${styles['text-cadastro']} form-label`}>RG (Verso)</label>
+                        <input
+                            type="file"
+                            name="rg_verso"
+                            id="rg_verso"
+                            accept="image/*,application/pdf"
+                            className="form-control"
+                            onChange={handleFileChange}
+                        />
+                    </div>
+                    <div className="col-md-4 col-12">
+                        <label htmlFor="comprovante_residencia" className={`${styles['text-cadastro']} form-label`}>Comprovante de Residência</label>
+                        <input
+                            type="file"
+                            name="comprovante_residencia"
+                            id="comprovante_residencia"
+                            accept="image/*,application/pdf"
+                            className="form-control"
+                            onChange={handleFileChange}
+                        />
+                    </div>
                 </div>
                 <input type="submit" value="Salvar" className={`${styles['text-cadastro']} btn btn-success mb-4 d-block w-100`} />
             </form>

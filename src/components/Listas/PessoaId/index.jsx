@@ -8,38 +8,37 @@ import styles from "./pessoaId.module.css";
 import { HiOutlinePencilAlt } from "react-icons/hi";
 
 export const PessoaId = ({ pessoa }) => {
-  const [imagens, setImagens] = useState({});
 
-  useEffect(() => {
-  const fetchImagens = async () => {
-    const campos = ["rg_frente", "rg_verso", "comprovante_residencia"];
+  // useEffect(() => {
+  // const fetchImagens = async () => {
+  //   const campos = ["rg_frente", "rg_verso", "comprovante_residencia"];
     
-    const promises = campos.map(async (campo) => {
-      const publicId = pessoa[campo + "_public_id"];
-      if (!publicId) return [campo, null];
+  //   const promises = campos.map(async (campo) => {
+  //     const publicId = pessoa[campo + "_public_id"];
+  //     if (!publicId) return [campo, null];
 
-      try {
-        const res = await fetch(
-          `/api/dados-pessoais/imagem/${encodeURIComponent(publicId)}`,
-          { credentials: "include" }
-        );
-        if (!res.ok) throw new Error("Erro ao buscar imagem");
-        const data = await res.json();
-        return [campo, data.url];
-      } catch (err) {
-        console.error(`Erro ao buscar ${campo}:`, err);
-        return [campo, null];
-      }
-    });
+  //     try {
+  //       const res = await fetch(
+  //         `/api/dados-pessoais/imagem/${encodeURIComponent(publicId)}`,
+  //         { credentials: "include" }
+  //       );
+  //       if (!res.ok) throw new Error("Erro ao buscar imagem");
+  //       const data = await res.json();
+  //       return [campo, data.url];
+  //     } catch (err) {
+  //       console.error(`Erro ao buscar ${campo}:`, err);
+  //       return [campo, null];
+  //     }
+  //   });
+// 
+  //   const results = await Promise.all(promises);
 
-    const results = await Promise.all(promises);
+  //   const novasImagens = Object.fromEntries(results);
+  //   setImagens(novasImagens);
+  // };
 
-    const novasImagens = Object.fromEntries(results);
-    setImagens(novasImagens);
-  };
-
-  fetchImagens();
-}, [pessoa]);
+//   fetchImagens();
+// }, [pessoa]);
 
 
   return (
@@ -67,22 +66,22 @@ export const PessoaId = ({ pessoa }) => {
 
         <div className="row mt-3">
           <div className="col-4">
-            {imagens.rg_frente ? (
-              <img src={imagens.rg_frente} alt="RG Frente" width="200" />
+            {pessoa?.rg_frente ? (
+              <img src={pessoa?.rg_frente} alt="RG Frente" width="200" />
             ) : (
               <p className="text-danger fw-bold">Sem RG frente</p>
             )}
           </div>
           <div className="col-4">
-            {imagens.rg_verso ? (
-              <img src={imagens.rg_verso} alt="RG Verso" width="200" />
+            {pessoa?.rg_verso ? (
+              <img src={pessoa?.rg_verso} alt="RG Verso" width="200" />
             ) : (
               <p className="text-danger fw-bold">Sem RG verso</p>
             )}
           </div>
           <div className="col-4">
-            {imagens.comprovante_residencia ? (
-              <img src={imagens.comprovante_residencia} alt="Comprovante de residência" width="200" />
+            {pessoa?.comprovante_residencia ? (
+              <img src={pessoa?.comprovante_residencia} alt="Comprovante de residência" width="200" />
             ) : (
               <p className="text-danger fw-bold">Sem comprovante de residência</p>
             )}
