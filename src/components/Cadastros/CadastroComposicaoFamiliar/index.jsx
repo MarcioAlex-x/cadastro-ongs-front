@@ -4,6 +4,8 @@ import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import styles from './cadastroComposicaoFamiliar.module.css'
 import { InputMask } from 'primereact/inputmask'
+import Swal from "sweetalert2"
+import { LuDot } from "react-icons/lu";
 
 export const CadastroComposicaoFamiliar = () => {
     const { id } = useParams()
@@ -28,7 +30,6 @@ export const CadastroComposicaoFamiliar = () => {
         nis:'',
     }
     const [form, setForm] = useState(initialState)
-    const [atualizador, setAtualizador] = useState(0)
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -60,10 +61,25 @@ export const CadastroComposicaoFamiliar = () => {
             
 
             const data = await response.json()
-           if (response.ok) { 
-                setForm(initialState);
+
+            if (!response.ok) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro',
+                    text: 'Ocorreu um erro inexperado. Porfavor tente outra vez mais tarde!',
+                    showCloseButton: true
+                })
+                return
             } else {
-                console.error("Erro ao salvar:", data.message); 
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sucesso',
+                    text: 'Sucesso. Continue adicionando membros familiares ou conclua o cadastro!',
+                    showCancelButton: false,
+                    timer: 3000
+                })
+                
+                setForm(initialState);
             }
 
         } catch (err) {
@@ -71,39 +87,13 @@ export const CadastroComposicaoFamiliar = () => {
         }
     }
 
-    const handleCount = async () => {
-        try {
-            const response = await fetch(`${url}/composicao`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                credentials: 'include'
-            })
-            const data = await response.json()
-
-        } catch (err) {
-            console.error(err)
-        }
-    }
-
-    useEffect(() => {
-        handleCount()
-    }, [atualizador])
-
     return (
         <div className={`ps-3 ${styles['scroll']}`}>
             <h2 className={`${styles['title-cadastro']}`}>Composição Familiar</h2>
-            <div className="border px-4 py-1 bg-secondary text-light ">
-                {atualizador === 0 ?
-                    (<p className="mb-0">Eu vou atualizando quantos membros forem adicionados</p>)
-                    :
-                    (<p className="mb-0">{atualizador} membros adicionados a família.</p>)}
-            </div>
 
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="nome" className={`${styles['text-cadastro']} form-label`}>Nome<span className="text-danger">*</span></label>
+                    <label htmlFor="nome" className={`${styles['text-cadastro']} form-label`}>Nome <LuDot className="text-danger" /> </label>
                     <input
                         required
                         type="text"
@@ -115,7 +105,7 @@ export const CadastroComposicaoFamiliar = () => {
                 </div>
                 <div className="row">
                     <div className="col-md-4 col-12">
-                        <label htmlFor="rg" id="rg" className={`${styles['text-cadastro']} form-label`}>RG<span className="text-danger">*</span></label>
+                        <label htmlFor="rg" id="rg" className={`${styles['text-cadastro']} form-label`}>RG <LuDot className="text-danger" /> </label>
                         <input
                             required
                             type="text"
@@ -127,7 +117,7 @@ export const CadastroComposicaoFamiliar = () => {
                     </div>
 
                     <div className="col-md-4 col-12">
-                        <label htmlFor="cpf" className={`${styles['text-cadastro']} form-label`}>CPF<span className="text-danger">*</span></label>
+                        <label htmlFor="cpf" className={`${styles['text-cadastro']} form-label`}>CPF <LuDot className="text-danger" /> </label>
                         <InputMask
                             required
                             type="text"
@@ -141,7 +131,7 @@ export const CadastroComposicaoFamiliar = () => {
                     </div>
 
                     <div className="col-md-4 col-12">
-                        <label htmlFor="nis" className={`${styles['text-cadastro']} form-label`}>NIS<span className="text-danger">*</span></label>
+                        <label htmlFor="nis" className={`${styles['text-cadastro']} form-label`}>NIS <LuDot className="text-danger" /> </label>
                         <input
                             required
                             type="text"
@@ -155,7 +145,7 @@ export const CadastroComposicaoFamiliar = () => {
                 </div>
                 <div className="row">
                     <div className="col-md-3 col-12">
-                        <label htmlFor="data_nascimento" className={`${styles['text-cadastro']} form-label`}>Data de Nascimento<span className="text-danger">*</span></label>
+                        <label htmlFor="data_nascimento" className={`${styles['text-cadastro']} form-label`}>Data de Nascimento <LuDot className="text-danger" /> </label>
                         <input
                             required
                             type="date"
@@ -166,7 +156,7 @@ export const CadastroComposicaoFamiliar = () => {
                             onChange={handleChange} />
                     </div>
                     <div className="col-md-3 col-12">
-                        <label htmlFor="orientacao_sexual" className={`${styles['text-cadastro']} form-label`}>Orientação Sexual<span className="text-danger">*</span></label>
+                        <label htmlFor="orientacao_sexual" className={`${styles['text-cadastro']} form-label`}>Orientação Sexual <LuDot className="text-danger" /> </label>
                         <select
                             required
                             className="form-control"
@@ -184,7 +174,7 @@ export const CadastroComposicaoFamiliar = () => {
                         </select>
                     </div>
                     <div className="col-12 col-md-3">
-                        <label htmlFor="parentesco" className={`${styles['text-cadastro']} form-label`}>Parentesco<span className="text-danger">*</span></label>
+                        <label htmlFor="parentesco" className={`${styles['text-cadastro']} form-label`}>Parentesco <LuDot className="text-danger" /> </label>
                         <input
                             required
                             type="parentesco"
@@ -195,7 +185,7 @@ export const CadastroComposicaoFamiliar = () => {
                             onChange={handleChange} />
                     </div>
                     <div className="col-md-3 col-12">
-                        <label htmlFor="estado_civil" className={`${styles['text-cadastro']} form-label`}>Estado Civil<span className="text-danger">*</span></label>
+                        <label htmlFor="estado_civil" className={`${styles['text-cadastro']} form-label`}>Estado Civil <LuDot className="text-danger" /> </label>
                         <select
                             required
                             className="form-control"
@@ -213,7 +203,7 @@ export const CadastroComposicaoFamiliar = () => {
                 </div>
                 <div className="row">
                     <div className="col-md-4 col-12">
-                        <label htmlFor="etnia" className={`${styles['text-cadastro']} form-label`}>Etnia<span className="text-danger">*</span></label>
+                        <label htmlFor="etnia" className={`${styles['text-cadastro']} form-label`}>Etnia <LuDot className="text-danger" /> </label>
                         <select
                             required
                             className="form-control"
@@ -230,7 +220,7 @@ export const CadastroComposicaoFamiliar = () => {
                         </select>
                     </div>
                     <div className="col-md-4 col-12">
-                        <label htmlFor="pcd" className={`${styles['text-cadastro']} form-label`}>PCD<span className="text-danger">*</span></label>
+                        <label htmlFor="pcd" className={`${styles['text-cadastro']} form-label`}>PCD <LuDot className="text-danger" /> </label>
                         <select
                             required
                             className="form-control"
@@ -244,7 +234,7 @@ export const CadastroComposicaoFamiliar = () => {
                         </select>
                     </div>
                     <div className="col-12 col-md-4">
-                        <label htmlFor="renda" className={`${styles['text-cadastro']} form-label`}>Renda<span className="text-danger">*</span></label>
+                        <label htmlFor="renda" className={`${styles['text-cadastro']} form-label`}>Renda <LuDot className="text-danger" /> </label>
                         <input
                             required
                             type="text"
@@ -257,7 +247,7 @@ export const CadastroComposicaoFamiliar = () => {
                 </div>
                 <div className="row">
                     <div className="col-12 col-md-6">
-                        <label htmlFor="ocupacao" className={`${styles['text-cadastro']} form-label`}>Ocupação<span className="text-danger">*</span></label>
+                        <label htmlFor="ocupacao" className={`${styles['text-cadastro']} form-label`}>Ocupação <LuDot className="text-danger" /> </label>
                         <input
                             required
                             type="text"
@@ -281,7 +271,7 @@ export const CadastroComposicaoFamiliar = () => {
 
                 <div className="row">
                     <div className="col-6 col-md-3">
-                        <label htmlFor="escolaridade" className={`${styles['text-cadastro']} form-label`}>Escolaridade<span className="text-danger">*</span></label>
+                        <label htmlFor="escolaridade" className={`${styles['text-cadastro']} form-label`}>Escolaridade <LuDot className="text-danger" /> </label>
                         <input
                             required
                             type="text"
@@ -292,7 +282,7 @@ export const CadastroComposicaoFamiliar = () => {
                             onChange={handleChange} />
                     </div>
                     <div className="col-md-3 col-12">
-                        <label htmlFor="frequenta_escola" className={`${styles['text-cadastro']} form-label`}>Frequentando a Escola<span className="text-danger">*</span></label>
+                        <label htmlFor="frequenta_escola" className={`${styles['text-cadastro']} form-label`}>Frequentando a Escola <LuDot className="text-danger" /> </label>
                         <select
                             required
                             className="form-control"
@@ -306,7 +296,7 @@ export const CadastroComposicaoFamiliar = () => {
                         </select>
                     </div>
                     <div className="col-6 col-md-3">
-                        <label htmlFor="beneficio_seguro_social" className={`${styles['text-cadastro']} form-label`}>Benefício/Seguro Social<span className="text-danger">*</span></label>
+                        <label htmlFor="beneficio_seguro_social" className={`${styles['text-cadastro']} form-label`}>Benefício/Seguro Social <LuDot className="text-danger" /> </label>
                         <select
                             required
                             name="beneficio_seguro_social"

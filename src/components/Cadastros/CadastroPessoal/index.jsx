@@ -4,8 +4,11 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useParams } from "react-router-dom"
 import styles from './cadastroPessoal.module.css'
+import Swal from 'sweetalert2'
 
 import { InputMask } from 'primereact/inputmask'
+
+import { LuDot } from "react-icons/lu";
 
 export const CadastroPessoal = () => {
 
@@ -32,7 +35,7 @@ export const CadastroPessoal = () => {
         periodo: '',
         instituicao: '',
         situacao_mercado_trabalho: '',
-        renda: 0,
+        renda: '0',
         beneficio_seguro_social: '',
         valor_beneficio_seguro_social: '',
         apoio_renda_primaria: '',
@@ -88,6 +91,25 @@ export const CadastroPessoal = () => {
                 credentials: 'include',
                 body: formData
             })
+
+            if(!response.ok){
+                Swal.fire({
+                    icon:'error',
+                    title: 'Erro',
+                    text: 'Verifique se não há outro usuário cadastrado com os RG, CPF e NIS que está cadastrando!',
+                    showCloseButton:true
+                })
+                return
+            }else{
+                Swal.fire({
+                    icon:'success',
+                    title:'Sucesso',
+                    text:'Sucesso. Você será direcionado para os dados de endereço',
+                    showCancelButton:false,
+                    timer:3000
+                })
+            }
+
             const data = await response.json()
             console.log(data)
 
@@ -107,7 +129,7 @@ export const CadastroPessoal = () => {
             <form onSubmit={handleSubmit}>
 
                 <div>
-                    <label htmlFor="nome" id="nome" className={`${styles['text-cadastro']} form-label`}>Nome<span className="text-danger">*</span></label>
+                    <label htmlFor="nome" id="nome" className={`${styles['text-cadastro']} form-label`}>Nome<LuDot className="text-danger" /></label>
                     <input
                         required
                         type="text"
@@ -120,7 +142,7 @@ export const CadastroPessoal = () => {
 
                 <div className="row">
                     <div className="col-md-4 col-12">
-                        <label htmlFor="rg" id="rg" className={`${styles['text-cadastro']} form-label`}>RG<span className="text-danger">*</span></label>
+                        <label htmlFor="rg" id="rg" className={`${styles['text-cadastro']} form-label`}>RG<LuDot className="text-danger" /></label>
                         <input
                             required
                             type="text"
@@ -132,7 +154,7 @@ export const CadastroPessoal = () => {
                     </div>
 
                     <div className="col-md-4 col-12">
-                        <label htmlFor="cpf" className={`${styles['text-cadastro']} form-label`}>CPF<span className="text-danger">*</span></label>
+                        <label htmlFor="cpf" className={`${styles['text-cadastro']} form-label`}>CPF<LuDot className="text-danger" /></label>
                         <InputMask
                             required
                             type="text"
@@ -146,7 +168,7 @@ export const CadastroPessoal = () => {
                     </div>
 
                     <div className="col-md-4 col-12">
-                        <label htmlFor="nis" className={`${styles['text-cadastro']} form-label`}>NIS<span className="text-danger">*</span></label>
+                        <label htmlFor="nis" className={`${styles['text-cadastro']} form-label`}>NIS<LuDot className="text-danger" /></label>
                         <input
                             required
                             type="text"
@@ -161,7 +183,7 @@ export const CadastroPessoal = () => {
 
                 <div className="row">
                     <div className="col-md-3 col-12">
-                        <label htmlFor="data_nascimento" className={`${styles['text-cadastro']} form-label`}>Data de Nascimento<span className="text-danger">*</span></label>
+                        <label htmlFor="data_nascimento" className={`${styles['text-cadastro']} form-label`}>Data de Nascimento<LuDot className="text-danger" /></label>
                         <input
                             required
                             type="date"
@@ -173,7 +195,7 @@ export const CadastroPessoal = () => {
                     </div>
 
                     <div className="col-md-3 col-12">
-                        <label htmlFor="orientacao_sexual" className={`${styles['text-cadastro']} form-label`}>Orientação Sexual<span className="text-danger">*</span></label>
+                        <label htmlFor="orientacao_sexual" className={`${styles['text-cadastro']} form-label`}>Orientação Sexual<LuDot className="text-danger" /></label>
                         <select
                             required
                             className="form-control"
@@ -192,7 +214,7 @@ export const CadastroPessoal = () => {
                     </div>
 
                     <div className="col-md-3 col-12">
-                        <label htmlFor="telefone" className={`${styles['text-cadastro']} form-label`}>Telefone<span className="text-danger">*</span></label>
+                        <label htmlFor="telefone" className={`${styles['text-cadastro']} form-label`}>Telefone<LuDot className="text-danger" /></label>
                         <InputMask
                             required
                             mask='(99) 99999-9999'
@@ -205,7 +227,7 @@ export const CadastroPessoal = () => {
                     </div>
 
                     <div className="col-md-3 col-12">
-                        <label htmlFor="estado_civil" className={`${styles['text-cadastro']} form-label`}>Estado Civil<span className="text-danger">*</span></label>
+                        <label htmlFor="estado_civil" className={`${styles['text-cadastro']} form-label`}>Estado Civil<LuDot className="text-danger" /></label>
                         <select
                             required
                             className="form-control"
@@ -224,7 +246,7 @@ export const CadastroPessoal = () => {
 
                 <div className="row">
                     <div className="col-md-3 col-12">
-                        <label htmlFor="nacionalidade" className={`${styles['text-cadastro']} form-label`}>Nacionalidade<span className="text-danger">*</span></label>
+                        <label htmlFor="nacionalidade" className={`${styles['text-cadastro']} form-label`}>Nacionalidade<LuDot className="text-danger" /></label>
                         <input
                             required
                             type="text"
@@ -235,7 +257,7 @@ export const CadastroPessoal = () => {
                             onChange={handleChange} />
                     </div>
                     <div className="col-md-3 col-12">
-                        <label htmlFor="naturalidade" className={`${styles['text-cadastro']} form-label`}>Naturalidade<span className="text-danger">*</span></label>
+                        <label htmlFor="naturalidade" className={`${styles['text-cadastro']} form-label`}>Naturalidade<LuDot className="text-danger" /></label>
                         <input
                             required
                             type="text"
@@ -246,7 +268,7 @@ export const CadastroPessoal = () => {
                             onChange={handleChange} />
                     </div>
                     <div className="col-md-3 col-12">
-                        <label htmlFor="etnia" className={`${styles['text-cadastro']} form-label`}>Etnia<span className="text-danger">*</span></label>
+                        <label htmlFor="etnia" className={`${styles['text-cadastro']} form-label`}>Etnia<LuDot className="text-danger" /></label>
                         <select
                             required
                             className="form-control"
@@ -264,7 +286,7 @@ export const CadastroPessoal = () => {
                     </div>
 
                     <div className="col-md-3 col-12">
-                        <label htmlFor="deficiencia" className={`${styles['text-cadastro']} form-label`}>PCD<span className="text-danger">*</span></label>
+                        <label htmlFor="deficiencia" className={`${styles['text-cadastro']} form-label`}>PCD<LuDot className="text-danger" /></label>
                         <select
                             required
                             className="form-control"
@@ -292,7 +314,7 @@ export const CadastroPessoal = () => {
                     </div>
 
                     <div className="col-12 col-md-6">
-                        <label htmlFor="renda" className={`${styles['text-cadastro']} form-label`}>Renda<span className="text-danger">*</span></label>
+                        <label htmlFor="renda" className={`${styles['text-cadastro']} form-label`}>Renda<LuDot className="text-danger" /></label>
                         <input
                             required
                             type="text"
@@ -314,7 +336,7 @@ export const CadastroPessoal = () => {
                         onChange={handleChange} />
                 </div>
                 <div>
-                    <label htmlFor="nome_mae" className={`${styles['text-cadastro']} form-label`}>Nome da Mãe<span className="text-danger">*</span></label>
+                    <label htmlFor="nome_mae" className={`${styles['text-cadastro']} form-label`}>Nome da Mãe<LuDot className="text-danger" /></label>
                     <input
                         required
                         type="text"
@@ -362,7 +384,7 @@ export const CadastroPessoal = () => {
 
                 <div className="row">
                     <div className="col-6 col-md-3">
-                        <label htmlFor="situacao_mercado_trabalho" className={`${styles['text-cadastro']} form-label`}>Situação Trabalhista<span className="text-danger">*</span>v</label>
+                        <label htmlFor="situacao_mercado_trabalho" className={`${styles['text-cadastro']} form-label`}>Situação Trabalhista<LuDot className="text-danger" /></label>
                         <select
                             required
                             className="form-control"
@@ -381,7 +403,7 @@ export const CadastroPessoal = () => {
                     </div>
 
                     <div className="col-6 col-md-3">
-                        <label htmlFor="beneficio_seguro_social" className={`${styles['text-cadastro']} form-label`}>Benefício/Seguro Social<span className="text-danger">*</span></label>
+                        <label htmlFor="beneficio_seguro_social" className={`${styles['text-cadastro']} form-label`}>Benefício/Seguro Social<LuDot className="text-danger" /></label>
                         <select
                             required
                             name="beneficio_seguro_social"
@@ -412,7 +434,7 @@ export const CadastroPessoal = () => {
                     </div>
 
                     <div className="col-6 col-md-3">
-                        <label htmlFor="apoio_renda_primaria" className={`${styles['text-cadastro']} form-label`}>Apoio na Renda Familiar<span className="text-danger">*</span></label>
+                        <label htmlFor="apoio_renda_primaria" className={`${styles['text-cadastro']} form-label`}>Apoio na Renda Familiar<LuDot className="text-danger" /></label>
                         <select
                             required
                             className="form-control"

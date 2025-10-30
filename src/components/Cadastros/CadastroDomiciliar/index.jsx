@@ -4,6 +4,9 @@ import { useNavigate, useParams } from "react-router-dom"
 import { useAuth } from "../../../context/AuthContext"
 import styles from './cadastroDomiciliar.module.css'
 import { useState } from "react"
+import Swal from "sweetalert2"
+
+import { LuDot } from "react-icons/lu";
 
 export const CadastroDomiciliar = () => {
 
@@ -47,6 +50,25 @@ export const CadastroDomiciliar = () => {
                 credentials: 'include',
                 body: JSON.stringify({ ...form })
             })
+
+            if (!response.ok) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro',
+                    text: 'Ocorreu um erro inexperado. Porfavor tente outra vez mais tarde!',
+                    showCloseButton: true
+                })
+                return
+            } else {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sucesso',
+                    text: 'Sucesso. Você será direcionado para os dados de vulnerabilidade',
+                    showCancelButton: false,
+                    timer: 3000
+                })
+            }
+
             const data = response.json()
 
             if (data) {
@@ -63,9 +85,9 @@ export const CadastroDomiciliar = () => {
             <form onSubmit={handleSubmit}>
                 <div className="row">
                     <div className="col-md-4 col-12">
-                        <label htmlFor="tipo_localidade" className={`${styles['text-cadastro']} form-label`}><span className="text-danger">*</span>Localidade</label>
+                        <label htmlFor="tipo_localidade" className={`${styles['text-cadastro']} form-label`}><LuDot className='text-danger' />Localidade</label>
                         <select
-                        required
+                            required
                             className="form-control"
                             name="tipo_localidade"
                             id="tipo_localidade"
@@ -77,9 +99,9 @@ export const CadastroDomiciliar = () => {
                         </select>
                     </div>
                     <div className="col-md-4 col-12">
-                        <label htmlFor="condicoes_moradia" className={`${styles['text-cadastro']} form-label`}>Condições de Moradia<span className="text-danger">*</span></label>
+                        <label htmlFor="condicoes_moradia" className={`${styles['text-cadastro']} form-label`}>Condições de Moradia<LuDot className='text-danger' /></label>
                         <select
-                        required
+                            required
                             className="form-control"
                             name="condicoes_moradia"
                             id="condicoes_moradia"
@@ -97,9 +119,9 @@ export const CadastroDomiciliar = () => {
                         </select>
                     </div>
                     <div className="col-md-4 col-12">
-                        <label htmlFor="situacao_coabitacao_familiar" className={`${styles['text-cadastro']} form-label`}>Situação de Coabitação Familiar<span className="text-danger">*</span></label>
+                        <label htmlFor="situacao_coabitacao_familiar" className={`${styles['text-cadastro']} form-label`}>Situação de Coabitação Familiar<LuDot className='text-danger' /></label>
                         <select
-                        required
+                            required
                             className="form-control"
                             name="situacao_coabitacao_familiar"
                             id="situacao_coabitacao_familiar"
@@ -114,9 +136,9 @@ export const CadastroDomiciliar = () => {
 
                 <div className="row">
                     <div className="col-md-4 col-12">
-                        <label htmlFor="tipo_constucao" className={`${styles['text-cadastro']} form-label`}>Tipo de Construção<span className="text-danger">*</span></label>
+                        <label htmlFor="tipo_constucao" className={`${styles['text-cadastro']} form-label`}>Tipo de Construção<LuDot className='text-danger' /></label>
                         <select
-                        required
+                            required
                             className="form-control"
                             name="tipo_constucao"
                             id="tipo_constucao"
@@ -129,9 +151,9 @@ export const CadastroDomiciliar = () => {
                         </select>
                     </div>
                     <div className="col-md-4 col-12">
-                        <label htmlFor="psf_proximo" className={`${styles['text-cadastro']} form-label`}>Local Coberto por PSF<span className="text-danger">*</span></label>
+                        <label htmlFor="psf_proximo" className={`${styles['text-cadastro']} form-label`}>Local Coberto por PSF<LuDot className='text-danger' /></label>
                         <select
-                        required
+                            required
                             className="form-control"
                             name="psf_proximo"
                             id="psf_proximo"
@@ -143,9 +165,9 @@ export const CadastroDomiciliar = () => {
                         </select>
                     </div>
                     <div className="col-md-4 col-12">
-                        <label htmlFor="posto_policia_proximo" className={`${styles['text-cadastro']} form-label`}>Local Coberto por Posto de Polícia<span className="text-danger">*</span></label>
+                        <label htmlFor="posto_policia_proximo" className={`${styles['text-cadastro']} form-label`}>Local Coberto por Posto de Polícia<LuDot className='text-danger' /></label>
                         <select
-                        required
+                            required
                             className="form-control"
                             name="posto_policia_proximo"
                             id="posto_policia_proximo"
@@ -160,9 +182,9 @@ export const CadastroDomiciliar = () => {
 
                 <div className="row">
                     <div className="col-md-4 col-12">
-                        <label htmlFor="creche_proximo" className={`${styles['text-cadastro']} form-label`}>Local Coberto por Creche<span className="text-danger">*</span></label>
+                        <label htmlFor="creche_proximo" className={`${styles['text-cadastro']} form-label`}>Local Coberto por Creche<LuDot className='text-danger' /></label>
                         <select
-                        required
+                            required
                             className="form-control"
                             name="creche_proximo"
                             id="creche_proximo"
@@ -174,9 +196,9 @@ export const CadastroDomiciliar = () => {
                         </select>
                     </div>
                     <div className="col-md-4 col-12">
-                        <label htmlFor="praca_proximo" className={`${styles['text-cadastro']} form-label`}>Local Coberto por Praça<span className="text-danger">*</span></label>
+                        <label htmlFor="praca_proximo" className={`${styles['text-cadastro']} form-label`}>Local Coberto por Praça<LuDot className='text-danger' /></label>
                         <select
-                        required
+                            required
                             className="form-control"
                             name="praca_proximo"
                             id="praca_proximo"
@@ -188,9 +210,9 @@ export const CadastroDomiciliar = () => {
                         </select>
                     </div>
                     <div className="col-md-4 col-12">
-                        <label htmlFor="abastecimento_energia" className={`${styles['text-cadastro']} form-label`}>Abastecimento de Energia<span className="text-danger">*</span></label>
+                        <label htmlFor="abastecimento_energia" className={`${styles['text-cadastro']} form-label`}>Abastecimento de Energia<LuDot className='text-danger' /></label>
                         <select
-                        required
+                            required
                             className="form-control"
                             name="abastecimento_energia"
                             id="abastecimento_energia"
@@ -207,9 +229,9 @@ export const CadastroDomiciliar = () => {
 
                 <div className="row">
                     <div className="col-md-4 col-12">
-                        <label htmlFor="abastecimento_agua" className={`${styles['text-cadastro']} form-label`}>Abastecimento de Água<span className="text-danger">*</span></label>
+                        <label htmlFor="abastecimento_agua" className={`${styles['text-cadastro']} form-label`}>Abastecimento de Água<LuDot className='text-danger' /></label>
                         <select
-                        required
+                            required
                             className="form-control"
                             name="abastecimento_agua"
                             id="abastecimento_agua"
@@ -222,9 +244,9 @@ export const CadastroDomiciliar = () => {
                         </select>
                     </div>
                     <div className="col-md-4 col-12">
-                        <label htmlFor="esgotamento_sanitario" className={`${styles['text-cadastro']} form-label`}>Esgotamento Sanitário<span className="text-danger">*</span></label>
+                        <label htmlFor="esgotamento_sanitario" className={`${styles['text-cadastro']} form-label`}>Esgotamento Sanitário<LuDot className='text-danger' /></label>
                         <select
-                        required
+                            required
                             className="form-control"
                             name="esgotamento_sanitario"
                             id="esgotamento_sanitario"
@@ -238,9 +260,9 @@ export const CadastroDomiciliar = () => {
                         </select>
                     </div>
                     <div className="col-md-4 col-12">
-                        <label htmlFor="destino_lixo" className={`${styles['text-cadastro']} form-label`}>Destino do Lixo<span className="text-danger">*</span></label>
+                        <label htmlFor="destino_lixo" className={`${styles['text-cadastro']} form-label`}>Destino do Lixo<LuDot className='text-danger' /></label>
                         <select
-                        required
+                            required
                             className="form-control"
                             name="destino_lixo"
                             id="destino_lixo"

@@ -141,6 +141,22 @@ export const Administrador = () => {
                 body: JSON.stringify(form)
             })
 
+            if(!response.ok){
+                Swal.fire({
+                    icon:'error',
+                    title:'Erro',
+                    text:'Ocorreu um erro ao tentar salvar novo usuário do sistema',
+                    showCloseButton:true
+                })
+            }else{
+                Swal.fire({
+                    icon:'success',
+                    title:'Sucesso',
+                    text:'Usuário do sistema salvo com sucesso',
+                    showCloseButton:true
+                })
+            }
+
         } catch (err) {
             console.error(err)
         } finally {

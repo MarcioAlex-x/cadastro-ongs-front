@@ -4,6 +4,8 @@ import { useNavigate, useParams } from "react-router-dom"
 import styles from './cadastroConjuge.module.css'
 import { useState } from "react"
 
+import { LuDot } from "react-icons/lu";
+
 export const CadastroConjugeTardio = () => {
     const { id } = useParams()
     const navigate = useNavigate()
@@ -65,7 +67,7 @@ export const CadastroConjugeTardio = () => {
             <h2 className={`${styles['title-cadastro']}`}>Conjuge</h2>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="nome" id="nome" className={`${styles['text-cadastro']} form-label`}>Nome<span className="text-danger">*</span></label>
+                    <label htmlFor="nome" id="nome" className={`${styles['text-cadastro']} form-label`}>Nome <LuDot className='text-danger'/> </label>
                     <input
                         required
                         type="text"
@@ -78,7 +80,7 @@ export const CadastroConjugeTardio = () => {
 
                 <div className="row">
                     <div className="col-md-4 col-12">
-                        <label htmlFor="rg" id="rg" className={`${styles['text-cadastro']} form-label`}>RG<span className="text-danger">*</span></label>
+                        <label htmlFor="rg" id="rg" className={`${styles['text-cadastro']} form-label`}>RG <LuDot className='text-danger' /> </label>
                         <input
                             required
                             type="text"
@@ -90,7 +92,7 @@ export const CadastroConjugeTardio = () => {
                     </div>
 
                     <div className="col-md-4 col-12">
-                        <label htmlFor="cpf" className={`${styles['text-cadastro']} form-label`}>CPF<span className="text-danger">*</span></label>
+                        <label htmlFor="cpf" className={`${styles['text-cadastro']} form-label`}>CPF <LuDot className='text-danger' /> </label>
                         <InputMask
                             required
                             type="text"
@@ -104,7 +106,7 @@ export const CadastroConjugeTardio = () => {
                     </div>
 
                     <div className="col-md-4 col-12">
-                        <label htmlFor="nis" className={`${styles['text-cadastro']} form-label`}>NIS<span className="text-danger">*</span></label>
+                        <label htmlFor="nis" className={`${styles['text-cadastro']} form-label`}>NIS <LuDot className='text-danger' /> </label>
                         <input
                             required
                             type="text"
@@ -119,7 +121,7 @@ export const CadastroConjugeTardio = () => {
 
                 <div className="row">
                     <div className="col-md-4 col-12">
-                        <label htmlFor="data_nascimento" className={`${styles['text-cadastro']} form-label`}>Data de Nascimento<span className="text-danger">*</span></label>
+                        <label htmlFor="data_nascimento" className={`${styles['text-cadastro']} form-label`}>Data de Nascimento <LuDot className='text-danger' /> </label>
                         <input
                             required
                             type="date"
@@ -130,7 +132,7 @@ export const CadastroConjugeTardio = () => {
                             onChange={handleChange} />
                     </div>
                     <div className="col-md-4 col-12">
-                        <label htmlFor="etnia" className={`${styles['text-cadastro']} form-label`}>Etnia<span className="text-danger">*</span></label>
+                        <label htmlFor="etnia" className={`${styles['text-cadastro']} form-label`}>Etnia <LuDot className='text-danger' /> </label>
                         <select
                             required
                             className="form-control"
@@ -147,7 +149,7 @@ export const CadastroConjugeTardio = () => {
                         </select>
                     </div>
                     <div className="col-6 col-md-4">
-                        <label htmlFor="situacao_mercado_trabalho" className={`${styles['text-cadastro']} form-label`}>Situação Trabalhista<span className="text-danger">*</span></label>
+                        <label htmlFor="situacao_mercado_trabalho" className={`${styles['text-cadastro']} form-label`}>Situação Trabalhista <LuDot className='text-danger' /> </label>
                         <select
                             required
                             className="form-control"
@@ -168,7 +170,7 @@ export const CadastroConjugeTardio = () => {
 
                 <div className="row">
                     <div className="col-12 col-md-4">
-                        <label htmlFor="renda" className={`${styles['text-cadastro']} form-label`}>Renda<span className="text-danger">*</span></label>
+                        <label htmlFor="renda" className={`${styles['text-cadastro']} form-label`}>Renda <LuDot className='text-danger' /> </label>
                         <input
                             required
                             type="text"
@@ -179,7 +181,7 @@ export const CadastroConjugeTardio = () => {
                             onChange={handleChange} />
                     </div>
                     <div className="col-12 col-md-4">
-                        <label htmlFor="ocupacao" className={`${styles['text-cadastro']} form-label`}>Ocupação<span className="text-danger">*</span></label>
+                        <label htmlFor="ocupacao" className={`${styles['text-cadastro']} form-label`}>Ocupação <LuDot className='text-danger' /> </label>
                         <input
                             required
                             type="text"
@@ -190,7 +192,7 @@ export const CadastroConjugeTardio = () => {
                             onChange={handleChange} />
                     </div>
                     <div className="col-md-4 col-12">
-                        <label htmlFor="deficiencia" className={`${styles['text-cadastro']} form-label`}>PCD<span className="text-danger">*</span></label>
+                        <label htmlFor="deficiencia" className={`${styles['text-cadastro']} form-label`}>PCD <LuDot className='text-danger' /> </label>
                         <select
                             required
                             className="form-control"
@@ -217,7 +219,7 @@ export const CadastroConjugeTardio = () => {
                             onChange={handleChange} />
                     </div>
                     <div className="col-6 col-md-4">
-                        <label htmlFor="beneficio_seguro_social" className={`${styles['text-cadastro']} form-label`}>Benefício/Seguro Social<span className="text-danger">*</span></label>
+                        <label htmlFor="beneficio_seguro_social" className={`${styles['text-cadastro']} form-label`}>Benefício/Seguro Social <LuDot className='text-danger' /> </label>
                         <select
                             required
                             name="beneficio_seguro_social"

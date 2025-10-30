@@ -68,6 +68,27 @@ const styles = StyleSheet.create({
     width: 150,
     height: 300,
   },
+  containerDuplo: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 4,
+  },
+  containerTriplo: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 4,
+  },
+  containerQuadruplo: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+    marginBottom: 4,
+  },
+  coluna: {
+    flexGrow: 1,
+    flexBasis: 0,
+    marginRight: 6,
+  }
 })
 
 import logo from '../../assets/ABSJ.png'
@@ -139,40 +160,153 @@ export const PDFDocument = () => {
 
 
         <Text style={styles.sectionTitle}>Informações Pessoais</Text>
-        <View>
-          <Text>Nome: {pessoa?.nome}</Text>
-          <Text>Data de nascimento: {formatarData(pessoa?.data_nascimento)}</Text>
-          <Text>CPF: {pessoa?.cpf}</Text>
-          <Text>RG: {pessoa?.rg}</Text>
-          <Text>Telefone: {pessoa?.telefone}</Text>
-          <Text>Nacionalidade: {pessoa?.nacionalidade}</Text>
-          <Text>Naturalidade: {pessoa?.naturalidade}</Text>
+        <View style={styles.containerDuplo}>
+          <View className="coluna">
+            <Text >Nome: {pessoa?.nome} </Text>
+          </View>
+          <View className="coluna">
+            <Text>Data de nascimento: {formatarData(pessoa?.data_nascimento)}</Text>
+          </View>
         </View>
 
-        <View />
+        <View style={styles.containerQuadruplo}>
+          <View className="coluna">
+            <Text>Telefone: {pessoa?.telefone}</Text>
+          </View>
+          <View className="coluna">
+            <Text>RG: {pessoa?.rg} </Text>
+          </View>
+          <View className="coluna">
+            <Text>CPF: {pessoa?.cpf} </Text>
+          </View>
+          <View className="coluna">
+            <Text>NIS: {pessoa?.nis}</Text>
+          </View>
+        </View>
+
+        <View style={styles.containerTriplo}>
+          <View className="coluna">
+            <Text >Naturalidade: {pessoa?.naturalidade} </Text>
+          </View>
+          <View className="coluna">
+            <Text>Nacionalidade: {pessoa?.nacionalidade}</Text>
+          </View>
+          <View className="coluna">
+            <Text>Estado civil: {pessoa?.estado_civil}</Text>
+          </View>
+        </View>
+
+        <View style={styles.containerQuadruplo} >
+          <View className="coluna">
+            <Text>Etnia: {pessoa?.etnia} </Text>
+          </View>
+          <View className="coluna">
+            <Text>Orientação Sexual: {pessoa?.orientacao_sexual}</Text>
+          </View>
+          <View className="coluna">
+            <Text>PCD: {pessoa?.deficiencia} </Text>
+          </View>
+          <View className="coluna">
+            <Text>{pessoa?.deficiencia !== 'Não' && `Deficiência: ${pessoa?.tipo_deficiencia}`}</Text>
+          </View>
+        </View>
+
+        <View style={styles.containerDuplo}>
+          <View className="coluna">
+            <Text>Mãe: {pessoa?.nome_mae} </Text>
+          </View>
+          <View className="coluna">
+            <Text>{pessoa?.nome_pai && `Pai: ${pessoa?.nome_pai}`} </Text>
+          </View>
+        </View>
+
+        <View style={styles.containerTriplo}>
+          <View className="coluna">{pessoa?.curso && <Text style={styles.container}>Curso: {pessoa?.curso}</Text>}</View>
+          <View className="coluna">{pessoa?.periodo && <Text>Período: {pessoa?.periodo}</Text>}</View>
+          <View className="coluna">{pessoa?.instituicao && <Text>Instituição: {pessoa?.instituicao}</Text>}</View>
+        </View>
+
+        <View style={styles.containerTriplo}>
+          <View className="coluna">
+            <Text>Situação trabalhista: {pessoa?.situacao_mercado_trabalho} </Text>
+          </View>
+          <View className="coluna">
+            <Text>Renda: R${pessoa?.renda}</Text>
+          </View>
+          <View className="coluna">
+            <Text>Benefício: {pessoa?.beneficio_seguro_social} </Text>
+          </View>
+        </View>
+
+        <View style={styles.containerDuplo}>
+          <View className="coluna">{pessoa?.beneficio_seguro_social !== 'Nenhum' && <Text>Valor do benefício: R${pessoa?.valor_beneficio_seguro_social}</Text>}</View>
+          <View className="coluna">
+            <Text>Apoio a renda familiar: {pessoa?.apoio_renda_primaria}</Text>
+          </View>
+        </View>
+
         <Text style={styles.sectionTitle}>Endereço</Text>
-        <View>
-          <Text>Logradouro: {endereco?.logradouro}</Text>
-          <Text>Número: {endereco?.numero}</Text>
-          <Text>Bairro: {endereco?.bairro}</Text>
-          <Text>CEP: {endereco?.cep}</Text>
+        <View style={styles.containerQuadruplo}>
+          <View className="coluna">
+            <Text>Logradouro: {endereco?.logradouro} </Text>
+          </View>
+          <View className="coluna">
+            <Text>Número: {endereco?.numero}</Text>
+          </View>
+          <View className="coluna">
+            <Text>Bairro: {endereco?.bairro} </Text>
+          </View>
+          <View className="coluna">
+            <Text>CEP: {endereco?.cep}</Text>
+          </View>
         </View>
 
-        <View />
         <Text style={styles.sectionTitle}>Informações de Moradia</Text>
-        <View>
-          <Text>Tipo de construção: {domicilio?.tipo_constucao}</Text>
-          <Text>Condição de moradia: {domicilio?.condicoes_moradia}</Text>
-          <Text>Abastecimento de água: {domicilio?.abastecimento_agua}</Text>
-          <Text>Destino do lixo: {domicilio?.destino_lixo}</Text>
+        <View style={styles.containerTriplo}>
+          <View className="columa">
+            <Text style={styles.container}>Localidade: {domicilio.tipo_localidade} </Text>
+          </View>
+          <View className="columa">
+            <Text>Tipo de construção: {domicilio?.tipo_constucao} </Text>
+          </View>
+          <View className="columa">
+            <Text>Condição de moradia: {domicilio?.condicoes_moradia}</Text>
+          </View>
         </View>
 
-        <View />
+        <View style={styles.containerDuplo}>
+          <View className="coluna">
+            <Text>Abastecimento de água: {domicilio?.abastecimento_agua} </Text>
+          </View>
+          <View className="coluna">
+            <Text>Abastecimento de energia: {domicilio.abastecimento_energia}</Text>
+          </View>
+        </View>
+
+        <View style={styles.containerDuplo}>
+          <View className="coluna">
+            <Text>Esgotamento sanitário: {domicilio.esgotamento_sanitario}</Text>
+          </View>
+          <View className="coluna">
+            <Text>Destino do lixo: {domicilio?.destino_lixo}</Text>
+          </View>
+        </View>
+
+        <View style={styles}>
+          <Text>A localidade {domicilio.psf_proximo === 'Sim' ? 'tem acesso a PSF' : 'não tem acesso a PSF'}, {domicilio.posto_policia_proximo === "Sim" ? 'tem acesso a posto polícial' : 'não tem acesso a posto polícial'}, {domicilio.creche_proximo === 'Sim' ? 'tem acesso a creche' : 'não tem acesso a creche'} e {domicilio.praca_proximo === 'Sim' ? 'tem acesso a praça' : 'não tem acesso a praça'}.</Text>
+        </View>
+
         <Text style={styles.sectionTitle}>Vulnerabilidade</Text>
-        <View>
-          <Text>Sofre maus tratos: {acesso?.maus_tratos}</Text>
-          <Text>Violência doméstica: {acesso?.violencia_domestica}</Text>
-          <Text>Discriminação social: {acesso?.discriminacao_social_etnico_racial_sexual}</Text>
+        <View style={styles.containerTriplo}>
+          <View className="coluna">
+            <Text>Sofre maus tratos: {acesso?.maus_tratos} </Text>
+          </View>
+          <View className="coluna">
+            <Text>Violência doméstica: {acesso?.violencia_domestica}</Text>
+          </View>
+          <View className="coluna">
+            <Text>Discriminação social: {acesso?.discriminacao_social_etnico_racial_sexual}</Text>
+          </View>
         </View>
 
         {conjuge && (
@@ -180,46 +314,98 @@ export const PDFDocument = () => {
             <View />
             <Text style={styles.sectionTitle}>Informações sobre o Cônjuge</Text>
             <View>
-              <Text>Nome: {conjuge?.nome}</Text>
-              <Text>Data de nascimento: {formatarData(conjuge?.data_nascimento)}</Text>
-              <Text>Renda: R${conjuge?.renda}</Text>
-              <Text>PCD: {conjuge?.deficiencia}</Text>
+              <View style={styles.containerDuplo}>
+                <View className="coluna">
+                  <Text>Nome: {conjuge?.nome} </Text>
+                </View>
+                <View className="coluna">
+                  <Text>Data de nascimento: {formatarData(conjuge?.data_nascimento)}</Text>
+                </View>
+              </View>
+
+              <View style={styles.containerTriplo}>
+                <View className="coluna">
+                  <Text style={styles.container}>Renda: R${conjuge?.renda}</Text>
+                </View>
+                <View className="coluna">
+                  <Text>PCD: {conjuge?.deficiencia}</Text>
+                </View>
+                <View className="coluna">
+                  <Text>{conjuge?.deficiencia === 'Sim' && `Deficiência: ${conjuge.tipo_dificiencia}`}</Text>
+                </View>
+              </View>
+
+              <View style={styles.containerTriplo}>
+                <View className="coluna">
+                  <Text>Etnia: {conjuge?.etnia} </Text>
+                </View>
+                <View className="coluna">
+                  <Text>{conjuge.ocupacao && `Ocupação: ${conjuge?.ocupacao}`}</Text>
+                </View>
+                <View className="coluna">
+                  <Text style={styles.container}>Benefício: {conjuge.beneficio_seguro_social} {conjuge?.beneficio_seguro_social !== 'Nenhum' && `Valor do 
+                bebnefício: {conjuge?.valor_beneficio_seguro_social}`}</Text>
+                </View>
+              </View>
             </View>
           </>
         )}
 
         {membro?.length > 0 && (
           <>
-            <View break />
             <Text style={styles.sectionTitle}>Composição Familiar</Text>
             {membro.map((m) => (
               <View key={m.id} style={{ marginBottom: 8 }}>
-                <Text>Nome: {m.nome}</Text>
-                <Text>Data de nascimento: {formatarData(m.data_nascimento)}</Text>
-                <Text>Parentesco: {m.parentesco}</Text>
+                <View style={styles.container}>
+                  <Text>Nome: {m.nome} </Text>
+                  <Text>Data de nascimento: {formatarData(m.data_nascimento)}</Text>
+                </View>
+                <View style={styles.container}>
+                  <Text>CPF: {m.cpf}</Text>
+                  <Text> Nis: {m.nis}</Text>
+                </View>
+                <View style={styles.container}>
+                  <Text>Parentesco: {m.parentesco}</Text>
+                  <Text>Etnia: {m.etnia}</Text>
+                  {m.ocupacao && <Text>Ocupação: {m.ocupacao}</Text>}
+                  {m.profissao && <Text> Profissão: {m.profissao}</Text>}
+                </View>
+                <View style={styles.container}>
+                  <Text>Escolaridade: {m.escolaridade}</Text>
+                  <Text>Frequenta a escola? {m.frequenta_escola}</Text>
+                  {m.renda && <Text>Renda: R${m.renda}</Text>}
+                </View>
+                <View style={styles.container}>
+                  <Text >PCD: {m.deficiencia} </Text>
+                  {m.deficiencia && <Text>Deficinência: {m.tipo_deficiencia}</Text>}
+                </View>
+                <View style={styles.container}>
+                  <Text>Benefício: {m.beneficio_seguro_social} </Text>
+                  <Text>{m.valor_beneficio_seguro_social && `Valor do benefício: ${m.valor_beneficio_seguro_social}`} </Text>
+                </View>
               </View>
             ))}
           </>
         )}
-        <Text style={styles.sectionTitle}>Documentos</Text>
-        <View style={styles.docsContainer}>
-          {pessoa.rg_frente && <Image src={pessoa.rg_frente} style={styles.rg} />}
-          {pessoa.rg_verso && <Image src={pessoa.rg_verso} style={styles.rg} />}
-          {pessoa.comprovante_residencia && <Image src={pessoa.comprovante_residencia} style={styles.comprovante} />}
-        </View>
-
-        <View />
-        <Text style={styles.sectionTitle}>Declaração de Ciência e Consentimento</Text>
-        <Text>
-          Declaro, para os devidos fins, que estou ciente de que as informações prestadas neste formulário serão utilizadas exclusivamente
-          para fins de cadastro e acompanhamento junto à Associação Beneficente São José, conforme os princípios da Lei Geral de Proteção de
-          Dados Pessoais (Lei nº 13.709/2018), garantindo-se o sigilo e a confidencialidade das informações fornecidas.
-        </Text>
-
-        <View style={styles.assinatura}>
-          <Text>______________________________________________</Text>
-          <Text>{pessoa?.nome}</Text>
-          <Text>João Pessoa - PB, {diaAtual}</Text>
+        <View break>
+          <Text style={styles.sectionTitle}>Documentos</Text>
+          <View style={styles.docsContainer}>
+            {pessoa.rg_frente && <Image src={pessoa.rg_frente} style={styles.rg} />}
+            {pessoa.rg_verso && <Image src={pessoa.rg_verso} style={styles.rg} />}
+            {pessoa.comprovante_residencia && <Image src={pessoa.comprovante_residencia} style={styles.comprovante} />}
+          </View>
+          <View />
+          <Text style={styles.sectionTitle}>Declaração de Ciência e Consentimento</Text>
+          <Text>
+            Declaro, para os devidos fins, que estou ciente de que as informações prestadas neste formulário serão utilizadas exclusivamente
+            para fins de cadastro e acompanhamento junto à Associação Beneficente São José, conforme os princípios da Lei Geral de Proteção de
+            Dados Pessoais (Lei nº 13.709/2018), garantindo-se o sigilo e a confidencialidade das informações fornecidas.
+          </Text>
+          <View style={styles.assinatura}>
+            <Text>______________________________________________</Text>
+            <Text>{pessoa?.nome}</Text>
+            <Text>João Pessoa - PB, {diaAtual}</Text>
+          </View>
         </View>
       </Page>
     </Document>

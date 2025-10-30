@@ -111,12 +111,12 @@ export const CadastroId = () => {
                 </div>
                 :
                 <div className='mb-4'>
-                    <div className="d-flex justify-content-between">
+                    <div className={`d-flex justify-content-between`}>
                         <h2 className={`${styles['title-cadastro']}`}>Cadastro</h2>
-                        <Link to={`/dashboard/pdf-document/${id}`}>
-                            <div className='border rounded-2 shadow py-1 px-2 bg-secondary text-light'>
+                        <Link to={`/dashboard/pdf-document/${id}`} className={` ${styles['link']}`}>
+                            <div className={`border rounded-2 shadow py-1 px-2 bg-secondary text-light`}>
                                 <LuFileSpreadsheet size={24}   />
-                                <p className='m-0'>PDF</p>
+                                <p className='m-0 '>PDF</p>
                             </div>
                         </Link>
                     </div>

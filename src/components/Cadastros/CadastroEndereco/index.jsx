@@ -5,6 +5,8 @@ import styles from './cadastroEndereco.module.css'
 import { useState } from "react"
 import { useAuth } from "../../../context/AuthContext"
 import { InputMask } from "primereact/inputmask"
+import Swal from "sweetalert2"
+import { LuDot } from "react-icons/lu";
 
 export const CadastroEndereco = () => {
 
@@ -16,7 +18,7 @@ export const CadastroEndereco = () => {
         logradouro: '',
         numero: '',
         bairro: '',
-        cep:''
+        cep: ''
     })
 
     const handleChange = (e) => {
@@ -39,8 +41,26 @@ export const CadastroEndereco = () => {
                 body: JSON.stringify({ ...form })
             })
 
+            if (!response.ok) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro',
+                    text: 'Ocorreu um erro inexperado. Porfavor tente outra vez mais tarde!',
+                    showCloseButton: true
+                })
+                return
+            } else {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sucesso',
+                    text: 'Sucesso. Você será direcionado para os dados de domicílio',
+                    showCancelButton: false,
+                    timer: 3000
+                })
+            }
+
             const data = response.json()
-            if(data){
+            if (data) {
                 navigate(`/dashboard/cadastro-domiciliar/${id}`)
             }
         } catch (err) {
@@ -53,7 +73,7 @@ export const CadastroEndereco = () => {
             <h2 className={`${styles['title-cadastro']}`}>Endereço</h2>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="logradouro" className={`${styles['text-cadastro']} form-label`}>Logradouro<span className="text-danger">*</span></label>
+                    <label htmlFor="logradouro" className={`${styles['text-cadastro']} form-label`}>Logradouro<LuDot className='text-danger' /></label>
                     <input
                         type="text"
                         required
@@ -65,7 +85,7 @@ export const CadastroEndereco = () => {
                 </div>
                 <div className="row">
                     <div className='col-12 col-md-4'>
-                        <label htmlFor="numero" className={`${styles['text-cadastro']} form-label`}>Número<span className="text-danger">*</span></label>
+                        <label htmlFor="numero" className={`${styles['text-cadastro']} form-label`}>Número<LuDot className='text-danger' /> /</label>
                         <input
                             type="text"
                             required
@@ -76,7 +96,7 @@ export const CadastroEndereco = () => {
                             onChange={handleChange} />
                     </div>
                     <div className='col-12 col-md-4'>
-                        <label htmlFor="bairro" className={`${styles['text-cadastro']} form-label`}>Bairro<span className="text-danger">*</span></label>
+                        <label htmlFor="bairro" className={`${styles['text-cadastro']} form-label`}>Bairro<LuDot className='text-danger' /></label>
                         <input
                             type="text"
                             required
@@ -98,7 +118,7 @@ export const CadastroEndereco = () => {
                             onChange={handleChange} ></InputMask>
                     </div>
                 </div>
-                <input type="submit" value="Salvar"  className={`${styles['text-cadastro']} btn btn-success my-4 d-block w-100`} />
+                <input type="submit" value="Salvar" className={`${styles['text-cadastro']} btn btn-success my-4 d-block w-100`} />
             </form>
         </div>
     )

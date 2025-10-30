@@ -3,6 +3,9 @@ const url = import.meta.env.VITE_API_URL
 import { useNavigate, useParams } from "react-router-dom"
 import styles from './cadastroAcesso.module.css'
 import { useState } from "react"
+import Swal from "sweetalert2"
+
+import { LuDot } from "react-icons/lu";
 
 export const CadastroAcesso = () => {
 
@@ -40,6 +43,24 @@ export const CadastroAcesso = () => {
                 body: JSON.stringify({ ...form })
             })
 
+            if (!response.ok) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro',
+                    text: 'Ocorreu um erro inexperado. Porfavor tente outra vez mais tarde!',
+                    showCloseButton: true
+                })
+                return
+            } else {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sucesso',
+                    text: 'Sucesso. Você será direcionado para os composição familiar',
+                    showCancelButton: false,
+                    timer: 3000
+                })
+            }
+
             const data = await response.json()
 
             if (data) {
@@ -52,11 +73,11 @@ export const CadastroAcesso = () => {
 
     return (
         <div>
-            <h2 className={`${styles['title-cadastro']}`}>Acessos e Vulnerabilidade <span className="text-danger">*</span> </h2>
+            <h2 className={`${styles['title-cadastro']}`}>Acessos e Vulnerabilidade</h2>
             <form onSubmit={handleSubmit}>
                 <div className="row">
                     <div className="col-md-4 col-12">
-                        <label htmlFor="maus_tratos" className={`${styles['text-cadastro']} form-label`}>Maus Tratos</label>
+                        <label htmlFor="maus_tratos" className={`${styles['text-cadastro']} form-label`}>Maus Tratos <LuDot className="text-danger" /> </label>
                         <select
                         required
                             className="form-control"
@@ -82,7 +103,7 @@ export const CadastroAcesso = () => {
                 </div>
                 <div className="row">
                     <div className="col-md-4 col-12">
-                        <label htmlFor="violencia_domestica" className={`${styles['text-cadastro']} form-label`}>Violência Doméstica<span className="text-danger">*</span></label>
+                        <label htmlFor="violencia_domestica" className={`${styles['text-cadastro']} form-label`}>Violência Doméstica <LuDot className="text-danger" /> </label>
                         <select
                         required
                             className="form-control"
@@ -96,7 +117,7 @@ export const CadastroAcesso = () => {
                         </select>
                     </div>
                     <div className="col-md-4 col-12">
-                        <label htmlFor="discriminacao_rejeicao_familiar" className={`${styles['text-cadastro']} form-label`}>Descriminação ou Rejeição Familiar<span className="text-danger">*</span></label>
+                        <label htmlFor="discriminacao_rejeicao_familiar" className={`${styles['text-cadastro']} form-label`}>Descriminação ou Rejeição Familiar <LuDot className="text-danger" /> </label>
                         <select
                         required
                             className="form-control"
@@ -110,7 +131,7 @@ export const CadastroAcesso = () => {
                         </select>
                     </div>
                     <div className="col-md-4 col-12">
-                        <label htmlFor="discriminacao_social_etnico_racial_sexual" className={`${styles['text-cadastro']} form-label`}>Descriminação Socail, Étnico, Racial ou Sexual<span className="text-danger">*</span></label>
+                        <label htmlFor="discriminacao_social_etnico_racial_sexual" className={`${styles['text-cadastro']} form-label`}>Descriminação Socail, Étnico, Racial ou Sexual <LuDot className="text-danger" /> </label>
                         <select
                         required
                             className="form-control"
@@ -126,7 +147,7 @@ export const CadastroAcesso = () => {
                 </div>
                 <div className="row">
                     <div className="col-md-6 col-12">
-                        <label htmlFor="acesso_saude" className={`${styles['text-cadastro']} form-label`}>Acesso a Saúde<span className="text-danger">*</span></label>
+                        <label htmlFor="acesso_saude" className={`${styles['text-cadastro']} form-label`}>Acesso a Saúde <LuDot className="text-danger" /> </label>
                         <select
                         required
                             className="form-control"
@@ -140,7 +161,7 @@ export const CadastroAcesso = () => {
                         </select>
                     </div>
                     <div className="col-md-6 col-12">
-                        <label htmlFor="acesso_esporte_cultura_lazer" className={`${styles['text-cadastro']} form-label`}>Acesso a Esporte, Cultura e Lazer<span className="text-danger">*</span></label>
+                        <label htmlFor="acesso_esporte_cultura_lazer" className={`${styles['text-cadastro']} form-label`}>Acesso a Esporte, Cultura e Lazer <LuDot className="text-danger" /> </label>
                         <select
                         required
                             className="form-control"

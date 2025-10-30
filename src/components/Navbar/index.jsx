@@ -26,6 +26,8 @@ export const Navbar = ({ className }) => {
             console.error(err)
         }
     }
+
+    console.log('Usuário: ',user)
     
     return (
         <nav className={`align-items-center ${className} ${styles['bg-owner']}`}>
@@ -35,12 +37,28 @@ export const Navbar = ({ className }) => {
                     <FaRegUser color={'white'} />
                     <p className='text-light my-0 ms-2'> <Link className={`${styles['link']}`} to={`/dashboard/usuario/${user.id}`}>{user.nome}</Link></p>
                     {
-                        user.isAdmin ? (
+                        user.isAdmin && (
                             <p className='text-light ms-3 my-0'><Link className={`${styles['link']}`} to='/dashboard/administrador' >Administrador</Link></p>
-                        ) : (
-                            <p className='text-light ms-3 my-0'>
-                                Usuário
-                            </p>
+                        )
+                    }
+                    {
+                        user.isCoordenador && (
+                            <p className='text-light ms-3 my-0'><Link className={`${styles['link']}`} to='/dashboard/administrador' >Coordenador</Link></p>
+                        )
+                    }
+                    {
+                        user.isDocente && (
+                            <p className='text-light ms-3 my-0'><Link className={`${styles['link']}`} to='/dashboard/administrador' >Professor</Link></p>
+                        )
+                    }
+                    {
+                        user.isFinanceiro && (
+                            <p className='text-light ms-3 my-0'><Link className={`${styles['link']}`} to='/dashboard/administrador' >Financeiro</Link></p>
+                        )
+                    }
+                    {
+                        user.isSocial && (
+                            <p className='text-light ms-3 my-0'><Link className={`${styles['link']}`} to='/dashboard/administrador' >Assistente Social</Link></p>
                         )
                     }
                     <HiOutlineLogout 
