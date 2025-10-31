@@ -85,7 +85,7 @@ export const CadastroEndereco = () => {
                 </div>
                 <div className="row">
                     <div className='col-12 col-md-4'>
-                        <label htmlFor="numero" className={`${styles['text-cadastro']} form-label`}>Número<LuDot className='text-danger' /> /</label>
+                        <label htmlFor="numero" className={`${styles['text-cadastro']} form-label`}>Número<LuDot className='text-danger' /></label>
                         <input
                             type="text"
                             required

@@ -43,12 +43,12 @@ export const Navbar = ({ className }) => {
                     }
                     {
                         user.isCoordenador && (
-                            <p className='text-light ms-3 my-0'><Link className={`${styles['link']}`} to='/dashboard/administrador' >Coordenador</Link></p>
+                            <p className='text-light ms-3 my-0'>Coordenador</p>
                         )
                     }
                     {
                         user.isDocente && (
-                            <p className='text-light ms-3 my-0'><Link className={`${styles['link']}`} to='/dashboard/administrador' >Professor</Link></p>
+                            <p className='text-light ms-3 my-0'>Professor</p>
                         )
                     }
                     {
@@ -58,7 +58,7 @@ export const Navbar = ({ className }) => {
                     }
                     {
                         user.isSocial && (
-                            <p className='text-light ms-3 my-0'><Link className={`${styles['link']}`} to='/dashboard/administrador' >Assistente Social</Link></p>
+                            <p className='text-light ms-3 my-0'>Assistente Social</p>
                         )
                     }
                     <HiOutlineLogout 

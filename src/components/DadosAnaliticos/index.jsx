@@ -3,6 +3,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsive
 const url = import.meta.env.VITE_API_URL;
 import { getSalarioMinimo } from "../../utils/consultaSalarioMinimo";
 import styles from './DadosAnaliticos.module.css'
+import { BsFilePdfFill } from "react-icons/bs";
 
 export const DadosAnaliticos = () => {
     const [dadosGrafico, setDadosGrafico] = useState([]);
@@ -11,23 +12,30 @@ export const DadosAnaliticos = () => {
 
     const calcularRisco = (usuario, salarioMinimo) => {
         let pontos = 0;
+        const pessoa = usuario.pessoas?.[0]
+        if(!pessoa) return 'Regular'
 
-        if (Number(usuario.renda) < salarioMinimo) pontos += 2;
-        else if (Number(usuario.renda) < salarioMinimo * 2) pontos += 1;
+        const renda = Number(pessoa.renda)
+        const acesso = pessoa.acesso || {}
+        const domicilio = pessoa.domicilio || {}
 
-        if (usuario.pessoas?.[0]?.acesso_saude !== "Sim") pontos += 2;
-        if (usuario.pessoas?.[0]?.acesso_esporte_cultura_lazer !== "Sim") pontos += 1;
+        if (renda < salarioMinimo) pontos += 2;
+        else if (usuario.renda < salarioMinimo * 2) pontos += 1;
 
-        if (usuario.pessoas?.[0]?.maus_tratos === "Sim") pontos += 3;
-        if (usuario.pessoas?.[0]?.violencia_domestica === "Sim") pontos += 3;
+        if (acesso.acesso_saude !== "Sim") pontos += 2;
+        if (acesso.acesso_esporte_cultura_lazer !== "Sim") pontos += 1;
 
-        if (usuario.pessoas?.[0]?.discriminacao_rejeicao_familiar === "Sim") pontos += 2;
-        if (usuario.pessoas?.[0]?.discriminacao_social_etnico_racial_sexual === "Sim") pontos += 2;
+        if (acesso.maus_tratos === "Sim") pontos += 3;
+        if (acesso.violencia_domestica === "Sim") pontos += 3;
 
-        if (usuario.apoio_renda_primaria === "Nenhum") pontos += 1;
-        if (usuario.beneficio_seguro_social === "Nenhum") pontos += 1;
+        if (acesso.discriminacao_rejeicao_familiar === "Sim") pontos += 2;
+        if (acesso.discriminacao_social_etnico_racial_sexual === "Sim") pontos += 2;
 
-        if (usuario.domicilio?.esgotamento_sanitario === "Fossa") pontos += 2;
+        if (pessoa.apoio_renda_primaria === "Nenhum") pontos += 1;
+        if (pessoa.beneficio_seguro_social === "Nenhum") pontos += 1;
+
+        if (domicilio.esgotamento_sanitario === "Céu aberto" || domicilio.esgotamento_sanitario === 'Rio') pontos += 2;
+        if(domicilio.destino_lixo === 'Queimado' || domicilio.destino_lixo === 'Céu aberto') pontos += 2
 
         if (pontos <= 2) return "Regular";
         if (pontos <= 4) return "Médio";
@@ -107,7 +115,7 @@ export const DadosAnaliticos = () => {
                         <li><strong>Maus-tratos ou violência doméstica:</strong> cada ocorrência = 3 pontos;</li>
                         <li><strong>Discriminação familiar ou social:</strong> cada ocorrência = 2 pontos;</li>
                         <li><strong>Apoio de renda e benefícios:</strong> ausência de apoio ou benefício = 1 ponto cada;</li>
-                        <li><strong>Condições de moradia:</strong> esgotamento sanitário precário (fossa) = 2 pontos;</li>
+                        <li><strong>Condições de moradia:</strong> esgotamento sanitário precário (despejado a céu aberto ou  em rios) = 2 pontos;</li>
                     </ul>
                     <p>
                         A soma dos pontos define a categoria de risco da família:
@@ -123,6 +131,11 @@ export const DadosAnaliticos = () => {
                         O valor do salário mínimo utilizado na avaliação é <strong>R$ {salarioMinimo}</strong> e é atualizado automaticamente uma vez por mês.
                     </p>
                 </div>
+            </div>
+
+            <div>
+                <h3 className={`text-center mt-4 ${styles['font-title']}`}>Gere um Relatório Social</h3>
+                <button className="btn btn-primary btn-sm d-block m-auto"> <BsFilePdfFill /> Gerar Relatório</button>
             </div>
 
         </>

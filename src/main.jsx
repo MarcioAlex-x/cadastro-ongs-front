@@ -35,6 +35,11 @@ import { ListaGraficosDomiciliares } from './components/ListasGraficosDomiciliar
 import { ListaGraficosVulnerabilidade } from './components/ListaGraficosVulnerabilidade/index.jsx'
 import { CadastroConjugeTardio } from './components/Cadastros/CadastroConjugeTardio/index.jsx'
 import { PDFDocument } from './components/PDFDocument/index.jsx'
+import { InicioAdministrativo } from './components/Inicio/InicioAdministrativo.jsx'
+import { InicioCoordenador } from './components/Inicio/InicioCoordenador.jsx'
+import { InicioDocente } from './components/Inicio/InicioDocente.jsx'
+import { InicioFinanceiro } from './components/Inicio/InicioFinanceiro.jsx'
+import { InicioSocial } from './components/Inicio/inicioSocial.jsx'
 
 const router = createBrowserRouter([
   {
@@ -51,6 +56,11 @@ const router = createBrowserRouter([
             path: '/dashboard', element: <PagesDashboard />,
             children: [
               { path: 'inicio', element: <Inicio /> },
+              { path: 'inicio-administrativo', element: <InicioAdministrativo />},
+              { path: 'inicio-coordenador', element: <InicioCoordenador />},
+              { path: 'inicio-docente', element: <InicioDocente />},
+              { path: 'inicio-financeiro', element: <InicioFinanceiro />},
+              { path:'inicio-social', element: <InicioSocial />},
               { path: 'cadastro', element: <Cadastro /> },
               { path: 'cadastro-pessoal/:id', element: <CadastroPessoal /> },
               { path: 'cadastro-conjuge/:id', element: <CadastroConjuge /> },
