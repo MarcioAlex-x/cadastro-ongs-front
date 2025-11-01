@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
 })
 
 import logo from '../../assets/ABSJ.png'
+import Swal from "sweetalert2"
 
 export const PDFDocument = () => {
 
@@ -105,6 +106,7 @@ export const PDFDocument = () => {
   const [loading, setLoading] = useState(true)
   const [composicaoFamiliar, setComposicaoFamiliar] = useState(null)
   const [cadastro, setCadastro] = useState(null)
+  const [inst, setInst] = useState([])
 
   const hoje = new Date()
   const diaAtual = hoje.toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' })
@@ -145,6 +147,23 @@ export const PDFDocument = () => {
     }
     dadosPessoais()
   }, [id])
+
+  useEffect(()=>{
+    const fetchApi = async () =>{
+      try {
+        const response = await fetch(`${url}/instituicao`)
+        const data = response.json()
+        setInst(data)
+      } catch (err) {
+        Swal.fire({
+          icon:'error',
+          title: 'Erro',
+          text: 'Ocorreu um erro ', err
+        })
+      }
+    }
+    fetchApi()
+  },[])
 
   if (loading || !pessoa) return <div><img src={spinner} /></div>
 

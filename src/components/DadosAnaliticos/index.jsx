@@ -133,11 +133,6 @@ export const DadosAnaliticos = () => {
                 </div>
             </div>
 
-            <div>
-                <h3 className={`text-center mt-4 ${styles['font-title']}`}>Gere um Relatório Social</h3>
-                <button className="btn btn-primary btn-sm d-block m-auto"> <BsFilePdfFill /> Gerar Relatório</button>
-            </div>
-
         </>
 
     );

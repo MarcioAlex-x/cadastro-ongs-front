@@ -13,7 +13,7 @@ export const Administrador = () => {
     const administrador = user.isAdmin
 
     return (
-        <div className={`p-2 ${styles['owner-bg']}`}>
+        <div className={`p-2 ${styles['owner-bg']} `}>
 
                        
             {administrador && <ul className={`${styles['listaNaoOrdenada']} mt-5`}>
