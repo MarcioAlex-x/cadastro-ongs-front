@@ -4,7 +4,7 @@ import './App.css'
 function App() {
 
   return (
-    <div className='App'>
+    <div className='App' style={{maxHeight:'100vh', overflowY:'hidden'}}>
       <Outlet />
     </div>
   )

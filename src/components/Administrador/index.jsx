@@ -13,19 +13,9 @@ import { FaCalendarDay } from "react-icons/fa";
 import Swal from 'sweetalert2'
 import spinner from '../../assets/spinner.gif'
 import { RiErrorWarningLine } from "react-icons/ri";
+import Tooltip from '@mui/material/Tooltip'
 
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend,
-} from 'chart.js'
 import { GraficosUsuarios } from '../Graficos/GraficosUsuarios'
-
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 export const Administrador = () => {
     const { user } = useAuth()
@@ -141,19 +131,19 @@ export const Administrador = () => {
                 body: JSON.stringify(form)
             })
 
-            if(!response.ok){
+            if (!response.ok) {
                 Swal.fire({
-                    icon:'error',
-                    title:'Erro',
-                    text:'Ocorreu um erro ao tentar salvar novo usuário do sistema',
-                    showCloseButton:true
+                    icon: 'error',
+                    title: 'Erro',
+                    text: 'Ocorreu um erro ao tentar salvar novo usuário do sistema',
+                    showCloseButton: true
                 })
-            }else{
+            } else {
                 Swal.fire({
-                    icon:'success',
-                    title:'Sucesso',
-                    text:'Usuário do sistema salvo com sucesso',
-                    showCloseButton:true
+                    icon: 'success',
+                    title: 'Sucesso',
+                    text: 'Usuário do sistema salvo com sucesso',
+                    showCloseButton: true
                 })
             }
 
@@ -172,7 +162,7 @@ export const Administrador = () => {
 
 
     return (
-        <div className={` w-100 ${styles['scroll']}`}>
+        <div className={`w-100 ${styles['scroll']}`}>
             {message && <div className='alert alert-success'>{message}</div>}
             {loading ? (
                 <div className='d-flex align-items-center justify-content-center'>
@@ -220,7 +210,7 @@ export const Administrador = () => {
                         </div>
                         <div className='p-4'>
                             <h2 className={`${styles['title-cadastro']}`}>Fazer Cadastro de Novo Colaborador</h2>
-                            <form className='' onSubmit={handleSubmit}>
+                            <form className='mb-5' onSubmit={handleSubmit}>
                                 <div className="mt-3 px-3">
                                     <label htmlFor="nome" className="form-label">Nome</label>
                                     <input
@@ -250,7 +240,15 @@ export const Administrador = () => {
                                 <div className="p-4 border rounded shadow">
                                     <div className="text-center">
                                         <h3 className={`${styles['title-cadastro']} p-2`}>Defina os níveis de acessos deste usuário do sistema</h3>
-                                        <p className={`${styles['text-cadastro']} px-2`}>Os níveis de acesso definem quais camadas do sistema poderão ser operadas por este usuário do sistema.</p>
+                                        <p
+                                            className={`${styles['text-cadastro']} px-2 d-flex justify-content-center align-items-center`}>
+                                            Os níveis de acesso definem quais camadas do sistema poderão ser operadas por este usuário do sistema.
+                                            <Tooltip
+                                                className='ms-2'
+                                                title='Defina um ou mais papéis a um utiizador do sistema, mas evite fazer isso para o Administrador, pois o Administrador já tem autonomia em acessar todas as camadas do sistema, tudo lhe compete.'>
+                                                <RiErrorWarningLine />
+                                            </Tooltip>
+                                        </p>
                                     </div>
                                     <div className="m-0 px-3">
                                         <input
@@ -261,7 +259,12 @@ export const Administrador = () => {
                                             checked={form.isAdmin}
                                             onChange={handleChange} />
                                         <label htmlFor="isAdmin" className="form-label my-0">Administrador</label>
-                                        <RiErrorWarningLine  />
+
+                                        <Tooltip
+                                            className='ms-2'
+                                            title='O Administrador tem poder de ver todas as outras competências, por isso seja cauteloso ao atribuir este nível de acesso ao criar um utilizador.'>
+                                            <RiErrorWarningLine />
+                                        </Tooltip>
 
                                     </div>
                                     <div className="my-0 px-3">
@@ -273,6 +276,11 @@ export const Administrador = () => {
                                             checked={form.isCoordenador}
                                             onChange={handleChange} />
                                         <label htmlFor="isCoordenador" className="form-label my-0">Coordenador</label>
+                                        <Tooltip
+                                            className='ms-2'
+                                            title='O nível de acesso Coordenador é apenas de nível pedagógico.'>
+                                            <RiErrorWarningLine />
+                                        </Tooltip>
                                     </div>
                                     <div className="my-0 px-3">
                                         <input
@@ -283,6 +291,11 @@ export const Administrador = () => {
                                             checked={form.isDocente}
                                             onChange={handleChange} />
                                         <label htmlFor="isDocente" className="form-label my-0">Professor</label>
+                                        <Tooltip
+                                            className='ms-2'
+                                            title='O nível de acesso Professor é apenas de nível docente.'>
+                                            <RiErrorWarningLine />
+                                        </Tooltip>
                                     </div>
                                     <div className="my-0 px-3">
                                         <input
@@ -293,6 +306,11 @@ export const Administrador = () => {
                                             checked={form.isFinanceiro}
                                             onChange={handleChange} />
                                         <label htmlFor="isFinanceiro" className="form-label my-0">Financeiro</label>
+                                        <Tooltip
+                                            className='ms-2'
+                                            title='O nível de acesso Financeiro é apenas de nível financeiro.'>
+                                            <RiErrorWarningLine />
+                                        </Tooltip>
                                     </div>
                                     <div className="my-0 px-3">
                                         <input
@@ -303,14 +321,22 @@ export const Administrador = () => {
                                             checked={form.isSocial}
                                             onChange={handleChange} />
                                         <label htmlFor="isSocial" className="form-label">Serviço Social</label>
+                                        <Tooltip
+                                            className='ms-2'
+                                            title='O nível de acesso Assistente Social é apenas de nível do serviço social.'>
+                                            <RiErrorWarningLine />
+                                        </Tooltip>
                                     </div>
                                 </div>
+                                <button type='submit' className="btn btn-sm btn-success my-3">Salvar</button>
 
-                                <button type='submit' className="btn btn-sm btn-success mt-3">Salvar</button>
                             </form>
                         </div>
+
                     </div>
+
                 )}
+
         </div>
     )
 }

@@ -33,19 +33,19 @@ export const ListaGraficosVulnerabilidade = () => {
                     </div>
                     <div className='row justify-content-evenly'>
                         <div className={`col-12 col-md-4 p-1 ${styles['card-style']}`}>
-                            <div className={`rounded text-light bg-light p-2 shadow d-flex flex-column justify-content-between ${styles['card-style']} ${styles['backGroundLocalidade']}`}>
+                            <div className={`rounded text-light bg-light p-2 shadow d-flex flex-column justify-content-between ${styles['card-style']} ${styles['backGroundDiscriminacao']}`}>
                                 <p className={`${styles['font-title']} text-light`}>Discriminação/Rejeição Familiar</p>
                                 <GraficosDiscriminacaoRejeicaoFamiliar discriminacaoRejeicaoFamiliarU={discriminacaoRejeicaoFamiliarU} />
                             </div>
                         </div>
                         <div className={`col-12 col-md-4 p-1 ${styles['card-style']}`}>
-                            <div className={`rounded text-light bg-light p-2 shadow d-flex flex-column justify-content-between ${styles['card-style']} ${styles['backGroundLocalidade']}`}>
+                            <div className={`rounded text-light bg-light p-2 shadow d-flex flex-column justify-content-between ${styles['card-style']} ${styles['backGroundRacismo']}`}>
                                 <p className={`${styles['font-title']} text-light`}>Discriminação Sócio, Étnico, Racial e/ou Sexual </p>
                                 <GraficoDiscriminacaoSocial discriminacaoSocialU={discriminacaoSocialU} />
                             </div>
                         </div>
                         <div className={`col-12 col-md-4 p-1 ${styles['card-style']}`}>
-                            <div className={`rounded text-light bg-light p-2 shadow d-flex flex-column justify-content-between ${styles['card-style']} ${styles['backGroundLocalidade']}`}>
+                            <div className={`rounded text-light bg-light p-2 shadow d-flex flex-column justify-content-between ${styles['card-style']} ${styles['backGroundViolencia']}`}>
                                 <p className={`${styles['font-title']} text-light`}>Violência Doméstica</p>
                                 <GraficosViolenciaDomestica violenciaDomesticaU={violenciaDomesticaU} />
                             </div>
@@ -55,21 +55,21 @@ export const ListaGraficosVulnerabilidade = () => {
 
                     <div className='row justify-content-evenly'>
                         <div className={`col-12 col-md-4 p-1 ${styles['card-style']}`}>
-                            <div className={`rounded text-light bg-light p-2 shadow d-flex flex-column justify-content-between ${styles['card-style']} ${styles['backGroundLocalidade']}`}>
+                            <div className={`rounded text-light bg-light p-2 shadow d-flex flex-column justify-content-between ${styles['card-style']} ${styles['backGroundMausTratos']}`}>
                                 <p className={`${styles['font-title']} text-light`}>Maus Tratos</p>
                                 <GraficosMausTratos mausTratosU={mausTratosU} />
                             </div>
                         </div>
 
                         <div className={`col-12 col-md-4 p-1 ${styles['card-style']}`}>
-                            <div className={`rounded text-light bg-light p-2 shadow d-flex flex-column justify-content-between ${styles['card-style']} ${styles['backGroundLocalidade']}`}>
+                            <div className={`rounded text-light bg-light p-2 shadow d-flex flex-column justify-content-between ${styles['card-style']} ${styles['backGroundcultura']}`}>
                                 <p className={`${styles['font-title']} text-light`}>Acesso a Cultura</p>
                                 <ListaGraficosCultura cultura={cultura} />
                             </div>
                         </div>
                         
                         <div className={`col-12 col-md-4 p-1 ${styles['card-style']}`}>
-                            <div className={`rounded text-light bg-light p-2 shadow d-flex flex-column justify-content-between ${styles['card-style']} ${styles['backGroundLocalidade']}`}>
+                            <div className={`rounded text-light bg-light p-2 shadow d-flex flex-column justify-content-between ${styles['card-style']} ${styles['backGroundSaude']}`}>
                                 <p className={`${styles['font-title']} text-light`}>Acesso a Saúde</p>
                                 <ListaGraficosSaude saude={saude} />
                             </div>

@@ -9,7 +9,7 @@ export const Titlebar = ({ className }) => {
             ${className} 
             ${styles['owner-bg']}`}
         >
-            <Link 
+            {/* <Link 
                 to='/dashboard/inicio'
                 className={` text-light ${styles['icon-link']} ${styles['title']}`}>
                 <RiDashboardHorizontalLine />
@@ -19,7 +19,8 @@ export const Titlebar = ({ className }) => {
                 to='/dashboard/inicio'
                 className={` text-light ${styles['text-link']} ${styles['title']}`}>
                 Dashboard
-            </Link>
+            </Link> */}
+            <span className='fs-4'><b>ADM</b>OSCS</span>
         </div>
     )
 }

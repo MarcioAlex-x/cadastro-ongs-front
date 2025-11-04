@@ -1,3 +1,5 @@
+const url = import.meta.env.VITE_API_URL
+
 import styles from './inicio.module.css'
 import { useCadastro } from '../../hooks/useCadastros'
 
@@ -11,103 +13,17 @@ import { DadosAnaliticos } from '../dadosAnaliticos';
 import { useAuth } from '../../context/AuthContext';
 import { Link } from 'react-router-dom';
 
-import { Document, Page, Text, View, StyleSheet, PDFDownloadLink, Image } from '@react-pdf/renderer'
-
-const styles = StyleSheet.create({
-  page: {
-    padding: 30,
-    fontSize: 12,
-    fontFamily: 'Helvetica'
-  },
-  header: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 20,
-    textAlign: 'center'
-  },
-  logo: {
-    width: 40,
-    height: 40,
-    marginRight: '20'
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold'
-  },
-  sectionTitle: {
-    font: 14,
-    fontWeight: 'bold',
-    marginTop: 12,
-    marginBottom: 6,
-    borderBottom: '1px solid #000'
-  },
-  row: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginBottom: 3
-  },
-  field: {
-    width: '50%',
-    marginBottom: 3,
-  },
-  text: {
-    marginBottom: 2
-  },
-  assinatura: {
-    textAlign: 'center',
-    marginTop: 40
-  },
-  docsContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 10,
-    marginBottom: 10,
-  },
-  rg: {
-    width: 150,
-    height: 250,
-  },
-  comprovante: {
-    width: 150,
-    height: 300,
-  },
-  containerDuplo: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 4,
-  },
-  containerTriplo: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 4,
-  },
-  containerQuadruplo: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    flexWrap: 'wrap',
-    marginBottom: 4,
-  },
-  coluna: {
-    flexGrow: 1,
-    flexBasis: 0,
-    marginRight: 6,
-  }
-})
-
 
 
 export const InicioSocial = () => {
+
     const { loading, total, mesAtual, mesAnterior, anoAtual } = useCadastro()
     const { user } = useAuth()
 
+
+
     return (
         <>
-
-
             {loading ? (
                 <div className=' w-100 d-flex justify-content-center align-items-center h-100'>
                     <img
@@ -176,8 +92,11 @@ export const InicioSocial = () => {
                     </div>
 
                     <div>
-                        <h3 className={`text-center mt-4 ${styles['font-title']}`}>Gere um Relatório Social</h3>
-                        <button className="btn btn-primary btn-sm d-block m-auto"> <BsFilePdfFill /> Gerar Relatório</button>
+                        <h3 className={`text-center mt-4 ${styles['font-title']}`}>Gere um Relatório Socioconomico</h3>
+                        <Link to='/dashboard/relatorio-socioeconomico'>
+                            <button className="btn btn-primary btn-sm d-block m-auto"> <BsFilePdfFill />
+                                Gerar Relatório</button>
+                        </Link>
                     </div>
                 </div>
             )}

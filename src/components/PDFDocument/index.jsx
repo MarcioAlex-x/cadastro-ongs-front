@@ -91,7 +91,6 @@ const styles = StyleSheet.create({
   }
 })
 
-import logo from '../../assets/ABSJ.png'
 import Swal from "sweetalert2"
 
 export const PDFDocument = () => {
@@ -152,7 +151,7 @@ export const PDFDocument = () => {
     const fetchApi = async () =>{
       try {
         const response = await fetch(`${url}/instituicao`)
-        const data = response.json()
+        const data = await response.json()
         setInst(data)
       } catch (err) {
         Swal.fire({
@@ -173,8 +172,8 @@ export const PDFDocument = () => {
       <Page size="A4" style={styles.page}>
 
         <View style={styles.header}>
-          <Image src={logo} style={styles.logo} />
-          <Text style={styles.title}>Associação Beneficente São José</Text>
+          <Image src={inst[0]?.imagemInstituicao} style={styles.logo} />
+          <Text style={styles.title}>{inst[0]?.nome}</Text>
         </View>
 
 
@@ -417,13 +416,13 @@ export const PDFDocument = () => {
           <Text style={styles.sectionTitle}>Declaração de Ciência e Consentimento</Text>
           <Text>
             Declaro, para os devidos fins, que estou ciente de que as informações prestadas neste formulário serão utilizadas exclusivamente
-            para fins de cadastro e acompanhamento junto à Associação Beneficente São José, conforme os princípios da Lei Geral de Proteção de
+            para fins de cadastro e acompanhamento junto à {inst[0]?.nome}, conforme os princípios da Lei Geral de Proteção de
             Dados Pessoais (Lei nº 13.709/2018), garantindo-se o sigilo e a confidencialidade das informações fornecidas.
           </Text>
           <View style={styles.assinatura}>
             <Text>______________________________________________</Text>
             <Text>{pessoa?.nome}</Text>
-            <Text>João Pessoa - PB, {diaAtual}</Text>
+            <Text>{inst[0]?.cidade} - {inst[0]?.uf}, {diaAtual}</Text>
           </View>
         </View>
       </Page>
@@ -432,7 +431,7 @@ export const PDFDocument = () => {
 
   return (
     <div className="m-5">
-      <p className="text-center mb-5">Baixe o documento clicando no botão abaixo de {pessoa?.nome}!</p>
+      <p className="text-center mb-5">Baixe o documento de <b>{pessoa?.nome}</b> clicando no botão abaixo!</p>
       <img
         className="d-block"
         style={{

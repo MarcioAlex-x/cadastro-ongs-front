@@ -5,14 +5,20 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 import { LuUserRoundPlus } from "react-icons/lu";
 import { PiUsersThree } from "react-icons/pi";
+import { RiHome2Fill } from 'react-icons/ri';
 
 export const Docente = () => {
 
     return (
         <div className={`p-2 ${styles['owner-bg']}`}>
 
-                       
-           <ul className={`${styles['listaNaoOrdenada']} mt-5`}>
+
+            <ul className={`${styles['listaNaoOrdenada']} mt-5`}>
+                <li className={`${styles['listItem']} d-flex ps-1`}>
+                    <Link to='/dashboard/inicio' className={`text-light ${styles['link']} ${styles['icon-link']} `}><RiHome2Fill size={25} /></Link>
+                    <Link to='/dashboard/inicio' className={`text-light ${styles['link']}  ${styles['text-link']} `}>Painel</Link>
+                </li>
+
                 <li className={`${styles['listItem']} d-flex ps-1`} >
                     <Link to='/dashboard/cadastro' className={` text-light ${styles['link']} ${styles['icon-link']}`}><LuUserRoundPlus size={25} /></Link>
                     <Link to='/dashboard/cadastro' className={` text-light ${styles['link']} ${styles['text-link']} `}>Novo Usuário</Link>
@@ -27,13 +33,13 @@ export const Docente = () => {
                         Gráficos
                     </button>
                     <ul className="dropdown-menu dropdown-menu-dark">
-                        <Link to='graficos-pessoais'  className="dropdown-item">Chefes de Família</Link>
-                        <Link to='graficos-domiciliares'  className="dropdown-item">Dados Domiciliares</Link>
-                        <Link to='graficos-vulnerabilidade'  className="dropdown-item">Dados Vulnerabilidade</Link>
+                        <Link to='graficos-pessoais' className="dropdown-item">Chefes de Família</Link>
+                        <Link to='graficos-domiciliares' className="dropdown-item">Dados Domiciliares</Link>
+                        <Link to='graficos-vulnerabilidade' className="dropdown-item">Dados Vulnerabilidade</Link>
                     </ul>
                 </li>
 
-            </ul>            
+            </ul>
 
         </div>
     )

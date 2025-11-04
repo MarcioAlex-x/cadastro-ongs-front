@@ -425,11 +425,11 @@ export const InicioAdministrativo = () => {
                         infoInst.length === 0 ?
                             (<button
                                 type="submit"
-                                className="btn btn-primary btn-sm">Salvar</button>
+                                className="btn btn-primary btn-sm mb-5">Salvar</button>
                             )
                             :
                             (<button
-                                className="btn btn-primary btn-sm">Editar</button>
+                                className="btn btn-primary btn-sm mb-5">Editar</button>
                             )
                     }
                 </form>

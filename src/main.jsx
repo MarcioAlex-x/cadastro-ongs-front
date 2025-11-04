@@ -40,6 +40,7 @@ import { InicioCoordenador } from './components/Inicio/InicioCoordenador.jsx'
 import { InicioDocente } from './components/Inicio/InicioDocente.jsx'
 import { InicioFinanceiro } from './components/Inicio/InicioFinanceiro.jsx'
 import { InicioSocial } from './components/Inicio/inicioSocial.jsx'
+import { PDFRelatorio } from './components/PDFRelatorio/index.jsx'
 
 const router = createBrowserRouter([
   {
@@ -84,6 +85,7 @@ const router = createBrowserRouter([
               { path: 'graficos-vulnerabilidade', element: <ListaGraficosVulnerabilidade />},
               { path: 'cadastro-conjuge-tardio/:id', element: <CadastroConjugeTardio />},
               { path: 'pdf-document/:id', element: <PDFDocument /> },
+              { path: 'relatorio-socioeconomico', element: <PDFRelatorio />},
               
             ]
           },

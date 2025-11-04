@@ -10,166 +10,50 @@
     width: 100%;
     background-color: #3c8dbcaf;
 }
-
-/* .backGroundCard{
-    background-image:
-    linear-gradient(rgba(26, 34, 38, 0.76), rgba(8, 16, 20, 0.877)),
-     url('../../assets/chart-sm-2.png');
-    background-repeat: no-repeat;
-    background-position: bottom center;
-    background-size: contain;
-} */
-
-.backGroundCasal{
+.backGroundcultura{
     background-image:
     linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
-     url('../../assets/casal.jpg');
+     url('../../assets/AcessoCultura.jpg');
     background-repeat: no-repeat;
     background-position: bottom center;
     background-size: cover;
 }
-
-.backGroundDiversidade{
+.backGroundDiscriminacao{
     background-image:
     linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
-     url('../../assets/diversidade.jpg');
+     url('../../assets/DiscriminacaoFamiliar.jpg');
     background-repeat: no-repeat;
     background-position: bottom center;
     background-size: cover;
 }
-.backGroundEtariedade{
+.backGroundMausTratos{
     background-image:
     linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
-     url('../../assets/etariedade2.jpg');
+     url('../../assets/MausTratos.jpg');
     background-repeat: no-repeat;
     background-position: bottom center;
     background-size: cover;
 }
-
-.backGroundEtnia{
+.backGroundRacismo{
     background-image:
     linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
-     url('../../assets/diversidade2.jpg');
+     url('../../assets/racismo.jpg');
     background-repeat: no-repeat;
     background-position: bottom center;
     background-size: cover;
 }
-.backGroundDeficiencia{
+.backGroundSaude{
     background-image:
     linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
-     url('../../assets/deficiencia.jpg');
+     url('../../assets/saude.jpg');
     background-repeat: no-repeat;
     background-position: bottom center;
     background-size: cover;
 }
-.backGroundSeguro{
+.backGroundViolencia{
     background-image:
     linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
-     url('../../assets/seguro.jpg');
-    background-repeat: no-repeat;
-    background-position: bottom center;
-    background-size: cover;
-}
-.backGroundTrabalhista{
-    background-image:
-    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
-     url('../../assets/trabalhista.jpg');
-    background-repeat: no-repeat;
-    background-position: bottom center;
-    background-size: cover;
-}
-.backGroundLocalidade{
-    background-image:
-    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
-     url('../../assets//localidade.jpg');
-    background-repeat: no-repeat;
-    background-position: bottom center;
-    background-size: cover;
-}
-.backGroundTipoConstrucao{
-    background-image:
-    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
-     url('../../assets/tipo-construcao.jpg');
-    background-repeat: no-repeat;
-    background-position: bottom center;
-    background-size: cover;
-}
-.backGroundPsf{
-    background-image:
-    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
-     url('../../assets/psf.jpg');
-    background-repeat: no-repeat;
-    background-position: bottom center;
-    background-size: cover;
-}
-.backGroundPraca{
-    background-image:
-    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
-     url('../../assets/praca.jpg');
-    background-repeat: no-repeat;
-    background-position: bottom center;
-    background-size: cover;
-}
-.backGroundPolicial{
-    background-image:
-    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
-     url('../../assets/delegacia.jpg');
-    background-repeat: no-repeat;
-    background-position: bottom center;
-    background-size: cover;
-}
-.backGroundCreche{
-    background-image:
-    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
-     url('../../assets/creche.jpg');
-    background-repeat: no-repeat;
-    background-position: bottom center;
-    background-size: cover;
-}
-.backGroundAgua{
-    background-image:
-    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
-     url('../../assets/abastecimento-agua.jpg');
-    background-repeat: no-repeat;
-    background-position: bottom center;
-    background-size: cover;
-}
-.backGroundEnergia{
-    background-image:
-    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
-     url('../../assets/energia-eletrica.jpg');
-    background-repeat: no-repeat;
-    background-position: bottom center;
-    background-size: cover;
-}
-.backGroundLixo{
-    background-image:
-    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
-     url('../../assets/lixo.jpg');
-    background-repeat: no-repeat;
-    background-position: bottom center;
-    background-size: cover;
-}
-.backGroundEsgoto{
-    background-image:
-    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
-     url('../../assets/esgoto.jpg');
-    background-repeat: no-repeat;
-    background-position: bottom center;
-    background-size: cover;
-}
-.backGroundCoabitacao{
-    background-image:
-    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
-     url('../../assets/coabitacao.jpg');
-    background-repeat: no-repeat;
-    background-position: bottom center;
-    background-size: cover;
-}
-.backGroundCondicao{
-    background-image:
-    linear-gradient(rgba(14, 26, 32, 0.842), rgba(26, 34, 38, 0.925)),
-     url('../../assets/alvenaria.jpg');
+     url('../../assets/ViolenciaDomestica.jpg');
     background-repeat: no-repeat;
     background-position: bottom center;
     background-size: cover;

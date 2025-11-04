@@ -6,6 +6,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { LuUserRoundPlus } from "react-icons/lu";
 import { PiUsersThree } from "react-icons/pi";
 import { useAuth } from '../../context/AuthContext';
+import { RiHome2Fill } from 'react-icons/ri';
 
 export const Coordenador = () => {
     const { user } = useAuth()
@@ -15,6 +16,11 @@ export const Coordenador = () => {
         
                                
                     {user.isCoo && <ul className={`${styles['listaNaoOrdenada']} mt-5`}>
+                        <li className={`${styles['listItem']} d-flex ps-1`}>
+                                            <Link to='/dashboard/inicio' className={`text-light ${styles['link']} ${styles['icon-link']} `}><RiHome2Fill size={25} /></Link>
+                                            <Link to='/dashboard/inicio' className={`text-light ${styles['link']}  ${styles['text-link']} `}>Painel</Link>
+                                        </li>
+
                         <li className={`${styles['listItem']} d-flex ps-1`} >
                             <Link to='/dashboard/cadastro' className={` text-light ${styles['link']} ${styles['icon-link']}`}><LuUserRoundPlus size={25} /></Link>
                             <Link to='/dashboard/cadastro' className={` text-light ${styles['link']} ${styles['text-link']} `}>Novo Usuário</Link>
