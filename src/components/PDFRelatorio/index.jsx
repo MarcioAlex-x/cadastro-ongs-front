@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { formatarData } from '../../utils/fomatters'
 import {
     Document,
     Page,
@@ -22,6 +23,8 @@ export const PDFRelatorio = () => {
     const [acesso, setAcesso] = useState(null)
     const [composicaoFamiliar, setComposicaoFamiliar] = useState(null)
     const [membro, setMembro] = useState(null)
+    const [dataInicioFormatada, setDataInicioFormatada] = useState('')
+    const [dataFinalFormatada, setDataFinalFormatada] = useState('')
 
 
     useEffect(() => {
@@ -53,17 +56,22 @@ export const PDFRelatorio = () => {
         fetchInst()
     }, [])
 
+    const qtdCadastros = cadastros.length
+
     useEffect(() => {
-        
-    })
+        setDataInicioFormatada(formatarData(dataInicio))
+        setDataFinalFormatada(formatarData(dataFinal))
+    }, [dataInicio, dataFinal])
+
+    const inicio = dataInicio ? new Date(dataInicio) : null;
+    const final = dataFinal ? new Date(dataFinal) : null;
 
     const cadastrosFiltrados = cadastros.filter((item) => {
         const criadoEm = new Date(item.createdAt);
-        const inicio = dataInicio ? new Date(dataInicio) : null;
-        const final = dataFinal ? new Date(dataFinal) : null;
 
         if (inicio && criadoEm < inicio) return false;
         if (final && criadoEm > final) return false;
+
         return true;
     });
 
@@ -78,6 +86,43 @@ export const PDFRelatorio = () => {
 
         return acc + 1 + temConjuge + qtdMembros;
     }, 0);
+
+    const contagemOrientacoes = {
+        "Hétero": 0,
+        "Gay": 0,
+        "Lésbica": 0,
+        "Bisexual": 0,
+        "Assexual": 0,
+        "Pansexual": 0,
+    };
+
+    cadastrosFiltrados.forEach(c => {
+        const pessoa = c?.pessoas?.[0];
+        if (!pessoa) return;
+
+        const registrar = (orientacao) => {
+            if (contagemOrientacoes.hasOwnProperty(orientacao)) {
+                contagemOrientacoes[orientacao]++;
+            }
+        };
+
+        registrar(pessoa?.orientacao_sexual);
+
+        registrar(pessoa?.conjuge?.orientacao_sexual);
+
+        pessoa?.composicaoFamiliar?.membros?.forEach(m => {
+            registrar(m?.orientacao_sexual);
+        });
+    });
+
+    const toPercent = (quant) => totalPessoas > 0 ? ((quant / totalPessoas) * 100).toFixed(2) : 0;
+
+    const totalHeterosPercents = toPercent(contagemOrientacoes["Hétero"]);
+    const totalGaysPercents = toPercent(contagemOrientacoes["Gay"]);
+    const totalLesbicasPercents = toPercent(contagemOrientacoes["Lésbica"]);
+    const totalBiPercents = toPercent(contagemOrientacoes["Bisexual"]);
+    const totalAssexuaisPercents = toPercent(contagemOrientacoes["Assexual"]);
+    const totalPanPercents = toPercent(contagemOrientacoes["Pansexual"]);
 
     const styles = StyleSheet.create({
         page: { padding: 30, fontFamily: 'Helvetica' },
@@ -97,7 +142,7 @@ export const PDFRelatorio = () => {
             marginRight: '20'
         },
         text: { fontSize: 12, marginBottom: 2 },
-        header: {textAlign: 'end'}
+        header: { textAlign: 'center', marginVertical: 40 }
     });
 
     const RelatorioPDF = (
@@ -109,8 +154,8 @@ export const PDFRelatorio = () => {
                 <View style={styles.header}>
                     <Text style={styles.text}>CNPJ: {inst?.cnpj}</Text>
                     <Text style={styles.text}>Endereço: {inst?.logradouro}, {inst?.numero}, {inst?.bairro}, {inst?.cidade} - {inst?.uf}</Text>
-                    <Text style={styles.text}>Telefone: {inst?.telefone}</Text>
-                    {inst?.telefone2 && <Text style={styles.text}>Telecone 2: {inst?.telefone2}</Text>}
+                    <Text style={styles.text}>Telefone: {inst?.telefone} {inst?.telefone2 && ` - ${inst?.telefone2}`} </Text>
+
                 </View>
                 <View>
                     <Text style={styles.subTitle}>Relatório Socioeconômico</Text>
@@ -118,8 +163,49 @@ export const PDFRelatorio = () => {
                 <View>
                     <Text style={styles.subTitle}>Identificação Geral</Text>
                     <Text style={styles.text}>
-                        Durante o período analisado, foram cadastradas {totalFamilias} famílias, totalizando { totalPessoas } pessoas entre responsáveis e membros familiares.
+                        Durante o período analisado, {dataInicioFormatada} à {dataFinalFormatada}, foram cadastradas {totalFamilias} famílias, totalizando {totalPessoas} pessoas entre responsáveis e membros familiares.
                         Os registros foram coletados por meio de formulários socioeconômicos aplicados pela equipe da {inst?.nome}, com base em entrevistas e visitas domiciliares.
+                    </Text>
+                </View>
+                <View>
+                    <Text style={styles.subTitle}>
+                        Composição Familiar e Perfil Demográfico
+                    </Text>
+                    <Text style={styles.text}>
+                        Total de famílias {qtdCadastros}
+                    </Text>
+                    <Text style={styles.text}>
+                        Total de pessoas {totalPessoas}
+                    </Text>
+                    <Text style={styles.text}>
+                        Total de héteros {totalHeterosPercents}%
+                    </Text>
+                    <Text style={styles.text}>
+                        Total de gays {totalGaysPercents}%
+                    </Text>
+                    <Text style={styles.text}>
+                        Total de lésbicas {totalLesbicasPercents}%
+                    </Text>
+                    <Text style={styles.text}>
+                        Total de bissexuais {totalBiPercents}%
+                    </Text>
+                    <Text style={styles.text}>
+                        Total de assexuais {totalAssexuaisPercents}%
+                    </Text>
+                    <Text style={styles.text}>
+                        Total de pansexuais {totalPanPercents}%
+                    </Text>
+                    <Text style={styles.text}>
+                        Faixa etária predominante
+                    </Text>
+                    <Text style={styles.text}>
+                        Estado civil mais comum
+                    </Text>
+                    <Text style={styles.text}>
+                        Etnia predominante
+                    </Text>
+                    <Text style={styles.text}>
+                        Pessoas com deficiência
                     </Text>
                 </View>
             </Page>
@@ -131,15 +217,17 @@ export const PDFRelatorio = () => {
             <h3>Gerar Relatório Socioeconômico</h3>
 
             <div style={{ marginBottom: 20 }}>
-                <label>Data Início: </label>
+                <label className="form-label">Data Início: </label>
                 <input
+                    className="form-control"
                     type="date"
                     value={dataInicio}
                     onChange={(e) => setDataInicio(e.target.value)}
                     style={{ marginRight: 20 }}
                 />
-                <label>Data Final: </label>
+                <label className="form-label">Data Final: </label>
                 <input
+                    className="form-control"
                     type="date"
                     value={dataFinal}
                     onChange={(e) => setDataFinal(e.target.value)}

@@ -2,12 +2,12 @@ import { PieChart, Pie, Tooltip, Legend, Cell, ResponsiveContainer } from "recha
 
 export const GraficosIdadesFamiliares = ({ idades }) => {
     const data = [
-        { name: 'Até 20 anos', value: idades.menor20 || 0 },
-        { name: '21 até 30 anos', value: idades.menor30 || 0 },
-        { name: '31 até 40 anos', value: idades.menor40 || 0 },
-        { name: '41 até 50 anos', value: idades.menor50 || 0 },
-        { name: '51 até 60 anos', value: idades.menor60 || 0 },
-        { name: '60+', value: idades.sessentaMais || 0 },
+        { name: 'Crianças', value: idades.infantil || 0 },
+        { name: 'Adolescentes', value: idades.adolescente || 0 },
+        { name: 'Jovens adultos', value: idades.jovem_adulto || 0 },
+        { name: 'Adultos', value: idades.adulto || 0 },
+        { name: 'Meia-idade', value: idades.meia_idade || 0 },
+        { name: 'Idosos', value: idades.idoso || 0 },
     ]
 
     const COLORS = [

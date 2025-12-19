@@ -59,12 +59,12 @@ export const idadeChefesFamiliares = async () => {
     const idades = pessoas.map((p) => calcularIdade(p.data_nascimento));
 
     const faixaEtaria = {
-      menor20: idades.filter((i) => i < 20).length,
-      menor30: idades.filter((i) => i >= 20 && i < 30).length,
-      menor40: idades.filter((i) => i >= 30 && i < 40).length,
-      menor50: idades.filter((i) => i >= 40 && i < 50).length,
-      menor60: idades.filter((i) => i >= 50 && i < 60).length,
-      sessentaMais: idades.filter((i) => i >= 60).length,
+      infantil: idades.filter((i) => i < 12).length,
+      adolescente: idades.filter((i) => i >= 12 && i < 30).length,
+      jovem_adulto: idades.filter((i) => i >= 30 && i < 40).length,
+      adulto: idades.filter((i) => i >= 40 && i < 50).length,
+      meia_idade: idades.filter((i) => i >= 50 && i < 60).length,
+      idoso: idades.filter((i) => i >= 60).length,
     };
 
     return faixaEtaria;

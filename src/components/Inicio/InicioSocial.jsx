@@ -3,10 +3,7 @@ const url = import.meta.env.VITE_API_URL
 import styles from './inicio.module.css'
 import { useCadastro } from '../../hooks/useCadastros'
 
-import { FaClipboardUser } from "react-icons/fa6";
-import { BsCalendarDate, BsFilePdfFill } from "react-icons/bs";
-import { HiOutlineCalendarDateRange } from "react-icons/hi2";
-import { CiCalendarDate } from "react-icons/ci";
+import { BsFilePdfFill, BsFillBarChartFill, BsFillBarChartLineFill } from "react-icons/bs";
 import spinner from '../../assets/spinner.gif'
 
 import { DadosAnaliticos } from '../dadosAnaliticos';
@@ -40,59 +37,70 @@ export const InicioSocial = () => {
                         </Link>
                     }
                     <div className='d-flex justify-content-between align-items-center'>
-                        <h2 className={`${styles['font-title']} fs-4`}>Cadastros Beneficiários</h2>
+                        <h2 className={`${styles['font-title']} fs-4`}>Cadastros <br /> Beneficiários</h2>
                         <div className={styles.horizontalRow}></div>
                     </div>
                     <div className="row justify-content-evenly">
 
                         <div className={`col-6 col-lg-2 p-1 ${styles['card-style']}`}>
-                            <div className={`rounded text-light bg-success p-2 shadow d-flex flex-column justify-content-between ${styles['card-style']}  ${styles['backGroundCard']}`}>
-                                <div className="d-flex">
-                                    <p className={`${styles['font-title']}`}>Beneficiários Cadastrados</p>
-                                    <FaClipboardUser size={30} />
-                                </div>
-                                <p className={`${styles['font-text']} display-6 align-self-end me-2 `}>{total}</p>
+                            <div className={`rounded text-light bg-success p-2 shadow d-flex align-items-center justify-content-between ${styles['card-style']}  ${styles['backGroundCard']}`}>
+                                <p className={`${styles['font-card']}`}>Beneficiários <br /> Cadastrados</p>
+                                <p className={`${styles['font-card']} fs-4 align-self-end me-2 `}>{total}</p>
                             </div>
                         </div>
 
                         <div className={`col-6 col-lg-2 p-1 ${styles['card-style']}`}>
-                            <div className={`rounded text-light bg-danger p-2 shadow d-flex flex-column justify-content-between ${styles['card-style']}  ${styles['backGroundCard']}`}>
-                                <div className='d-flex'>
-                                    <p className={`${styles['font-title']}`}>Cadastros Mês Atual</p>
-                                    <BsCalendarDate size={30} />
-                                </div>
-                                <p className={`${styles['font-text']} display-6 align-self-end me-2 `}>{mesAtual}</p>
+                            <div className={`rounded text-light bg-danger p-2 shadow d-flex align-items-center justify-content-between ${styles['card-style']}  ${styles['backGroundCard']}`}>
+                                <p className={`${styles['font-card']}`}>Cadastros <br /> Mês Atual</p>
+                                <p className={`${styles['font-card']} fs-4 align-self-end me-2 `}>{mesAtual}</p>
                             </div>
                         </div>
 
                         <div className={`col-6 col-lg-2 p-1 ${styles['card-style']}`}>
-                            <div style={{ backgroundColor: '#9D00FF' }} className={`rounded text-light p-2 shadow d-flex flex-column justify-content-between ${styles['card-style']}  ${styles['backGroundCard']}`}>
-                                <div className="d-flex">
-                                    <p className={`${styles['font-title']}`}>Cadastros Mês Passado</p>
-                                    <HiOutlineCalendarDateRange size={40} />
-                                </div>
-                                <p className={`${styles['font-text']} display-6 align-self-end me-2 `}>{mesAnterior}</p>
+                            <div style={{ backgroundColor: '#9D00FF' }} className={`rounded text-light p-2 shadow d-flex align-items-center justify-content-between ${styles['card-style']}  ${styles['backGroundCard']}`}>
+                                <p className={`${styles['font-card']}`}>Cadastros <br /> Mês Passado</p>
+                                <p className={`${styles['font-card']} fs-4 align-self-end me-2 `}>{mesAnterior}</p>
                             </div>
                         </div>
 
                         <div className={`col-6 col-lg-2 p-1 ${styles['card-style']}`}>
-                            <div className={`rounded text-light bg-primary p-2 shadow d-flex flex-column justify-content-between ${styles['card-style']}  ${styles['backGroundCard']}`}>
-                                <div className="d-flex">
-                                    <p className={`${styles['font-title']}`}>Cadastrados Neste Ano</p>
-                                    <b>
-                                        <CiCalendarDate className={styles.bold} size={36} />
-                                    </b>
-                                </div>
-                                <p className={`${styles['font-text']} display-6 align-self-end me-2 `}>{anoAtual}</p>
+                            <div className={`rounded text-light bg-primary p-2 shadow d-flex align-items-center justify-content-between ${styles['card-style']}  ${styles['backGroundCard']}`}>
+                                <p className={`${styles['font-card']}`}>Cadastrados <br /> Neste Ano</p>
+                                <p className={`${styles['font-card']} fs-4 align-self-end me-2 `}>{anoAtual}</p>
                             </div>
                         </div>
                     </div>
                     <div>
-                        <DadosAnaliticos />
+
+                        <h3 className={`text-center mt-4 ${styles['font-title']} mt-5`}>Visualizar Gráficos de Riscos e Vulnerabilidade</h3>
+                        
+                        
+                        <button type="button" class="btn btn-primary btn-sm d-block m-auto mb-5" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                <BsFillBarChartLineFill  className='me-2'/>
+                            Análise de Riscos e Vulnerabilidade
+                        </button>
+
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Análise de Riscos e Vulnerabilidade</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+         <DadosAnaliticos />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>
+      </div>
+    </div>
+  </div>
+</div>
+                       
                     </div>
 
                     <div>
-                        <h3 className={`text-center mt-4 ${styles['font-title']}`}>Gere um Relatório Socioconomico</h3>
+                        <h3 className={`text-center mt-4 ${styles['font-title']}`}>Gere um Relatório Socioconômico</h3>
                         <Link to='/dashboard/relatorio-socioeconomico'>
                             <button className="btn btn-primary btn-sm d-block m-auto"> <BsFilePdfFill />
                                 Gerar Relatório</button>

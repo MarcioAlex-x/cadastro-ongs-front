@@ -23,6 +23,7 @@ export const CadastroPessoal = () => {
         data_nascimento: '',
         orientacao_sexual: '',
         telefone: '',
+        telegone2:'',
         estado_civil: '',
         nacionalidade: 'Brasileiro(a)',
         naturalidade: '',
@@ -223,6 +224,19 @@ export const CadastroPessoal = () => {
                             id="telefone"
                             name="telefone"
                             value={form.telefone}
+                            onChange={handleChange} ></InputMask>
+                    </div>
+
+                    <div className="col-md-3 col-12">
+                        <label htmlFor="telefone2" className={`${styles['text-cadastro']} form-label`}>Telefone 2<LuDot className="text-danger" /></label>
+                        <InputMask
+                            required
+                            mask='(99) 99999-9999'
+                            type="text"
+                            className="form-control"
+                            id="telefone2"
+                            name="telefone2"
+                            value={form.telefone2}
                             onChange={handleChange} ></InputMask>
                     </div>
 

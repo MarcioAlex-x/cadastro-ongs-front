@@ -21,6 +21,9 @@ export const CadastroConjuge = () => {
         tipo_deficiencia: '',
         beneficio_seguro_social: '',
         valor_beneficio_seguro_social: '',
+        cpf: '',
+        nis: '',
+        telefone:''
     })
 
     const handleChange = (e) => {
@@ -75,6 +78,18 @@ export const CadastroConjuge = () => {
                         value={form.nome}
                         onChange={handleChange} />
                 </div>
+                <div className="col-md-3 col-12">
+                        <label htmlFor="telefone" className={`${styles['text-cadastro']} form-label`}>Telefone<LuDot className="text-danger" /></label>
+                        <InputMask
+                            required
+                            mask='(99) 99999-9999'
+                            type="text"
+                            className="form-control"
+                            id="telefone"
+                            name="telefone"
+                            value={form.telefone}
+                            onChange={handleChange} ></InputMask>
+                    </div>
                 <div className="row">
                     <div className="col-md-4 col-12">
                         <label htmlFor="rg" id="rg" className={`${styles['text-cadastro']} form-label`}>RG<LuDot className='text-danger' /></label>
@@ -89,7 +104,7 @@ export const CadastroConjuge = () => {
                     </div>
 
                     <div className="col-md-4 col-12">
-                        <label htmlFor="cpf" className={`${styles['text-cadastro']} form-label`}>CPF<LuDot className='text-danger'/></label>
+                        <label htmlFor="cpf" className={`${styles['text-cadastro']} form-label`}>CPF<LuDot className='text-danger' /></label>
                         <InputMask
                             required
                             type="text"
@@ -103,7 +118,7 @@ export const CadastroConjuge = () => {
                     </div>
 
                     <div className="col-md-4 col-12">
-                        <label htmlFor="nis" className={`${styles['text-cadastro']} form-label`}>NIS<LuDot className='text-danger'/></label>
+                        <label htmlFor="nis" className={`${styles['text-cadastro']} form-label`}>NIS<LuDot className='text-danger' /></label>
                         <input
                             required
                             type="text"
@@ -116,9 +131,28 @@ export const CadastroConjuge = () => {
                     </div>
                 </div>
 
+                <div className="col-md-3 col-12">
+                    <label htmlFor="orientacao_sexual" className={`${styles['text-cadastro']} form-label`}>Orientação Sexual<LuDot className="text-danger" /></label>
+                    <select
+                        required
+                        className="form-control"
+                        name="orientacao_sexual"
+                        id="orientacao_sexual"
+                        value={form.orientacao_sexual}
+                        onChange={handleChange}>
+                        <option value="">Selecione</option>
+                        <option value="Hétero">Hétero</option>
+                        <option value="Gay">Gay</option>
+                        <option value="Lésbica">Lésbica</option>
+                        <option value="Bisexual">Bisexual</option>
+                        <option value="Assexual">Assexual</option>
+                        <option value="Pansexual">Pansexual</option>
+                    </select>
+                </div>
+
                 <div className="row">
                     <div className="col-md-4 col-12">
-                        <label htmlFor="data_nascimento" className={`${styles['text-cadastro']} form-label`}>Data de Nascimento<LuDot className='text-danger'/></label>
+                        <label htmlFor="data_nascimento" className={`${styles['text-cadastro']} form-label`}>Data de Nascimento<LuDot className='text-danger' /></label>
                         <input
                             required
                             type="date"
@@ -129,7 +163,7 @@ export const CadastroConjuge = () => {
                             onChange={handleChange} />
                     </div>
                     <div className="col-md-4 col-12">
-                        <label htmlFor="etnia" className={`${styles['text-cadastro']} form-label`}>Etnia<LuDot className='text-danger'/></label>
+                        <label htmlFor="etnia" className={`${styles['text-cadastro']} form-label`}>Etnia<LuDot className='text-danger' /></label>
                         <select
                             required
                             className="form-control"
@@ -146,7 +180,7 @@ export const CadastroConjuge = () => {
                         </select>
                     </div>
                     <div className="col-6 col-md-4">
-                        <label htmlFor="situacao_mercado_trabalho" className={`${styles['text-cadastro']} form-label`}>Situação Trabalhista<LuDot className='text-danger'/></label>
+                        <label htmlFor="situacao_mercado_trabalho" className={`${styles['text-cadastro']} form-label`}>Situação Trabalhista<LuDot className='text-danger' /></label>
                         <select
                             required
                             className="form-control"
@@ -167,7 +201,7 @@ export const CadastroConjuge = () => {
 
                 <div className="row">
                     <div className="col-12 col-md-4">
-                        <label htmlFor="renda" className={`${styles['text-cadastro']} form-label`}>Renda<LuDot className='text-danger'/></label>
+                        <label htmlFor="renda" className={`${styles['text-cadastro']} form-label`}>Renda<LuDot className='text-danger' /></label>
                         <input
                             required
                             type="text"
@@ -178,7 +212,7 @@ export const CadastroConjuge = () => {
                             onChange={handleChange} />
                     </div>
                     <div className="col-12 col-md-4">
-                        <label htmlFor="ocupacao" className={`${styles['text-cadastro']} form-label`}>Ocupação<LuDot className='text-danger'/></label>
+                        <label htmlFor="ocupacao" className={`${styles['text-cadastro']} form-label`}>Ocupação<LuDot className='text-danger' /></label>
                         <input
                             required
                             type="text"
@@ -189,7 +223,7 @@ export const CadastroConjuge = () => {
                             onChange={handleChange} />
                     </div>
                     <div className="col-md-4 col-12">
-                        <label htmlFor="deficiencia" className={`${styles['text-cadastro']} form-label`}>PCD<LuDot className='text-danger'/></label>
+                        <label htmlFor="deficiencia" className={`${styles['text-cadastro']} form-label`}>PCD<LuDot className='text-danger' /></label>
                         <select
                             required
                             className="form-control"
@@ -216,7 +250,7 @@ export const CadastroConjuge = () => {
                             onChange={handleChange} />
                     </div>
                     <div className="col-6 col-md-4">
-                        <label htmlFor="beneficio_seguro_social" className={`${styles['text-cadastro']} form-label`}>Benefício/Seguro Social<LuDot className='text-danger'/></label>
+                        <label htmlFor="beneficio_seguro_social" className={`${styles['text-cadastro']} form-label`}>Benefício/Seguro Social<LuDot className='text-danger' /></label>
                         <select
                             required
                             name="beneficio_seguro_social"

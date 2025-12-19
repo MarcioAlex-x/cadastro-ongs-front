@@ -5,6 +5,7 @@ import './index.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './App.jsx'
 
+import { Home } from './pages/Home/index.jsx'
 import { PagesLogin } from './pages/PagesLogin/index.jsx'
 import { PagesDashboard } from './pages/PagesDashboard'
 import { Inicio } from './components/Inicio'
@@ -47,6 +48,7 @@ const router = createBrowserRouter([
     path: '/',
     element: <App />,
     children: [
+      { path: '/' , element: <Home /> },
       { path: '/login', element: <PagesLogin /> },
       { path: '/reset-password', element: <ResetPassword /> },
       { path: '/forgot-password', element: <ForgotPassword /> },

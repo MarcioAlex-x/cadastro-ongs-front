@@ -23,6 +23,7 @@ export const CadastroConjugeTardio = () => {
         valor_beneficio_seguro_social: '',
         cpf: '',
         nis: '',
+        telefone: ''
     })
 
     const handleChange = (e) => {
@@ -67,7 +68,7 @@ export const CadastroConjugeTardio = () => {
             <h2 className={`${styles['title-cadastro']}`}>Conjuge</h2>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="nome" id="nome" className={`${styles['text-cadastro']} form-label`}>Nome <LuDot className='text-danger'/> </label>
+                    <label htmlFor="nome" id="nome" className={`${styles['text-cadastro']} form-label`}>Nome <LuDot className='text-danger' /> </label>
                     <input
                         required
                         type="text"
@@ -76,6 +77,19 @@ export const CadastroConjugeTardio = () => {
                         name="nome"
                         value={form.nome}
                         onChange={handleChange} />
+                </div>
+
+                <div className="col-md-3 col-12">
+                    <label htmlFor="telefone" className={`${styles['text-cadastro']} form-label`}>Telefone<LuDot className="text-danger" /></label>
+                    <InputMask
+                        required
+                        mask='(99) 99999-9999'
+                        type="text"
+                        className="form-control"
+                        id="telefone"
+                        name="telefone"
+                        value={form.telefone}
+                        onChange={handleChange} ></InputMask>
                 </div>
 
                 <div className="row">

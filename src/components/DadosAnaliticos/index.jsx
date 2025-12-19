@@ -87,10 +87,10 @@ export const DadosAnaliticos = () => {
     return (
         <>
             <div style={{ width: "100%", height: 400 }}>
-                <div className='d-flex justify-content-between align-items-center'>
+                {/* <div className='d-flex justify-content-between align-items-center'>
                     <h2 className={`${styles['font-title']} fs-4`}>Análises de Riscos</h2>
                     <div className={styles.horizontalRow}></div>
-                </div>
+                </div> */}
                 <ResponsiveContainer width="100%" height='100%'>
                     <BarChart data={dadosGrafico} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                         <CartesianGrid strokeDasharray="3 3" />

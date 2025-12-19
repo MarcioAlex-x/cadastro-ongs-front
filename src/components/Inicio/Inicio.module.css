@@ -19,7 +19,7 @@
 }
 
 .card-style{
-    min-height: 160px ;
+    min-height: 80px ;
     font-weight: bold;
 }
 
@@ -32,5 +32,10 @@
 }
 
 .font-text{
+    font-family: var(--font-text);
+}
+
+.font-card{
+    font-size: 12px;
     font-family: var(--font-text);
 }

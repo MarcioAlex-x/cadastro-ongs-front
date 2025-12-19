@@ -230,7 +230,11 @@ export const Administrador = () => {
                                         onChange={handleChange} />
                                 </div>
                                 <div className="mt-2 px-3">
-                                    <p>Senha Padrão <b>Sistema123.</b> </p>
+                                    <p>Senha Padrão <b>Sistema123.</b> <Tooltip
+                                            className='ms-1'
+                                            title='O colaborador será cadastrado com a senha padrão que poderá ser mudada pelo painel do utilizador.'>
+                                            <RiErrorWarningLine />
+                                        </Tooltip> </p>
                                     <input
                                         type="hidden"
                                         name="password"

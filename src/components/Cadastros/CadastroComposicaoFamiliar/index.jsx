@@ -28,6 +28,8 @@ export const CadastroComposicaoFamiliar = () => {
         pcd: '',
         cpf:'',
         nis:'',
+        telefone: ''
+
     }
     const [form, setForm] = useState(initialState)
 
@@ -103,6 +105,18 @@ export const CadastroComposicaoFamiliar = () => {
                         value={form.nome}
                         onChange={handleChange} />
                 </div>
+                <div className="col-md-3 col-12">
+                                        <label htmlFor="telefone" className={`${styles['text-cadastro']} form-label`}>Telefone<LuDot className="text-danger" /></label>
+                                        <InputMask
+                                            required
+                                            mask='(99) 99999-9999'
+                                            type="text"
+                                            className="form-control"
+                                            id="telefone"
+                                            name="telefone"
+                                            value={form.telefone}
+                                            onChange={handleChange} ></InputMask>
+                                    </div>
                 <div className="row">
                     <div className="col-md-4 col-12">
                         <label htmlFor="rg" id="rg" className={`${styles['text-cadastro']} form-label`}>RG <LuDot className="text-danger" /> </label>
