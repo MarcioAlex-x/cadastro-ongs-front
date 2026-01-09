@@ -21,15 +21,15 @@ export const InicioAdministrativo = () => {
         cidade: '',
         uf: '',
         cnpj: '',
-        telefone:'',
-        telefone2:'',
-        email:'',
-        instagram:'',
-        facebook:'',
-        youtube:'',
-        spotify:'',
-        x:'',
-        tiktok:'',
+        telefone: '',
+        telefone2: '',
+        email: '',
+        instagram: '',
+        facebook: '',
+        youtube: '',
+        spotify: '',
+        x: '',
+        tiktok: '',
         imagemInstituicao: null
     })
 
@@ -412,7 +412,7 @@ export const InicioAdministrativo = () => {
                         </div>
 
                         <div className="col-6 mb-2">
-                            <label htmlFor="" className="form-label">Imagem</label>
+                            <label htmlFor="" className="form-label">Logo</label>
                             <input type="file"
                                 name="imagemInstituicao"
                                 onChange={handleChange}
@@ -420,6 +420,126 @@ export const InicioAdministrativo = () => {
                                 placeholder="Nome da cidade"
                             />
                         </div>
+                    </div>
+
+                    {/* Informaçoes do hero */}
+
+                    <div className="my-2 row">
+                        <div className="col-12">
+                            <h4 className={`${styles['font-title']} text-center`}>Hero da página</h4>
+                            <div className="col-6 mb-2">
+                                <label className="form-label">Imagem do hero</label>
+                                <input className="form-control" type="file" />
+                            </div>
+                        </div>
+
+                        <div className="col-12 mb-2">
+                            <label className="form-label">Frase breve para o hero</label>
+                            <textarea className="form-control"></textarea>
+                        </div>
+                    </div>
+
+                    {/* Informações de doações */}
+
+                    <div className="my-2 row">
+                        <div className="col-6">
+                            <label className="form-label">
+                                QRCode Pix
+                            </label>
+                            <input type="file" className="form-control" />
+                        </div>
+
+                        <div className="col-6">
+                            <label className="form-label">
+                                Chave pix
+                            </label>
+                            <input type="text" className="form-control" />
+                        </div>
+
+
+                        <div className="col-6 my-4">
+                            <h4 className="text-center">Banco 1</h4>
+                            <label className="form-label">
+                                Nome do banco
+                            </label>
+                            <input type="text" className="form-control" />
+                            <label className="form-label">
+                                Tipo de conta
+                            </label>
+                            <input type="text" className="form-control" />
+                            <label className="form-label">
+                                Número da conta
+                            </label>
+                            <input type="text" className="form-control" />
+                            <label className="form-label">
+                                Agência
+                            </label>
+                            <input type="text" className="form-control" />
+                            <label className="form-label">
+                                Operação
+                            </label>
+                            <input type="text" className="form-control" />
+                        </div>
+                        <div className="col-6 my-4">
+                            <h4 className="text-center">Banco 2</h4>
+                            <label className="form-label">
+                                Nome do banco
+                            </label>
+                            <input type="text" className="form-control" />
+                            <label className="form-label">
+                                Tipo de conta
+                            </label>
+                            <input type="text" className="form-control" />
+                            <label className="form-label">
+                                Número da conta
+                            </label>
+                            <input type="text" className="form-control" />
+                            <label className="form-label">
+                                Agência
+                            </label>
+                            <input type="text" className="form-control" />
+                            <label className="form-label">
+                                Operação
+                            </label>
+                            <input type="text" className="form-control" />
+                        </div>
+                        {/* Sobre */}
+                        <div className="row">
+                            <h3 className="text-center my-2">Sobre</h3>
+                            <div className="col-12">
+                                <label className="form-label">Imagem do sobre</label>
+                                <input type="file" className="form-control" />
+                            </div>
+                            <div className="col-12">
+                                <label className="form-label">Sobre</label>
+                                <textarea className="form-control"></textarea>
+                            </div>
+                            <div className="col-12">
+                                <label className="form-label">Imagem da área missão</label>
+                                <input type="file" className="form-control" />
+                            </div>
+                            <div className="col-12">
+                                <label className="form-label">Missão</label>
+                                <textarea className="form-control"></textarea>
+                            </div>
+                            <div className="col-12">
+                                <label className="form-label">Imagem área visão</label>
+                                <input type="file" className="form-control" />
+                            </div>
+                            <div className="col-12">
+                                <label className="form-label">Visão</label>
+                                <textarea className="form-control"></textarea>
+                            </div>
+                            <div className="col-12">
+                                <label className="form-label">Imagem da área valores</label>
+                                <input type="file" className="form-control" />
+                            </div>
+                            <div className="col-12">
+                                <label className="form-label">Valores</label>
+                                <textarea className="form-control"></textarea>
+                            </div>
+                        </div>
+
                     </div>
                     {
                         infoInst.length === 0 ?

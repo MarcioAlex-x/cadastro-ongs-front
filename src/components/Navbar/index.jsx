@@ -26,8 +26,6 @@ export const Navbar = ({ className }) => {
             console.error(err)
         }
     }
-
-    console.log('Usuário: ',user)
     
     return (
         <nav className={`align-items-center ${className} ${styles['bg-owner']}`}>

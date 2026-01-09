@@ -26,7 +26,6 @@ export const ComposicaoFamiliar = () =>{
             })
 
             const data = await response.json()
-            console.log(data)
             if(data){
                 navigate(`/dashboard/cadastro-composicao-familiar/${data.id}`)
             }

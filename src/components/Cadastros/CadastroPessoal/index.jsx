@@ -112,7 +112,6 @@ export const CadastroPessoal = () => {
             }
 
             const data = await response.json()
-            console.log(data)
 
             if (data.possui_conjuge === true) {
                 navigate(`/dashboard/cadastro-conjuge/${data.id}`)
@@ -511,7 +510,7 @@ export const CadastroPessoal = () => {
                         />
                     </div>
                 </div>
-                <input type="submit" value="Salvar" className={`${styles['text-cadastro']} btn btn-success mb-4 d-block w-100`} />
+                <input type="submit" value="Salvar" className={`${styles['text-cadastro']} btn btn-success my-4 d-block w-100`} />
             </form>
         </div>
     )

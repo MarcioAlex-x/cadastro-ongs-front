@@ -104,8 +104,6 @@ export const Administrador = () => {
 
                 setAdmins(qtdAdmins)
                 setComuns(qtdComuns)
-                console.log(admins)
-                console.log(comuns)
             }
 
             fetchApi()

@@ -38,8 +38,6 @@ export const Sidebar = () => {
         fetchApi()
     }, [])
 
-    console.log(inst)
-
     return (
         <div className={`p-2 ${styles['owner-bg']}`}
             style={{

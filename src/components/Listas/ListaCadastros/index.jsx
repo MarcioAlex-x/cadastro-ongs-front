@@ -8,7 +8,7 @@ import spinner from '../../../assets/spinner.gif';
 
 import { FaRegEye } from "react-icons/fa";
 import { FiSearch } from "react-icons/fi";
-import Swal from 'sweetalert2';
+import { PiWhatsappLogoThin } from "react-icons/pi";
 
 export const ListaCadastros = () => {
   const location = useLocation();
@@ -26,6 +26,14 @@ export const ListaCadastros = () => {
     );
   };
 
+  const normalizarTelefone = (telefone) =>{
+    if(!telefone) return ''
+    const somenteNumeros = telefone.replace(/\D/g,'')
+    if (somenteNumeros.startsWith('55')) return somenteNumeros
+    return `55${somenteNumeros}`
+  }
+
+
   const handleDeleteCadastro = async (id) => {
     try {
       const response = await fetch(`${url}/cadastro/${id}`, {
@@ -35,7 +43,6 @@ export const ListaCadastros = () => {
 
       if (response.ok) {
         setCadastros((prev) => prev.filter((cadastro) => cadastro.id !== id));
-        console.log(`Cadastro ${id} removido por estar incompleto.`);
       }
     } catch (err) {
       console.error(`Erro ao remover cadastro ${id}:`, err.message);
@@ -130,7 +137,9 @@ const filteredCadastros = cadastros.filter((cadastro) =>
                   <ul>
                     {data.pessoas.map((pessoa) => (
                       <li key={pessoa.id} className={styles['link']}>
-                        {pessoa.nome} - CPF: {pessoa.cpf}
+                        {pessoa.nome} - CPF: {pessoa.cpf} <a target='_blank' href={`https://wa.me/+55${normalizarTelefone(pessoa.telefone)}`}>
+                          <PiWhatsappLogoThin size={28}/>
+                        </a>
                       </li>
                     ))}
                   </ul>
