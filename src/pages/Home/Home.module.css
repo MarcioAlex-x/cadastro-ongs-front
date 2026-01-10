@@ -1,6 +1,11 @@
 .homeContainer{
     color: #2c3e50;
+    height: 100vh;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
+
 
 .link{
     color: aliceblue;
@@ -16,3 +21,26 @@
 }
 
 
+
+.hero{
+    display: flex;
+    flex-direction: column;
+}
+
+.hero p{
+    font-size: 32px;
+    align-self: center;
+}
+
+.chamada1{
+    display: block;
+    margin: auto;
+    border: none;
+    background-color: #2ecc71;
+    border-radius: 24px;
+    padding: 4px 16px;
+    font-weight: bold;
+    font-size: 16px;
+    font-size: 24px;
+    color: aliceblue;
+}

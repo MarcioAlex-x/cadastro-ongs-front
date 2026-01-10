@@ -30,24 +30,67 @@ export const InicioAdministrativo = () => {
         spotify: '',
         x: '',
         tiktok: '',
-        imagemInstituicao: null
+        heroFrase: '',
+        chavePix: '',
+        nomeBanco1: '',
+        nomeBanco2: '',
+        tipoContaBanco1: '',
+        tipoContaBanco2: '',
+        contaBanco1: '',
+        contaBanco2: '',
+        agenciaBanco1: '',
+        agenciaBanco2: '',
+        operacaoBanco1: '',
+        operacaoBanco2: '',
+        sobre: '',
+        missao: '',
+        visao: '',
+        valores: ''
+    })
+
+    const [arquivos, setArquivos] = useState({
+        imagemInstituicao: null,
+        heroImagem: null,
+        qrCodePixImagem: null,
+        sobreImagem: null,
+        missaoImagem: null,
+        visaoImagem: null,
+        valoresImagem: null
     })
 
 
     const handleChange = (e) => {
-        const { name, value, files } = e.target
-        setForm({
-            ...form,
-            [name]: files ? files[0] : value
-        })
+        const { name, value } = e.target
+        setForm(prev => ({
+            ...prev,
+            [name]: value
+        }))
     }
+
+    const handleFileChange = (e) => {
+        const { name, files } = e.target
+        setArquivos(prev => ({
+            ...prev,
+            [name]: files[0]
+        }))
+    }
+
     const handleCreate = async (e) => {
         e.preventDefault()
 
         const formData = new FormData()
-        for (let key in form) {
+
+        if (arquivos.imagemInstituicao) formData.append('imagemInstituicao', arquivos.imagemInstituicao)
+        if (arquivos.heroImagem) formData.append('heroImagem', arquivos.heroImagem)
+        if (arquivos.qrCodePixImagem) formData.append('qrCodePixImagem', arquivos.qrCodePixImagem)
+        if (arquivos.sobreImagem) formData.append('sobreImagem', arquivos.sobreImagem)
+        if (arquivos.missaoImagem) formData.append('missaoImagem', arquivos.missaoImagem)
+        if (arquivos.visaoImagem) formData.append('visaoImagem', arquivos.visaoImagem)
+        if (arquivos.valoresImagem) formData.append('valoresImagem', arquivos.valoresImagem)
+
+        Object.keys(form).forEach(key => {
             formData.append(key, form[key])
-        }
+        })
 
         try {
             const response = await fetch(`${url}/instituicao`, {
@@ -74,7 +117,7 @@ export const InicioAdministrativo = () => {
 
         } catch (err) {
             Swal.fire({
-                icon: 'Error',
+                icon: 'error',
                 title: 'Erro',
                 text: `Ocorreu um erro inesperado. ${err.message}`,
                 showCloseButton: true
@@ -86,14 +129,23 @@ export const InicioAdministrativo = () => {
         e.preventDefault()
 
         const formData = new FormData()
-        for (let key in form) {
-            if (key === "imagemInstituicao" && !(form[key] instanceof File)) continue
+
+        if (arquivos.imagemInstituicao) formData.append('imagemInstituicao', arquivos.imagemInstituicao)
+        if (arquivos.heroImagem) formData.append('heroImagem', arquivos.heroImagem)
+        if (arquivos.qrCodePixImagem) formData.append('qrCodePixImagem', arquivos.qrCodePixImagem)
+        if (arquivos.sobreImagem) formData.append('sobreImagem', arquivos.sobreImagem)
+        if (arquivos.missaoImagem) formData.append('missaoImagem', arquivos.missaoImagem)
+        if (arquivos.visaoImagem) formData.append('visaoImagem', arquivos.visaoImagem)
+        if (arquivos.valoresImagem) formData.append('valoresImagem', arquivos.valoresImagem)
+
+
+        Object.keys(form).forEach(key => {
             formData.append(key, form[key])
-        }
+        })
 
         try {
             const response = await fetch(`${url}/instituicao/${instId}`, {
-                method: 'PUT',
+                method: 'PATCH',
                 body: formData
             })
 
@@ -104,25 +156,26 @@ export const InicioAdministrativo = () => {
                     text: 'Ocorreu um erro ao tentar editar as informações.',
                     showCloseButton: true
                 })
-                return {}
-            } else {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Sucesso',
-                    text: 'As informações da instituição foram editadas.',
-                    showCloseButton: true
-                })
+                return
             }
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Sucesso',
+                text: 'As informações da instituição foram editadas.',
+                showCloseButton: true
+            })
 
         } catch (err) {
             Swal.fire({
-                icon: 'Error',
+                icon: 'error',
                 title: 'Erro',
                 text: `Ocorreu um erro inesperado. ${err.message}`,
                 showCloseButton: true
             })
         }
     }
+
 
     useEffect(() => {
         const fetchApi = async () => {
@@ -145,13 +198,17 @@ export const InicioAdministrativo = () => {
     useEffect(() => {
         if (infoInst.length > 0) {
             setInstId(infoInst[0].id)
-            setForm(infoInst[0])
+            setForm(prev => ({
+                ...prev,
+                ...infoInst[0]
+            }))
         }
     }, [infoInst])
 
 
     return (
         <div className={`${styles['scroll']}`}>
+            {console.log(infoInst)}
             <div>
                 <h1 className={`text-center mb-4 ${styles['font-title']}`}>Painel Administrativo de {user.nome}</h1>
                 <div className=" p-4 rounded">
@@ -207,7 +264,7 @@ export const InicioAdministrativo = () => {
                     Informações da Instituição</h4>
 
                 <form onSubmit={infoInst.length === 0 ? handleCreate : handleUpdate}>
-                    {infoInst > 0 && <input type="hidden" value={infoInst[0]?.id || ''} />}
+                    {infoInst.length > 0 && <input type="hidden" value={infoInst[0]?.id || ''} />}
 
                     <div className="mb-2">
                         <label htmlFor="" className="form-label">Nome</label>
@@ -412,10 +469,10 @@ export const InicioAdministrativo = () => {
                         </div>
 
                         <div className="col-6 mb-2">
-                            <label htmlFor="" className="form-label">Logo</label>
+                            <label htmlFor="" className="form-label">Logo <i>(Use imagem 80x80px)</i></label>
                             <input type="file"
                                 name="imagemInstituicao"
-                                onChange={handleChange}
+                                onChange={handleFileChange}
                                 className="form-control"
                                 placeholder="Nome da cidade"
                             />
@@ -428,14 +485,22 @@ export const InicioAdministrativo = () => {
                         <div className="col-12">
                             <h4 className={`${styles['font-title']} text-center`}>Hero da página</h4>
                             <div className="col-6 mb-2">
-                                <label className="form-label">Imagem do hero</label>
-                                <input className="form-control" type="file" />
+                                <label className="form-label">Imagem do hero <i>(Use imagem 1000 x 300)</i></label>
+                                <input
+                                    className="form-control"
+                                    type="file"
+                                    name="heroImagem"
+                                    onChange={handleFileChange} />
                             </div>
                         </div>
 
                         <div className="col-12 mb-2">
                             <label className="form-label">Frase breve para o hero</label>
-                            <textarea className="form-control"></textarea>
+                            <textarea
+                                className="form-control"
+                                name="heroFrase"
+                                value={form.heroFrase || ''}
+                                onChange={handleChange}></textarea>
                         </div>
                     </div>
 
@@ -446,97 +511,198 @@ export const InicioAdministrativo = () => {
                             <label className="form-label">
                                 QRCode Pix
                             </label>
-                            <input type="file" className="form-control" />
+                            <input
+                                type="file"
+                                className="form-control"
+                                name="qrCodePixImagem"
+                                onChange={handleFileChange} />
                         </div>
 
                         <div className="col-6">
                             <label className="form-label">
                                 Chave pix
                             </label>
-                            <input type="text" className="form-control" />
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="chavePix"
+                                value={form.chavePix || ''}
+                                onChange={handleChange} />
                         </div>
 
 
                         <div className="col-6 my-4">
                             <h4 className="text-center">Banco 1</h4>
+
                             <label className="form-label">
                                 Nome do banco
                             </label>
-                            <input type="text" className="form-control" />
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="nomeBanco1"
+                                value={form.nomeBanco1}
+                                onChange={handleChange} />
+
                             <label className="form-label">
                                 Tipo de conta
                             </label>
-                            <input type="text" className="form-control" />
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="tipoContaBanco1"
+                                value={form.tipoContaBanco1 || ''}
+                                onChange={handleChange} />
+
                             <label className="form-label">
-                                Número da conta
+                                Números da conta
                             </label>
-                            <input type="text" className="form-control" />
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="contaBanco1"
+                                value={form.contaBanco1 || ''}
+                                onChange={handleChange} />
+
                             <label className="form-label">
                                 Agência
                             </label>
-                            <input type="text" className="form-control" />
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="agenciaBanco1"
+                                value={form.agenciaBanco1 || ''}
+                                onChange={handleChange} />
+
                             <label className="form-label">
                                 Operação
                             </label>
-                            <input type="text" className="form-control" />
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="operacaoBanco1"
+                                value={form.operacaoBanco1 || ''}
+                                onChange={handleChange} />
                         </div>
+
                         <div className="col-6 my-4">
                             <h4 className="text-center">Banco 2</h4>
                             <label className="form-label">
                                 Nome do banco
                             </label>
-                            <input type="text" className="form-control" />
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="nomeBanco2"
+                                value={form.nomeBanco2 || ""}
+                                onChange={handleChange} />
+
                             <label className="form-label">
                                 Tipo de conta
                             </label>
-                            <input type="text" className="form-control" />
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="tipoContaBanco2"
+                                value={form.tipoContaBanco2 || ''}
+                                onChange={handleChange} />
+
                             <label className="form-label">
-                                Número da conta
+                                Números da conta
                             </label>
-                            <input type="text" className="form-control" />
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="contaBanco2"
+                                value={form.contaBanco2 || ''}
+                                onChange={handleChange} />
+
                             <label className="form-label">
                                 Agência
                             </label>
-                            <input type="text" className="form-control" />
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="agenciaBanco2"
+                                value={form.agenciaBanco2 || ''}
+                                onChange={handleChange} />
+
                             <label className="form-label">
                                 Operação
                             </label>
-                            <input type="text" className="form-control" />
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="operacaoBanco2"
+                                value={form.operacaoBanco2 || ''}
+                                onChange={handleChange} />
                         </div>
                         {/* Sobre */}
                         <div className="row">
                             <h3 className="text-center my-2">Sobre</h3>
                             <div className="col-12">
                                 <label className="form-label">Imagem do sobre</label>
-                                <input type="file" className="form-control" />
+                                <input
+                                    type="file"
+                                    className="form-control"
+                                    name="sobreImagem"
+                                    onChange={handleFileChange} />
                             </div>
                             <div className="col-12">
                                 <label className="form-label">Sobre</label>
-                                <textarea className="form-control"></textarea>
+                                <textarea
+                                    className="form-control"
+                                    name="sobre"
+                                    value={form.sobre || ''}
+                                    onChange={handleChange}></textarea>
                             </div>
                             <div className="col-12">
                                 <label className="form-label">Imagem da área missão</label>
-                                <input type="file" className="form-control" />
+                                <input
+                                    type="file"
+                                    className="form-control"
+                                    name="missaoImagem"
+                                    onChange={handleFileChange} />
                             </div>
                             <div className="col-12">
                                 <label className="form-label">Missão</label>
-                                <textarea className="form-control"></textarea>
+                                <textarea
+                                    className="form-control"
+                                    name="missao"
+                                    value={form.missao || ''}
+                                    onChange={handleChange}></textarea>
                             </div>
                             <div className="col-12">
                                 <label className="form-label">Imagem área visão</label>
-                                <input type="file" className="form-control" />
+                                <input
+                                    type="file"
+                                    className="form-control"
+                                    name="visaoImagem"
+                                    onChange={handleFileChange} />
                             </div>
                             <div className="col-12">
                                 <label className="form-label">Visão</label>
-                                <textarea className="form-control"></textarea>
+                                <textarea
+                                    className="form-control"
+                                    name="visao"
+                                    value={form.visao || ''}
+                                    onChange={handleChange}></textarea>
                             </div>
                             <div className="col-12">
                                 <label className="form-label">Imagem da área valores</label>
-                                <input type="file" className="form-control" />
+                                <input
+                                    type="file"
+                                    className="form-control"
+                                    name="valoresImagem"
+                                    onChange={handleFileChange} />
                             </div>
                             <div className="col-12">
                                 <label className="form-label">Valores</label>
-                                <textarea className="form-control"></textarea>
+                                <textarea
+                                    className="form-control"
+                                    name="valores"
+                                    value={form.valores || ''}
+                                    onChange={handleChange}></textarea>
                             </div>
                         </div>
 
